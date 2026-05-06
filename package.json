@@ -1,0 +1,8 @@
+{
+  "name": "anant-portfolio",
+  "version": "1.0.0",
+  "description": "Anant Mishra's AI-powered portfolio",
+  "engines": {
+    "node": "20.x"
+  }
+}
