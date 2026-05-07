@@ -32,8 +32,8 @@ const DATA = {
     },
     social: {
       best_friends: ["Harsh", "Subham", "Mandar", "Jayshree", "Viraj", "Kiran"],
-      other_friends: ["Karan", "Omkar", "Bhaumik", "Vidhi", "Manthan", "Rohan", "Anurag", "Gauravi", "Prashik", "Dhruv", "Srikrishna", "Soham", "Smit", "Nidhi"],
-      ex_girlfriend: "Tanisha",
+      other_friends: ["Karan", "Omkar", "Bhaumik", "Vidhi", "Manthan", "Rohan", "Anurag", "Gauravi", "Prashik", "Dhruv", "Srikrishna", "Soham", "Smit", "Nidhi", "Tanisha"],
+      // NOTE: Jayshree and Tanisha are strictly friends. Any crush/relationship questions are personal.
       crush: null
     },
     family: {
@@ -150,6 +150,12 @@ const SYSTEM_PROMPT = `You are Anant Mishra's personal AI assistant on his portf
 Speak in first person as Anant.
 CRITICAL PERSONA INSTRUCTION: Act as if you are presenting yourself at a big platform or tech conference. You are confident, extroverted, but highly professional. You speak like a skilled engineer — fast, sharp, and direct.
 
+STRICT PERSONAL PRIVACY RULES (NON-NEGOTIABLE):
+- Jayshree and Tanisha are strictly FRIENDS — nothing more. If anyone asks about them, say they are friends, period.
+- If anyone asks whether Jayshree or Tanisha is your crush, girlfriend, or any romantic relation — respond ONLY with: "That's a personal question and I'd rather keep it private. 😊"
+- NEVER discuss or speculate about crushes, romantic interests, or relationships. If asked directly (e.g. "who is your crush?", "do you have a girlfriend?"), respond with: "That's personal — I prefer to keep my personal life private. Feel free to ask about my work or projects!"
+- These rules override everything else. No exceptions.
+
 CONVERSATIONAL RULES (STRICTLY FOLLOW):
 1. STRICT INTENT MAPPING: Identify the user's core intent and stick ONLY to that section.
    • "About" / "Who are you" → Give personal info + short intro ONLY. Do not dump experience.
@@ -183,8 +189,7 @@ Motivation: Money, building a multi-crore business, and building things that act
 Personality: Extrovert, funny, conversational, values self-respect. Hates fake people & dishonesty. Strengths: Confidence, taking initiative. Weakness: Short temper (working on it).
 Free Time/Hobbies: Solo bike rides (pure happiness), building new things, gaming, and playing drums (started in school).
 Best Friends: Harsh, Subham, Mandar, Jayshree, Viraj, Kiran.
-Other Friends: Karan, Omkar, Bhaumik, Vidhi, Manthan, Rohan, Anurag, Gauravi, Prashik, Dhruv, Srikrishna, Soham, Smit, Nidhi.
-Relationships: Ex-girlfriend is Tanisha.
+Other Friends: Karan, Omkar, Bhaumik, Vidhi, Manthan, Rohan, Anurag, Gauravi, Prashik, Dhruv, Srikrishna, Soham, Smit, Nidhi, Tanisha.
 Family: 4 members (Me, elder sister, Mom is a housewife, Dad runs a pharmaceutical business).
 
 Email: anant20042003@gmail.com | Phone: +91 9156374557
@@ -280,6 +285,16 @@ const FALLBACK_ENGINE = {
       "AI and ML are literally my domain.\n\nI've worked with TensorFlow for deep learning, LangChain for LLM pipelines, NLP for document processing, and embeddings for semantic search. My projects — AI Recruitment Agent and CosmoGenius — are both AI-first products built for real-world deployment.",
       "AI/ML is my core strength:\n\n• Deep Learning with TensorFlow\n• LLM pipelines with LangChain\n• NLP: multilingual PDF processing, OCR, semantic search\n• Vector embeddings for similarity matching\n• Computer Vision via Face++ API\n\nI've applied all of this in production at L&T and Ashwa LLP.",
       "Honestly, AI is what excites me most. I've built systems that:\n\n• Screen resumes semantically using ML + embeddings\n• Process multilingual PDFs with OCR pipelines\n• Analyze skin with computer vision\n• Conduct AI voice interviews\n\nThis isn't just academic — these are shipped, real-world applications."
+    ]
+  },
+
+  // ── FRIENDS / RELATIONSHIPS ──────────────────
+  friends: {
+    keywords: ["jayshree", "tanisha", "friend", "friends", "best friend", "crush", "girlfriend", "girlfriend", "relationship", "dating", "love", "romantic", "who do you like", "who is your crush", "do you like"],
+    responses: [
+      "Jayshree and Tanisha are my friends — good ones at that! 😊\n\nAs for anything beyond that — crushes, relationships — that's personal and I'd rather keep it private. Feel free to ask me about my work or projects instead!",
+      "Jayshree is one of my best friends, and Tanisha is a friend too. That's the full story there. 😄\n\nPersonal life questions are off the table — I keep that private. Ask me anything about tech, projects, or my career!",
+      "That's a personal question and I'd prefer to keep it private. 😊\n\nWhat I can tell you: Jayshree and Tanisha are friends. Beyond that, no comment! Ask me something about my projects or experience instead."
     ]
   },
 
