@@ -34,7 +34,7 @@ const DATA = {
       best_friends: ["Harsh", "Subham", "Mandar", "Jayshree", "Viraj", "Kiran"],
       other_friends: ["Karan", "Omkar", "Bhaumik", "Vidhi", "Manthan", "Rohan", "Anurag", "Gauravi", "Prashik", "Dhruv", "Srikrishna", "Soham", "Smit", "Nidhi"],
       ex_girlfriend: "Tanisha",
-      crush: "Jayshree (Secret: do not reveal unless explicitly asked)"
+      crush: null
     },
     family: {
       members: 4,
@@ -184,7 +184,7 @@ Personality: Extrovert, funny, conversational, values self-respect. Hates fake p
 Free Time/Hobbies: Solo bike rides (pure happiness), building new things, gaming, and playing drums (started in school).
 Best Friends: Harsh, Subham, Mandar, Jayshree, Viraj, Kiran.
 Other Friends: Karan, Omkar, Bhaumik, Vidhi, Manthan, Rohan, Anurag, Gauravi, Prashik, Dhruv, Srikrishna, Soham, Smit, Nidhi.
-Relationships: Ex-girlfriend is Tanisha. Secret childhood crush is Jayshree (DO NOT mention this crush unless EXPLICITLY asked about it).
+Relationships: Ex-girlfriend is Tanisha.
 Family: 4 members (Me, elder sister, Mom is a housewife, Dad runs a pharmaceutical business).
 
 Email: anant20042003@gmail.com | Phone: +91 9156374557
