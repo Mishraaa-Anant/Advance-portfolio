@@ -121,12 +121,20 @@ const DATA = {
     {
       degree: "B.E. in CSE (AIML)",
       college: "VIVA Institute of Technology, Mumbai University",
-      duration: "2022 \u2013 Present"
+      duration: "2022 – Present",
+      score: "6 CGPA"
     },
     {
-      degree: "HSC",
+      degree: "HSC (12th)",
       college: "Abhinav Vidya Mandir",
-      duration: "2021 \u2013 2022"
+      duration: "2021 – 2022",
+      score: "53%"
+    },
+    {
+      degree: "SSC (10th)",
+      college: "Abhinav Vidya Mandir",
+      duration: "2019 – 2020",
+      score: "74%"
     }
   ]
 };
@@ -193,8 +201,187 @@ AI Recruitment Agent: Python, NLP, LangChain, ML | Resume screening, AI voice in
 CosmoGenius App: React Native, Firebase, Gemini API, Face++ | Skin analysis, routine generator, chatbot, product recommendations
 
 EDUCATION —
-B.E. CSE (AIML) | VIVA Institute of Technology, Mumbai University | 2022–Present
-HSC | Abhinav Vidya Mandir | 2021–2022 | (Amazing school life, evolved from introvert to extrovert, played drums)`;
+B.E. CSE (AIML) | VIVA Institute of Technology, Mumbai University | 2022–Present | 6 CGPA
+HSC (12th) | Abhinav Vidya Mandir | 2021–2022 | 53%
+SSC (10th) | Abhinav Vidya Mandir | 2019–2020 | 74%
+(Amazing school life, evolved from introvert to extrovert, played drums)`;
+
+/* ═══════════════════════════════════════════
+   FALLBACK RESPONSE ENGINE
+   Keyword-based intelligence — activates when
+   the Groq API is unavailable or rate-limited.
+═══════════════════════════════════════════ */
+const FALLBACK_ENGINE = {
+
+  // ── ABOUT ───────────────────────────────────
+  about: {
+    keywords: ["about", "who are you", "yourself", "introduce", "tell me about", "anant", "your name", "who is", "background"],
+    responses: [
+      "Hey! I'm Anant Mishra — an AI Engineer, Data Scientist, and Data Analyst based in Mumbai.\n\nI love building things that actually work in real life — not just demos. Currently pursuing B.E. in CSE (AIML) at VIVA Institute of Technology while working on real-world AI systems.\n\nMy goal? Build a multi-crore business. Simple as that.",
+      "Anant here! AI engineer by passion, problem-solver by nature.\n\nBased in Mumbai, I've worked with companies like L&T and Ashwa LLP, and I'm always building something new — from AI recruitment agents to skincare apps powered by machine learning.\n\nI'm extroverted, direct, and I value self-respect above everything.",
+      "I'm Anant Mishra — people also call me Annu.\n\n• 🎓 AIML Engineer at VIVA Institute, Mumbai\n• 💼 Worked at L&T, Ashwa LLP, and Edulyt India\n• 🎯 Focused on AI/ML, data science & real-world impact\n\nI like solo bike rides, building new tech, and turning ideas into working products."
+    ]
+  },
+
+  // ── SKILLS ──────────────────────────────────
+  skills: {
+    keywords: ["skill", "tech stack", "tools", "technologies", "language", "framework", "library", "know", "proficient", "expertise", "use", "coding", "programming", "stack"],
+    responses: [
+      "Here's what I work with:\n\n💻 Languages: Python, R, SQL, JavaScript, Solidity, Flutter\n📚 Libraries: NumPy, Pandas, Matplotlib, TensorFlow, LangChain\n⚙️ Frameworks: Flask, React Native, Expo, PySpark, Hyperledger Fabric\n🛠️ Tools: Microsoft Fabric, Power BI, GitHub, JIRA, Vercel",
+      "My core tech stack spans across the AI/Data/Dev spectrum:\n\n• Python is my bread and butter for AI/ML\n• React Native for cross-platform mobile apps\n• TensorFlow + LangChain for deep learning & LLM pipelines\n• SQL + PySpark for large-scale data processing\n• Power BI for business intelligence dashboards",
+      "Tech stack breakdown:\n\n🔷 AI/ML: Python, TensorFlow, LangChain, NumPy, Pandas\n🔷 Data: SQL, R, PySpark, Microsoft Fabric, Power BI\n🔷 Dev: JavaScript, React Native, Flutter, Flask, Solidity\n🔷 DevOps: GitHub, Vercel, JIRA\n\nAlways learning and adding to the stack."
+    ]
+  },
+
+  // ── PROJECTS ────────────────────────────────
+  projects: {
+    keywords: ["project", "built", "created", "application", "app", "portfolio", "work", "build", "developed", "make", "made", "product"],
+    responses: [
+      "I've built two major projects so far:\n\n🤖 AI Recruitment Agent — End-to-end AI hiring system with semantic resume screening, AI voice interviews, MCQ pipeline, and score aggregation. Built with Python, NLP, LangChain, and ML.\n\n💆 CosmoGenius — AI skincare mobile app with face scan, skin analysis, routine generator, and product recommendations. Built with React Native, Firebase, Gemini API, and Face++ API.",
+      "Two projects I'm really proud of:\n\n1. AI Recruitment Agent\n   • Automates the full hiring pipeline\n   • Semantic search + AI interviews + MCQ evaluation\n   • Stack: Python, LangChain, ML, NLP\n\n2. CosmoGenius Mobile App\n   • AI-powered skincare assistant\n   • Face scan → personalized routine\n   • Stack: React Native, Firebase, Gemini API",
+      "Here's what I've shipped:\n\n🧠 AI Recruitment Agent — Replaces traditional screening with AI. Handles resume matching, voice interviews, and automated scoring. Real-world deployed.\n\n📱 CosmoGenius — Skincare meets AI. Users scan their face, get a skin analysis, and receive tailored product recommendations. Full mobile app with chatbot & reminders."
+    ]
+  },
+
+  // ── EXPERIENCE ──────────────────────────────
+  experience: {
+    keywords: ["experience", "internship", "intern", "worked", "job", "company", "company", "career", "role", "position", "workplace", "employer", "hired"],
+    responses: [
+      "I've had three solid industry stints:\n\n🏢 Larsen & Toubro | Data Scientist | Dec 2025 – Jan 2026\n• Predictive model for manufacturing clearance time\n• TensorFlow, PySpark, SQL for large-scale data processing\n• Power BI dashboards for stakeholders\n\n💼 Ashwa LLP | Software Engineer | Jun – Nov 2025\n• NLP systems with multilingual PDF processing\n• OCR document classification & semantic search\n\n📊 Edulyt India | Data Analyst | Jan – Mar 2024\n• EDA, data preprocessing & visual dashboards",
+      "Work experience summary:\n\n• L&T (Data Scientist): Built ML models for manufacturing, worked with PySpark on large datasets, created Power BI dashboards for leadership\n• Ashwa LLP (Software Engineer): Built NLP pipelines, OCR systems, integrated Ollama & Vision APIs\n• Edulyt India (Data Analyst): First real-world data role — EDA, cleaning, and insights communication",
+      "Three internships that shaped my engineering mindset:\n\n1. Larsen & Toubro — Worked on predictive analytics for manufacturing. Real large-scale data engineering with TensorFlow + PySpark.\n2. Ashwa LLP — Deep NLP work. Built multilingual document processing systems with OCR and embeddings.\n3. Edulyt India — Started with data analytics fundamentals. EDA, visualization, communicating insights."
+    ]
+  },
+
+  // ── EDUCATION ───────────────────────────────
+  education: {
+    keywords: ["education", "college", "university", "degree", "study", "student", "course", "academic", "school", "graduation", "viva", "btech", "engineering", "marks", "cgpa", "percentage", "score", "grade", "10th", "12th", "ssc", "hsc"],
+    responses: [
+      "🎓 Currently pursuing B.E. in CSE (AIML) at VIVA Institute of Technology, Mumbai University (2022 – Present) | 6 CGPA.\n\nHSC (12th) — Abhinav Vidya Mandir | 53%\nSSC (10th) — Abhinav Vidya Mandir | 74%\n\nAcademics were okay, but the real learning happened through internships and shipping actual products.",
+      "Education background:\n\n• B.E. CSE (AIML) — VIVA Institute of Technology, Mumbai University | 2022 – Present | 6 CGPA\n• HSC (12th) — Abhinav Vidya Mandir | 2021–2022 | 53%\n• SSC (10th) — Abhinav Vidya Mandir | 2019–2020 | 74%\n\nSchool was where I found my personality. Went from being shy to confidently speaking on stage — and I picked up drums along the way.",
+      "Studying CSE (AIML) at VIVA Institute of Technology, Mumbai University | 6 CGPA.\n\n12th: 53% | 10th: 74% — both from Abhinav Vidya Mandir.\n\nNumbers don't define me — three industry internships and two real-world AI products do."
+    ]
+  },
+
+  // ── CONTACT ─────────────────────────────────
+  contact: {
+    keywords: ["contact", "email", "phone", "reach", "connect", "linkedin", "github", "hire", "available", "talk", "message", "social", "link"],
+    responses: [
+      "Let's connect! Here's how to reach me:\n\n📧 Email: anant20042003@gmail.com\n📞 Phone: +91 9156374557\n🔗 GitHub: github.com/Mishraaa-Anant\n🔗 LinkedIn: linkedin.com/in/anantmishra31\n🌐 Portfolio: myselfanantmishra.vercel.app",
+      "Hit me up through any of these:\n\n• 📧 anant20042003@gmail.com\n• 📞 +91 9156374557\n• LinkedIn → anantmishra31\n• GitHub → Mishraaa-Anant\n\nI respond fast — especially on email and LinkedIn.",
+      "Best ways to reach me:\n\n1. Email — anant20042003@gmail.com (fastest for professional queries)\n2. LinkedIn — linkedin.com/in/anantmishra31\n3. GitHub — github.com/Mishraaa-Anant\n4. Phone — +91 9156374557"
+    ]
+  },
+
+  // ── AI / ML ──────────────────────────────────
+  aiml: {
+    keywords: ["ai", "ml", "machine learning", "artificial intelligence", "deep learning", "nlp", "neural", "llm", "langchain", "model", "training", "data science", "algorithm", "embedding", "vector"],
+    responses: [
+      "AI and ML are literally my domain.\n\nI've worked with TensorFlow for deep learning, LangChain for LLM pipelines, NLP for document processing, and embeddings for semantic search. My projects — AI Recruitment Agent and CosmoGenius — are both AI-first products built for real-world deployment.",
+      "AI/ML is my core strength:\n\n• Deep Learning with TensorFlow\n• LLM pipelines with LangChain\n• NLP: multilingual PDF processing, OCR, semantic search\n• Vector embeddings for similarity matching\n• Computer Vision via Face++ API\n\nI've applied all of this in production at L&T and Ashwa LLP.",
+      "Honestly, AI is what excites me most. I've built systems that:\n\n• Screen resumes semantically using ML + embeddings\n• Process multilingual PDFs with OCR pipelines\n• Analyze skin with computer vision\n• Conduct AI voice interviews\n\nThis isn't just academic — these are shipped, real-world applications."
+    ]
+  },
+
+  // ── HOBBIES / PERSONAL ───────────────────────
+  hobbies: {
+    keywords: ["hobby", "hobbies", "free time", "fun", "personal", "like", "enjoy", "passion", "life", "outside work", "bike", "drums", "music", "game", "gaming", "leisure"],
+    responses: [
+      "Outside of work? Mostly:\n\n🏍️ Solo bike rides — that's my kind of therapy. Pure happiness.\n🎮 Gaming occasionally when I need to switch off.\n🥁 I used to play drums in school — still love music.\n🔧 Building new things — even hobbies become side projects eventually.",
+      "My vibe outside of coding:\n\n• Solo bike rides are my absolute go-to for clearing my head\n• I played drums in school and still love rhythm-based music\n• Light gaming when I want to zone out\n• I genuinely enjoy experimenting with new tech even off hours",
+      "Fun stuff about me:\n\n1. Bike rides solo — no playlist, just me and the road\n2. Drums since school days — rhythm is a thing\n3. I find it hard to not think about what I'm building next\n4. Gaming is occasional but I enjoy it when I do"
+    ]
+  },
+
+  // ── PERSONALITY ──────────────────────────────
+  personality: {
+    keywords: ["personality", "who are you as a person", "traits", "character", "attitude", "mindset", "values", "motivation", "goal", "ambition", "driven", "extrovert", "introvert", "strength", "weakness"],
+    responses: [
+      "I'm an extrovert — confident, direct, and I say what I mean.\n\n• Motivation: Building something BIG. A multi-crore business is the goal.\n• Core values: Self-respect above everything. I don't do fake.\n• Strength: Confidence and taking initiative\n• Weakness: Short temper — I'm working on it",
+      "Personality-wise:\n\n🔥 Extrovert who communicates in a funny + professional mix\n💡 Driven by results, not just effort\n🎯 Goal-oriented — everything I do is aimed at building a large business\n✂️ I cut through BS quickly — no time for fake people or dishonesty\n📈 Weakness: I get impatient when things move slow — actively working on that",
+      "The honest version:\n\nI'm confident, a little impatient (short temper, working on it), and very direct. I hate fake people and dishonesty. I value self-respect deeply and surround myself with real ones.\n\nMy biggest motivator? Money and building something that lasts. Not just a startup — a legacy."
+    ]
+  },
+
+  // ── GOALS ────────────────────────────────────
+  goals: {
+    keywords: ["goal", "future", "plan", "aim", "dream", "vision", "where do you see", "aspiration", "career goal", "business", "startup", "crore", "want to", "ambition"],
+    responses: [
+      "Long-term? Build a multi-crore business. That's the non-negotiable goal.\n\nShort-term — keep shipping real-world AI products, get more industry exposure, and build a network of people who actually get things done.",
+      "Goals are simple but big:\n\n• Build a business that generates real revenue at scale\n• Be known as someone who ships AI products that actually work\n• Keep learning, keep building, stay ahead of the curve\n\nI'm not chasing titles — I'm chasing impact.",
+      "The vision is clear — multi-crore business. Not just talk.\n\nRight now I'm laying the foundation: deep technical skills, real industry experience, and a strong network. Every project, every internship, every line of code is moving toward that goal."
+    ]
+  },
+
+  // ── RESUME ───────────────────────────────────
+  resume: {
+    keywords: ["resume", "cv", "curriculum", "download", "pdf", "portfolio"],
+    responses: [
+      "You can view my full portfolio at myselfanantmishra.vercel.app — it covers everything including projects, experience, and skills.\n\nFor my resume or direct opportunities, shoot me an email at anant20042003@gmail.com and I'll get it to you right away.",
+      "My resume is available on request! Drop me a message at anant20042003@gmail.com and I'll send it over ASAP.\n\nOr check out the full portfolio here: myselfanantmishra.vercel.app",
+      "Best way to get my resume: email anant20042003@gmail.com and mention what role/opportunity you're looking at. I'll tailor and send it quickly.\n\nLinkedIn also has an updated version: linkedin.com/in/anantmishra31"
+    ]
+  },
+
+  // ── HIRE / AVAILABILITY ──────────────────────
+  hire: {
+    keywords: ["hire", "available", "open to work", "opportunity", "job offer", "freelance", "collaborate", "looking for", "position", "opportunity"],
+    responses: [
+      "Yes — I'm open to opportunities! 🙌\n\nBest way to reach out is email: anant20042003@gmail.com\nOr LinkedIn: linkedin.com/in/anantmishra31\n\nWhether it's a full-time role, internship, or freelance project — let's talk.",
+      "Absolutely open to the right opportunities. I'm especially interested in AI/ML engineering roles, data science positions, and anything involving building real-world AI products.\n\nEmail me: anant20042003@gmail.com — I respond fast.",
+      "Currently exploring opportunities in AI/ML and data engineering.\n\nIf you've got something interesting — a problem worth solving — reach out:\n📧 anant20042003@gmail.com\n💼 linkedin.com/in/anantmishra31"
+    ]
+  },
+
+  // ── GREETINGS ────────────────────────────────
+  greetings: {
+    keywords: ["hello", "hi", "hey", "hii", "hola", "what's up", "sup", "yo", "namaste", "good morning", "good evening", "good afternoon", "howdy"],
+    responses: [
+      "Hey! 👋 I'm Anant's AI. Ask me anything — about his skills, projects, experience, or even what he does for fun!",
+      "Hi there! What would you like to know about Anant Mishra? Feel free to ask about his tech stack, projects, work experience, or how to connect with him.",
+      "Hello! 👋 Great to have you here. I can tell you all about Anant — his work, skills, projects, and more. What are you curious about?"
+    ]
+  },
+
+  // ── DEFAULT / CATCH-ALL ──────────────────────
+  default: {
+    responses: [
+      "That's an interesting question! For the most detailed answer, feel free to drop Anant an email at anant20042003@gmail.com — he responds quickly.\n\nOr ask me about his skills, projects, experience, education, or how to connect!",
+      "I might not have a specific answer for that, but Anant would love to chat! Reach out at anant20042003@gmail.com or linkedin.com/in/anantmishra31.\n\nMeanwhile, want to know about his projects, tech stack, or work experience?",
+      "Good question — and one best answered by Anant directly! Drop him a message: anant20042003@gmail.com\n\nI can cover topics like his skills, projects, experience, education, goals, and more. What would you like to explore?"
+    ]
+  }
+};
+
+/**
+ * Returns the best keyword-matched fallback response for a given message.
+ * Scoring: sums keyword hit count per category, picks highest score.
+ * Randomizes among response variants to feel natural.
+ */
+function getFallbackResponse(message) {
+  var lower = message.toLowerCase();
+  var bestCategory = null;
+  var bestScore = 0;
+
+  Object.keys(FALLBACK_ENGINE).forEach(function(category) {
+    if (category === "default") return;
+    var keywords = FALLBACK_ENGINE[category].keywords;
+    var score = 0;
+    keywords.forEach(function(kw) {
+      if (lower.includes(kw)) score++;
+    });
+    if (score > bestScore) {
+      bestScore = score;
+      bestCategory = category;
+    }
+  });
+
+  var pool = bestCategory && bestScore > 0
+    ? FALLBACK_ENGINE[bestCategory].responses
+    : FALLBACK_ENGINE.default.responses;
+
+  return pool[Math.floor(Math.random() * pool.length)];
+}
 
 /* ═══════════════════════════════════════════
    STATE
@@ -248,6 +435,37 @@ function closeSidebar() {
 }
 
 /* ═══════════════════════════════════════════
+   PREDEFINED Q&A
+   Starter questions are bound to polished,
+   instant answers — zero API call needed.
+═══════════════════════════════════════════ */
+const PREDEFINED_QA = {
+  "Who is Anant Mishra?": "Hey! I'm Anant Mishra — an AI Engineer, Data Scientist, and Data Analyst based in Mumbai.\n\nI love building things that actually work in real life, not just demos. Currently pursuing B.E. in CSE (AIML) at VIVA Institute of Technology while working on real-world AI systems.\n\nGoal? Build a multi-crore business. Simple as that.",
+
+  "What projects have you built?": "Two projects I'm really proud of:\n\n🤖 AI Recruitment Agent\n• Automates the full hiring pipeline end-to-end\n• Semantic resume screening, AI voice interviews, MCQ evaluation\n• Stack: Python, LangChain, NLP, ML, Vector Embeddings\n\n📱 CosmoGenius Mobile App\n• AI skincare assistant with face scan & skin analysis\n• Routine generator + product recommendation engine\n• Stack: React Native, Firebase, Gemini API, Face++ API",
+
+  "What is your tech stack?": "Here's my full tech stack:\n\n💻 Languages: Python, R, SQL, JavaScript, Solidity, Flutter\n📚 Libraries: NumPy, Pandas, Matplotlib, TensorFlow, LangChain\n⚙️ Frameworks: Flask, React Native, Expo, PySpark, Hyperledger Fabric\n🛠️ Tools: Microsoft Fabric, Power BI, GitHub, JIRA, Vercel",
+
+  "Where have you worked?": "Three solid industry experiences:\n\n🏢 Larsen & Toubro | Data Scientist | Dec 2025 – Jan 2026\n• Predictive model for manufacturing clearance time\n• TensorFlow + PySpark + SQL on large-scale data\n• Power BI dashboards for executive stakeholders\n\n💼 Ashwa LLP | Software Engineer | Jun – Nov 2025\n• NLP systems with multilingual PDF processing\n• OCR-based document classification & semantic search\n\n📊 Edulyt India | Data Analyst | Jan – Mar 2024\n• Data preprocessing, EDA & visual dashboards",
+
+  "Are you open to new opportunities?": "Yes — absolutely open! 🙌\n\nI'm actively looking for roles in AI/ML Engineering, Data Science, and anything that involves building real-world AI products.\n\n📧 Email: anant20042003@gmail.com\n💼 LinkedIn: linkedin.com/in/anantmishra31\n\nWhether it's full-time, internship, or freelance — let's talk.",
+
+  "Tell me about your education.": "🎓 B.E. in CSE (Artificial Intelligence & Machine Learning)\nVIVA Institute of Technology, Mumbai University | 2022 – Present | 6 CGPA\n\n📘 HSC (12th) | Abhinav Vidya Mandir | 2021 – 2022 | 53%\n📗 SSC (10th) | Abhinav Vidya Mandir | 2019 – 2020 | 74%\n\nSchool was where I found myself — started as an introvert, evolved into an extrovert, played drums, and built the confidence that drives everything I do now.",
+
+  "What AI tools and frameworks do you use?": "AI is my core domain. Here's what I use:\n\n🧠 TensorFlow — for deep learning model training\n🔗 LangChain — for building LLM-powered pipelines\n💬 NLP — multilingual PDF processing, OCR, entity extraction\n🔍 Vector Embeddings — semantic search & similarity matching\n👁️ Computer Vision — via Face++ API for skin analysis\n🤖 Ollama & Vision APIs — integrated at Ashwa LLP for document intelligence",
+
+  "How can I contact you?": "Here's the best way to reach me:\n\n📧 Email: anant20042003@gmail.com\n📞 Phone: +91 9156374557\n🔗 LinkedIn: linkedin.com/in/anantmishra31\n💛 GitHub: github.com/Mishraaa-Anant\n🌐 Portfolio: myselfanantmishra.vercel.app\n\nI respond fast — especially on email and LinkedIn.",
+
+  "What are your goals and ambitions?": "One goal — build a multi-crore business.\n\nNot just a startup. A company that solves real problems and scales.\n\nRight now I'm laying the foundation: deep AI/ML expertise, real industry experience at L&T and Ashwa LLP, and shipping products that work in production — not just on paper.",
+
+  "What is your personality like?": "I'm an extrovert — confident, direct, and conversational.\n\n• Motivation: Building something BIG. Multi-crore business is the end goal.\n• Values: Self-respect above everything. I don't do fake.\n• Strength: Confidence and taking initiative fast.\n• Weakness: Short temper — actively working on it.\n\nI work smart, not just hard.",
+
+  "Tell me about your internship at L&T.": "Larsen & Toubro | Data Scientist | Dec 2025 – Jan 2026\n\n• Built a predictive ML model for manufacturing clearance time estimation\n• Processed large-scale industrial datasets using TensorFlow, PySpark & SQL\n• Engineered features with Pandas & NumPy for model accuracy\n• Delivered Power BI dashboards consumed by executive stakeholders\n\nThis was real enterprise-scale data science — not just notebooks.",
+
+  "What makes you different from other developers?": "A few things:\n\n1. I build real-world systems, not just proof-of-concept demos.\n2. I combine AI/ML depth with full-stack and mobile app skills.\n3. I've shipped production-grade projects — AI Recruitment Agent, CosmoGenius.\n4. I've worked at enterprise scale (L&T) AND startup speed (Ashwa LLP).\n5. I'm driven by outcome, not process. The goal is always: does it work and does it create value?"
+};
+
+/* ═══════════════════════════════════════════
    HISTORY
 ═══════════════════════════════════════════ */
 function addToHistory(query) {
@@ -265,10 +483,38 @@ function renderHistory() {
     btn.textContent = q;
     btn.addEventListener("click", function () {
       closeSidebar();
-      handleQuery(q);
+      // If this question has a predefined answer, show it instantly (no API)
+      if (PREDEFINED_QA[q]) {
+        showPredefinedAnswer(q, PREDEFINED_QA[q]);
+      } else {
+        handleQuery(q);
+      }
     });
     historyList.appendChild(btn);
   });
+}
+
+/* ═══════════════════════════════════════════
+   SHOW PREDEFINED ANSWER
+   Renders a stored Q&A pair instantly without
+   hitting the API. Uses the same typewriter UX.
+═══════════════════════════════════════════ */
+async function showPredefinedAnswer(query, answer) {
+  hideWelcome();
+  addToHistory(query);
+  addMessage(query, true);
+
+  // Brief typing indicator for natural feel (250ms)
+  showTyping();
+  await new Promise(function(r) { setTimeout(r, 250); });
+  removeTyping();
+
+  var bubble = addMessage("", false);
+  await typeWriter(bubble, answer);
+
+  // Keep conversation context for follow-up questions
+  conversationHistory.push({ role: "user",      content: query  });
+  conversationHistory.push({ role: "assistant", content: answer });
 }
 
 /* ═══════════════════════════════════════════
@@ -529,7 +775,10 @@ async function renderMessageContent(text, bubbleEl) {
 }
 
 /* ═══════════════════════════════════════════
-   GROQ API
+   GROQ API  +  INTELLIGENT FALLBACK
+   Primary: Groq via /api/chat serverless fn.
+   Fallback: Keyword-based engine (instant).
+   Switching is seamless — user never notices.
 ═══════════════════════════════════════════ */
 async function callGroqAPI(userMessage) {
   conversationHistory.push({ role: "user", content: userMessage });
@@ -546,16 +795,30 @@ async function callGroqAPI(userMessage) {
       })
     });
 
+    // 429 = rate limit | 5xx = server error — both trigger fallback
     if (!res.ok) {
-      throw new Error("Server error: " + res.status);
+      throw new Error("API unavailable: " + res.status);
     }
 
     var data = await res.json();
     var reply = data.reply;
+
+    // Guard: empty or whitespace-only reply also triggers fallback
+    if (!reply || !reply.trim()) {
+      throw new Error("Empty API response");
+    }
+
     conversationHistory.push({ role: "assistant", content: reply });
     return reply;
+
   } catch (e) {
-    return "\u26a0 Something went wrong. Please try again or email me at anant20042003@gmail.com";
+    // ── FALLBACK: keyword-based response engine ──────────────────
+    // Triggered silently on: API error, rate-limit (429), or empty reply.
+    // getFallbackResponse() matches user intent from DATA and returns
+    // a natural, conversational response. No error is shown to the user.
+    var fallbackReply = getFallbackResponse(userMessage);
+    conversationHistory.push({ role: "assistant", content: fallbackReply });
+    return fallbackReply;
   }
 }
 
@@ -641,17 +904,21 @@ document.querySelectorAll(".suggestion-chip").forEach(function (chip) {
   });
 });
 
-// Init
+// Init — questions match PREDEFINED_QA keys exactly for instant answers
 window.addEventListener("DOMContentLoaded", function () {
-  // Pre-populate recent questions with starter suggestions
   recentQueries = [
     "Who is Anant Mishra?",
     "What projects have you built?",
-    "What tech stack do you use?",
+    "What is your tech stack?",
     "Where have you worked?",
-    "Are you available for hire?",
-    "Tell me about your education",
-    "What AI tools do you use?"
+    "Are you open to new opportunities?",
+    "Tell me about your education.",
+    "What AI tools and frameworks do you use?",
+    "How can I contact you?",
+    "What are your goals and ambitions?",
+    "What is your personality like?",
+    "Tell me about your internship at L&T.",
+    "What makes you different from other developers?"
   ];
   renderHistory();
 });
