@@ -222,7 +222,16 @@ const FALLBACK_ENGINE = {
 
   // ── ABOUT ───────────────────────────────────
   about: {
-    keywords: ["about", "who are you", "yourself", "introduce", "tell me about", "anant", "your name", "who is", "background"],
+    keywords: [
+      "about", "who are you", "yourself", "introduce", "introduction",
+      "tell me about anant", "tell me about you", "tell me about him",
+      "anant", "annu", "your name", "who is anant", "who is he",
+      "background", "bio", "profile", "describe yourself", "describe him",
+      "what do you do", "what does anant do", "what does he do",
+      "who are you exactly", "give me an intro", "quick intro",
+      "overview of anant", "overview of you", "about yourself",
+      "tell me something about you", "what should i know about you"
+    ],
     responses: [
       "Hey! I'm Anant Mishra — an AI Engineer, Data Scientist, and Data Analyst based in Mumbai.\n\nI love building things that actually work in real life — not just demos. Currently pursuing B.E. in CSE (AIML) at VIVA Institute of Technology while working on real-world AI systems.\n\nMy goal? Build a multi-crore business. Simple as that.",
       "Anant here! AI engineer by passion, problem-solver by nature.\n\nBased in Mumbai, I've worked with companies like L&T and Ashwa LLP, and I'm always building something new — from AI recruitment agents to skincare apps powered by machine learning.\n\nI'm extroverted, direct, and I value self-respect above everything.",
@@ -232,7 +241,17 @@ const FALLBACK_ENGINE = {
 
   // ── SKILLS ──────────────────────────────────
   skills: {
-    keywords: ["skill", "tech stack", "tools", "technologies", "language", "framework", "library", "know", "proficient", "expertise", "use", "coding", "programming", "stack"],
+    keywords: [
+      "skill", "skills", "tech stack", "tools", "technologies", "technology",
+      "language", "languages", "framework", "frameworks", "library", "libraries",
+      "know", "proficient", "expertise", "coding", "programming", "stack",
+      "what can you do", "what can he do", "what do you know", "what does he know",
+      "his abilities", "your abilities", "his technical skills", "your technical skills",
+      "what technologies", "which tools", "what languages", "what frameworks",
+      "tech knowledge", "technical expertise", "python", "react", "tensorflow",
+      "tell me about his skills", "tell me about your skills",
+      "what are his skills", "what are your skills"
+    ],
     responses: [
       "Here's what I work with:\n\n💻 Languages: Python, R, SQL, JavaScript, Solidity, Flutter\n📚 Libraries: NumPy, Pandas, Matplotlib, TensorFlow, LangChain\n⚙️ Frameworks: Flask, React Native, Expo, PySpark, Hyperledger Fabric\n🛠️ Tools: Microsoft Fabric, Power BI, GitHub, JIRA, Vercel",
       "My core tech stack spans across the AI/Data/Dev spectrum:\n\n• Python is my bread and butter for AI/ML\n• React Native for cross-platform mobile apps\n• TensorFlow + LangChain for deep learning & LLM pipelines\n• SQL + PySpark for large-scale data processing\n• Power BI for business intelligence dashboards",
@@ -242,7 +261,16 @@ const FALLBACK_ENGINE = {
 
   // ── PROJECTS ────────────────────────────────
   projects: {
-    keywords: ["project", "built", "created", "application", "app", "portfolio", "work", "build", "developed", "make", "made", "product"],
+    keywords: [
+      "project", "projects", "built", "created", "application", "app",
+      "build", "developed", "make", "made", "product", "shipped",
+      "what has he built", "what have you built", "show me his projects",
+      "what did he make", "what did you make", "his work", "your work",
+      "tell me about his projects", "tell me about your projects",
+      "his applications", "your applications", "ai recruitment", "cosmo",
+      "cosmogenius", "recruitment agent", "skincare app", "his products",
+      "what projects", "any projects", "side projects"
+    ],
     responses: [
       "I've built two major projects so far:\n\n🤖 AI Recruitment Agent — End-to-end AI hiring system with semantic resume screening, AI voice interviews, MCQ pipeline, and score aggregation. Built with Python, NLP, LangChain, and ML.\n\n💆 CosmoGenius — AI skincare mobile app with face scan, skin analysis, routine generator, and product recommendations. Built with React Native, Firebase, Gemini API, and Face++ API.",
       "Two projects I'm really proud of:\n\n1. AI Recruitment Agent\n   • Automates the full hiring pipeline\n   • Semantic search + AI interviews + MCQ evaluation\n   • Stack: Python, LangChain, ML, NLP\n\n2. CosmoGenius Mobile App\n   • AI-powered skincare assistant\n   • Face scan → personalized routine\n   • Stack: React Native, Firebase, Gemini API",
@@ -252,7 +280,16 @@ const FALLBACK_ENGINE = {
 
   // ── EXPERIENCE ──────────────────────────────
   experience: {
-    keywords: ["experience", "internship", "intern", "worked", "job", "company", "company", "career", "role", "position", "workplace", "employer", "hired"],
+    keywords: [
+      "experience", "internship", "internships", "intern", "worked", "job",
+      "company", "career", "role", "position", "workplace", "employer",
+      "where did he work", "where have you worked", "where did you work",
+      "his jobs", "your jobs", "his career", "your career",
+      "tell me about his experience", "tell me about your experience",
+      "tell me about his internship", "work history", "employment",
+      "larsen", "l&t", "ashwa", "edulyt", "which companies",
+      "his roles", "professional background", "industry experience"
+    ],
     responses: [
       "I've had three solid industry stints:\n\n🏢 Larsen & Toubro | Data Scientist | Dec 2025 – Jan 2026\n• Predictive model for manufacturing clearance time\n• TensorFlow, PySpark, SQL for large-scale data processing\n• Power BI dashboards for stakeholders\n\n💼 Ashwa LLP | Software Engineer | Jun – Nov 2025\n• NLP systems with multilingual PDF processing\n• OCR document classification & semantic search\n\n📊 Edulyt India | Data Analyst | Jan – Mar 2024\n• EDA, data preprocessing & visual dashboards",
       "Work experience summary:\n\n• L&T (Data Scientist): Built ML models for manufacturing, worked with PySpark on large datasets, created Power BI dashboards for leadership\n• Ashwa LLP (Software Engineer): Built NLP pipelines, OCR systems, integrated Ollama & Vision APIs\n• Edulyt India (Data Analyst): First real-world data role — EDA, cleaning, and insights communication",
@@ -262,7 +299,16 @@ const FALLBACK_ENGINE = {
 
   // ── EDUCATION ───────────────────────────────
   education: {
-    keywords: ["education", "college", "university", "degree", "study", "student", "course", "academic", "school", "graduation", "viva", "btech", "engineering", "marks", "cgpa", "percentage", "score", "grade", "10th", "12th", "ssc", "hsc"],
+    keywords: [
+      "education", "college", "university", "degree", "study", "studies",
+      "student", "course", "academic", "school", "graduation", "graduate",
+      "viva", "btech", "b.e", "engineering", "marks", "cgpa", "percentage",
+      "score", "grade", "10th", "12th", "ssc", "hsc", "aiml",
+      "where did he study", "where does he study", "his college", "his school",
+      "tell me about his education", "tell me about your education",
+      "his degree", "your degree", "what did he study", "what does he study",
+      "abhinav", "mumbai university", "qualification", "his academics"
+    ],
     responses: [
       "🎓 Currently pursuing B.E. in CSE (AIML) at VIVA Institute of Technology, Mumbai University (2022 – Present) | 6 CGPA.\n\nHSC (12th) — Abhinav Vidya Mandir | 53%\nSSC (10th) — Abhinav Vidya Mandir | 74%\n\nAcademics were okay, but the real learning happened through internships and shipping actual products.",
       "Education background:\n\n• B.E. CSE (AIML) — VIVA Institute of Technology, Mumbai University | 2022 – Present | 6 CGPA\n• HSC (12th) — Abhinav Vidya Mandir | 2021–2022 | 53%\n• SSC (10th) — Abhinav Vidya Mandir | 2019–2020 | 74%\n\nSchool was where I found my personality. Went from being shy to confidently speaking on stage — and I picked up drums along the way.",
@@ -272,7 +318,15 @@ const FALLBACK_ENGINE = {
 
   // ── CONTACT ─────────────────────────────────
   contact: {
-    keywords: ["contact", "email", "phone", "reach", "connect", "linkedin", "github", "hire", "available", "talk", "message", "social", "link"],
+    keywords: [
+      "contact", "email", "phone", "reach", "connect", "linkedin", "github",
+      "available", "talk", "message", "social", "link", "links",
+      "how to contact", "how to reach", "how can i reach", "get in touch",
+      "how to connect", "how do i contact", "contact him", "contact you",
+      "tell me about his contact", "his email", "his number", "his linkedin",
+      "his github", "where can i find him", "where can i reach him",
+      "drop a message", "send him a message", "reach out"
+    ],
     responses: [
       "Let's connect! Here's how to reach me:\n\n📧 Email: anant20042003@gmail.com\n📞 Phone: +91 9156374557\n🔗 GitHub: github.com/Mishraaa-Anant\n🔗 LinkedIn: linkedin.com/in/anantmishra31\n🌐 Portfolio: myselfanantmishra.vercel.app",
       "Hit me up through any of these:\n\n• 📧 anant20042003@gmail.com\n• 📞 +91 9156374557\n• LinkedIn → anantmishra31\n• GitHub → Mishraaa-Anant\n\nI respond fast — especially on email and LinkedIn.",
@@ -282,7 +336,14 @@ const FALLBACK_ENGINE = {
 
   // ── AI / ML ──────────────────────────────────
   aiml: {
-    keywords: ["ai", "ml", "machine learning", "artificial intelligence", "deep learning", "nlp", "neural", "llm", "langchain", "model", "training", "data science", "algorithm", "embedding", "vector"],
+    keywords: [
+      "ai", "ml", "machine learning", "artificial intelligence", "deep learning",
+      "nlp", "neural", "llm", "langchain", "model", "training", "data science",
+      "algorithm", "embedding", "vector", "computer vision", "ocr",
+      "tell me about his ai", "tell me about ai skills", "ai experience",
+      "his ai work", "ai projects", "ml projects", "generative ai",
+      "large language model", "tensorflow", "pytorch", "data scientist"
+    ],
     responses: [
       "AI and ML are literally my domain.\n\nI've worked with TensorFlow for deep learning, LangChain for LLM pipelines, NLP for document processing, and embeddings for semantic search. My projects — AI Recruitment Agent and CosmoGenius — are both AI-first products built for real-world deployment.",
       "AI/ML is my core strength:\n\n• Deep Learning with TensorFlow\n• LLM pipelines with LangChain\n• NLP: multilingual PDF processing, OCR, semantic search\n• Vector embeddings for similarity matching\n• Computer Vision via Face++ API\n\nI've applied all of this in production at L&T and Ashwa LLP.",
@@ -327,7 +388,15 @@ const FALLBACK_ENGINE = {
 
   // ── HOBBIES / PERSONAL ───────────────────────
   hobbies: {
-    keywords: ["hobby", "hobbies", "free time", "fun", "personal", "like", "enjoy", "passion", "life", "outside work", "bike", "drums", "music", "game", "gaming", "leisure"],
+    keywords: [
+      "hobby", "hobbies", "free time", "fun", "enjoy", "passion",
+      "outside work", "bike", "bike ride", "drums", "music", "game", "gaming",
+      "leisure", "interest", "interests", "what does he enjoy", "what does he like",
+      "tell me about his hobbies", "tell me about your hobbies",
+      "what does he do for fun", "what do you do for fun",
+      "his interests", "your interests", "what he likes",
+      "how does he spend time", "after work", "besides coding"
+    ],
     responses: [
       "Outside of work? Mostly:\n\n🏍️ Solo bike rides — that's my kind of therapy. Pure happiness.\n🎮 Gaming occasionally when I need to switch off.\n🥁 I used to play drums in school — still love music.\n🔧 Building new things — even hobbies become side projects eventually.",
       "My vibe outside of coding:\n\n• Solo bike rides are my absolute go-to for clearing my head\n• I played drums in school and still love rhythm-based music\n• Light gaming when I want to zone out\n• I genuinely enjoy experimenting with new tech even off hours",
@@ -337,7 +406,14 @@ const FALLBACK_ENGINE = {
 
   // ── PERSONALITY ──────────────────────────────
   personality: {
-    keywords: ["personality", "who are you as a person", "traits", "character", "attitude", "mindset", "values", "motivation", "goal", "ambition", "driven", "extrovert", "introvert", "strength", "weakness"],
+    keywords: [
+      "personality", "traits", "character", "attitude", "mindset", "values",
+      "extrovert", "introvert", "strength", "strengths", "weakness", "weaknesses",
+      "what is he like", "what are you like", "describe him", "describe yourself",
+      "tell me about his personality", "tell me about your personality",
+      "his character", "your character", "how is he as a person", "his attitude",
+      "his values", "what drives him", "what motivates him", "who is he as a person"
+    ],
     responses: [
       "I'm an extrovert — confident, direct, and I say what I mean.\n\n• Motivation: Building something BIG. A multi-crore business is the goal.\n• Core values: Self-respect above everything. I don't do fake.\n• Strength: Confidence and taking initiative\n• Weakness: Short temper — I'm working on it",
       "Personality-wise:\n\n🔥 Extrovert who communicates in a funny + professional mix\n💡 Driven by results, not just effort\n🎯 Goal-oriented — everything I do is aimed at building a large business\n✂️ I cut through BS quickly — no time for fake people or dishonesty\n📈 Weakness: I get impatient when things move slow — actively working on that",
@@ -347,7 +423,15 @@ const FALLBACK_ENGINE = {
 
   // ── GOALS ────────────────────────────────────
   goals: {
-    keywords: ["goal", "future", "plan", "aim", "dream", "vision", "where do you see", "aspiration", "career goal", "business", "startup", "crore", "want to", "ambition"],
+    keywords: [
+      "goal", "goals", "future", "plan", "plans", "aim", "dream", "vision",
+      "aspiration", "career goal", "business", "startup", "crore", "ambition",
+      "where do you see yourself", "where does he see himself",
+      "what are his goals", "what are your goals",
+      "tell me about his goals", "tell me about your goals",
+      "his future", "your future", "his ambitions", "long term",
+      "what does he want to achieve", "what do you want to achieve"
+    ],
     responses: [
       "Long-term? Build a multi-crore business. That's the non-negotiable goal.\n\nShort-term — keep shipping real-world AI products, get more industry exposure, and build a network of people who actually get things done.",
       "Goals are simple but big:\n\n• Build a business that generates real revenue at scale\n• Be known as someone who ships AI products that actually work\n• Keep learning, keep building, stay ahead of the curve\n\nI'm not chasing titles — I'm chasing impact.",
@@ -357,7 +441,11 @@ const FALLBACK_ENGINE = {
 
   // ── RESUME ───────────────────────────────────
   resume: {
-    keywords: ["resume", "cv", "curriculum", "download", "pdf", "portfolio"],
+    keywords: [
+      "resume", "cv", "curriculum vitae", "download", "pdf",
+      "can i get his resume", "send resume", "share resume",
+      "get his cv", "download resume", "his resume", "your resume"
+    ],
     responses: [
       "You can view my full portfolio at myselfanantmishra.vercel.app — it covers everything including projects, experience, and skills.\n\nFor my resume or direct opportunities, shoot me an email at anant20042003@gmail.com and I'll get it to you right away.",
       "My resume is available on request! Drop me a message at anant20042003@gmail.com and I'll send it over ASAP.\n\nOr check out the full portfolio here: myselfanantmishra.vercel.app",
@@ -367,7 +455,12 @@ const FALLBACK_ENGINE = {
 
   // ── HIRE / AVAILABILITY ──────────────────────
   hire: {
-    keywords: ["hire", "available", "open to work", "opportunity", "job offer", "freelance", "collaborate", "looking for", "position", "opportunity"],
+    keywords: [
+      "hire", "hiring", "open to work", "job offer", "freelance", "collaborate",
+      "looking for work", "is he available", "are you available",
+      "can i hire", "open for opportunities", "is he open", "are you open",
+      "looking for a job", "available for work", "can he join"
+    ],
     responses: [
       "Yes — I'm open to opportunities! 🙌\n\nBest way to reach out is email: anant20042003@gmail.com\nOr LinkedIn: linkedin.com/in/anantmishra31\n\nWhether it's a full-time role, internship, or freelance project — let's talk.",
       "Absolutely open to the right opportunities. I'm especially interested in AI/ML engineering roles, data science positions, and anything involving building real-world AI products.\n\nEmail me: anant20042003@gmail.com — I respond fast.",
@@ -377,7 +470,11 @@ const FALLBACK_ENGINE = {
 
   // ── GREETINGS ────────────────────────────────
   greetings: {
-    keywords: ["hello", "hi", "hey", "hii", "hola", "what's up", "sup", "yo", "namaste", "good morning", "good evening", "good afternoon", "howdy"],
+    keywords: [
+      "hello", "hi", "hey", "hii", "hola", "what's up", "sup", "yo",
+      "namaste", "good morning", "good evening", "good afternoon", "howdy",
+      "greetings", "wassup", "hiya", "heya"
+    ],
     responses: [
       "Hey! 👋 I'm Anant's AI. Ask me anything — about his skills, projects, experience, or even what he does for fun!",
       "Hi there! What would you like to know about Anant Mishra? Feel free to ask about his tech stack, projects, work experience, or how to connect with him.",
@@ -398,18 +495,60 @@ const FALLBACK_ENGINE = {
 /**
  * Returns the best keyword-matched fallback response for a given message.
  *
- * LAYER 1 — Privacy Guard (highest priority):
- *   Checks for romantic/relationship intent first. If matched, returns the
- *   private response from the friends category immediately. No scoring needed.
+ * LAYER 0 — Smart Topic Extractor:
+ *   Parses "tell me about X", "what are his X", "describe his X" etc.
+ *   and maps X directly to a category. Fastest path.
  *
- * LAYER 2 — Keyword Scoring:
- *   Sums keyword hit count per category, picks highest score.
- *   Randomizes among response variants to feel natural.
+ * LAYER 1 — Romance/Privacy Guard (absolute priority):
+ *   Any romantic intent fires the friends privacy response. Non-negotiable.
  *
- * LAYER 3 — Default catch-all if nothing matches.
+ * LAYER 2 — Weighted Keyword Scoring:
+ *   Counts keyword hits per category. Multi-word phrases score x2.
+ *   Picks highest scoring category.
+ *
+ * LAYER 3 — Default catch-all.
  */
 function getFallbackResponse(message) {
   var lower = message.toLowerCase();
+
+  // ── LAYER 0: Smart Topic Extractor ──────────────────────────────────────
+  // Maps subject words from natural phrases directly to categories.
+  var TOPIC_MAP = [
+    { words: ["skill", "skills", "tech", "stack", "technology", "technologies", "tools", "language", "framework", "coding", "programming"], category: "skills" },
+    { words: ["project", "projects", "app", "apps", "application", "built", "made", "shipped", "product", "cosmogenius", "recruitment"], category: "projects" },
+    { words: ["experience", "internship", "work", "job", "career", "company", "companies", "l&t", "ashwa", "edulyt", "larsen"], category: "experience" },
+    { words: ["education", "college", "school", "degree", "study", "studies", "marks", "cgpa", "academic", "viva", "qualification"], category: "education" },
+    { words: ["contact", "email", "phone", "linkedin", "github", "reach", "connect", "links"], category: "contact" },
+    { words: ["friend", "friends", "squad", "circle", "crew", "jayshree", "tanisha", "harsh", "subham"], category: "friends" },
+    { words: ["hobby", "hobbies", "interest", "interests", "bike", "drums", "gaming", "fun", "leisure"], category: "hobbies" },
+    { words: ["personality", "character", "traits", "mindset", "attitude", "values", "strength", "weakness"], category: "personality" },
+    { words: ["goal", "goals", "future", "plan", "ambition", "dream", "vision", "startup", "business"], category: "goals" },
+    { words: ["ai", "ml", "machine learning", "data science", "deep learning", "nlp", "langchain"], category: "aiml" },
+    { words: ["anant", "him", "you", "himself", "yourself", "background", "bio", "intro", "profile"], category: "about" }
+  ];
+
+  // Pattern: "tell me about X", "what are his X", "describe his X", "explain his X"
+  var extractPatterns = [
+    /tell\s+me\s+about\s+(?:his|your|anant\'?s?)?\s*(\w+)/i,
+    /what\s+(?:are|is)\s+(?:his|your|anant\'?s?)?\s*(\w+)/i,
+    /describe\s+(?:his|your|anant\'?s?)?\s*(\w+)/i,
+    /explain\s+(?:his|your|anant\'?s?)?\s*(\w+)/i,
+    /show\s+me\s+(?:his|your|anant\'?s?)?\s*(\w+)/i,
+    /(?:about|regarding)\s+(?:his|your|anant\'?s?)?\s*(\w+)/i
+  ];
+
+  for (var pi = 0; pi < extractPatterns.length; pi++) {
+    var match = lower.match(extractPatterns[pi]);
+    if (match && match[1]) {
+      var subject = match[1].toLowerCase();
+      for (var ti = 0; ti < TOPIC_MAP.length; ti++) {
+        if (TOPIC_MAP[ti].words.indexOf(subject) !== -1) {
+          var pool0 = FALLBACK_ENGINE[TOPIC_MAP[ti].category].responses;
+          return pool0[Math.floor(Math.random() * pool0.length)];
+        }
+      }
+    }
+  }
 
   // ── LAYER 1: Romance/Relationship Guard (ABSOLUTE PRIORITY) ─────────────
   // ANY romantic or relationship-type question is caught here first.
