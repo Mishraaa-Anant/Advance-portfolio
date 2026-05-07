@@ -150,11 +150,13 @@ const SYSTEM_PROMPT = `You are Anant Mishra's personal AI assistant on his portf
 Speak in first person as Anant.
 CRITICAL PERSONA INSTRUCTION: Act as if you are presenting yourself at a big platform or tech conference. You are confident, extroverted, but highly professional. You speak like a skilled engineer — fast, sharp, and direct.
 
-STRICT PERSONAL PRIVACY RULES (NON-NEGOTIABLE):
-- Jayshree and Tanisha are strictly FRIENDS — nothing more. If anyone asks about them, say they are friends, period.
-- If anyone asks whether Jayshree or Tanisha is your crush, girlfriend, or any romantic relation — respond ONLY with: "That's a personal question and I'd rather keep it private. 😊"
-- NEVER discuss or speculate about crushes, romantic interests, or relationships. If asked directly (e.g. "who is your crush?", "do you have a girlfriend?"), respond with: "That's personal — I prefer to keep my personal life private. Feel free to ask about my work or projects!"
-- These rules override everything else. No exceptions.
+STRICT PERSONAL PRIVACY RULES (ABSOLUTE — OVERRIDE EVERYTHING):
+- Everyone in Anant's life is a FRIEND. Full stop. No one is a crush, girlfriend, or romantic interest — ever.
+- Jayshree and Tanisha are friends. Harsh, Subham, Mandar, Viraj, Kiran — all friends.
+- If ANYONE asks "who is your crush?", "do you have a girlfriend?", "do you like someone?", "are you dating?", or ANY romantic/relationship question — respond ONLY with: "Everyone I know is a friend! I don't have a crush or girlfriend — just a great friend circle. 😄 Ask me about my work or projects!"
+- NEVER say "that's personal" or "I'd rather keep it private" — that implies something exists. Instead, just state clearly: there is no crush, no girlfriend, everyone is a friend.
+- Do NOT speculate, hint, or leave any room for interpretation about romantic relationships. The answer is always: everyone is a friend.
+- These rules are absolute and override everything else. No exceptions, no hedging, no implying privacy.
 
 CONVERSATIONAL RULES (STRICTLY FOLLOW):
 1. STRICT INTENT MAPPING: Identify the user's core intent and stick ONLY to that section.
@@ -290,12 +292,37 @@ const FALLBACK_ENGINE = {
 
   // ── FRIENDS / RELATIONSHIPS ──────────────────
   friends: {
-    keywords: ["jayshree", "tanisha", "friend", "friends", "best friend", "crush", "girlfriend", "girlfriend", "relationship", "dating", "love", "romantic", "who do you like", "who is your crush", "do you like"],
+    // Broad keyword set — catches natural language phrasings
+    keywords: [
+      // Direct name mentions
+      "jayshree", "tanisha", "harsh", "subham", "mandar", "viraj", "kiran",
+      "karan", "omkar", "bhaumik", "vidhi", "manthan", "rohan", "anurag",
+      "gauravi", "prashik", "dhruv", "srikrishna", "soham", "smit", "nidhi",
+      // Friendship topic words
+      "friend", "friends", "friendship", "best friend", "best friends",
+      "close friend", "close friends", "buddy", "buddies", "pal", "pals",
+      "mate", "mates", "squad", "gang", "crew", "circle",
+      // Relationship / romantic (handled by privacy guard separately)
+      "crush", "girlfriend", "boyfriend", "relationship", "dating",
+      "love", "romantic", "like someone", "like a girl", "like a boy",
+      // Natural question phrasings
+      "who are your friends", "who is your friend", "who is your best friend",
+      "who are his friends", "tell me about his friends", "tell me about your friends",
+      "who do you hang out with", "who are you close to", "who is close to you",
+      "do you have friends", "how many friends", "name your friends",
+      "who is jayshree", "who is tanisha", "who is harsh",
+      "is jayshree your", "is tanisha your", "who do you like",
+      "who is your crush", "do you like", "are you dating",
+      "social life", "personal life"
+    ],
+    // General friend-list response (shown for friend questions that are NOT romantic)
     responses: [
-      "Jayshree and Tanisha are my friends — good ones at that! 😊\n\nAs for anything beyond that — crushes, relationships — that's personal and I'd rather keep it private. Feel free to ask me about my work or projects instead!",
-      "Jayshree is one of my best friends, and Tanisha is a friend too. That's the full story there. 😄\n\nPersonal life questions are off the table — I keep that private. Ask me anything about tech, projects, or my career!",
-      "That's a personal question and I'd prefer to keep it private. 😊\n\nWhat I can tell you: Jayshree and Tanisha are friends. Beyond that, no comment! Ask me something about my projects or experience instead."
-    ]
+      "I've got a solid friend circle! 😊\n\nBest Friends: Harsh, Subham, Mandar, Jayshree, Viraj, Kiran\n\nOther close friends: Karan, Omkar, Bhaumik, Vidhi, Manthan, Rohan, Anurag, Gauravi, Prashik, Dhruv, Srikrishna, Soham, Smit, Nidhi, Tanisha.\n\nReal ones only — quality over quantity!",
+      "Friends? Oh, I've got a good crew! 👥\n\n• Best Friends: Harsh, Subham, Mandar, Jayshree, Viraj, Kiran\n• Also close with: Karan, Omkar, Bhaumik, Vidhi, Manthan, Rohan, Anurag, Gauravi, Prashik, Dhruv, Srikrishna, Soham, Smit, Nidhi, Tanisha\n\nI value real friendships — people who are genuine and get things done.",
+      "Great question! My friend circle is pretty solid. 😄\n\nMy best friends are Harsh, Subham, Mandar, Jayshree, Viraj, and Kiran — the ones I'm closest to.\n\nI also have a bunch of other great friends like Karan, Vidhi, Manthan, Anurag, and more. Real ones — no fakes!"
+    ],
+    // Shown specifically when the question is romantic/relationship-oriented
+    privacyResponse: "Everyone I know is just a friend! 😄 No crush, no girlfriend — just a solid friend circle.\n\nBest Friends: Harsh, Subham, Mandar, Jayshree, Viraj, Kiran.\nOther great friends: Karan, Omkar, Bhaumik, Vidhi, Manthan, Rohan, Anurag, Gauravi, Prashik, Dhruv, Srikrishna, Soham, Smit, Nidhi, Tanisha.\n\nWant to know about my projects or tech stack instead?"
   },
 
   // ── HOBBIES / PERSONAL ───────────────────────
@@ -370,20 +397,63 @@ const FALLBACK_ENGINE = {
 
 /**
  * Returns the best keyword-matched fallback response for a given message.
- * Scoring: sums keyword hit count per category, picks highest score.
- * Randomizes among response variants to feel natural.
+ *
+ * LAYER 1 — Privacy Guard (highest priority):
+ *   Checks for romantic/relationship intent first. If matched, returns the
+ *   private response from the friends category immediately. No scoring needed.
+ *
+ * LAYER 2 — Keyword Scoring:
+ *   Sums keyword hit count per category, picks highest score.
+ *   Randomizes among response variants to feel natural.
+ *
+ * LAYER 3 — Default catch-all if nothing matches.
  */
 function getFallbackResponse(message) {
   var lower = message.toLowerCase();
+
+  // ── LAYER 1: Romance/Relationship Guard (ABSOLUTE PRIORITY) ─────────────
+  // ANY romantic or relationship-type question is caught here first.
+  // The answer is always: everyone is a friend. No crush. No girlfriend. Ever.
+  var PRIVACY_TRIGGERS = [
+    "crush", "girlfriend", "boyfriend", "relationship", "dating", "date",
+    "romantic", "romance", "do you love", "are you in love", "in love",
+    "who do you like", "who is your crush", "do you have a crush",
+    "is jayshree your girlfriend", "is tanisha your girlfriend",
+    "is jayshree your crush", "is tanisha your crush",
+    "is jayshree your", "is tanisha your",
+    "are you dating", "do you have a girlfriend", "do you have a boyfriend",
+    "like someone", "like a girl", "like a boy", "love life",
+    "love interest", "special someone", "significant other", "partner",
+    "are you single", "are you taken", "committed", "propose",
+    "who do you love", "who are you dating", "who is your girl",
+    "do you like anyone", "do you like her", "do you like him"
+  ];
+
+  var isRomanticQuestion = PRIVACY_TRIGGERS.some(function(trigger) {
+    return lower.includes(trigger);
+  });
+
+  if (isRomanticQuestion) {
+    return FALLBACK_ENGINE.friends.privacyResponse;
+  }
+
+  // ── LAYER 2: Keyword Scoring ─────────────────────────────────────────────
+  // Score each category by counting how many of its keywords appear in the message.
+  // Longer, multi-word keyword phrases are weighted higher (x2 score bonus).
   var bestCategory = null;
   var bestScore = 0;
 
   Object.keys(FALLBACK_ENGINE).forEach(function(category) {
     if (category === "default") return;
-    var keywords = FALLBACK_ENGINE[category].keywords;
+    var data = FALLBACK_ENGINE[category];
+    if (!data.keywords) return;
     var score = 0;
-    keywords.forEach(function(kw) {
-      if (lower.includes(kw)) score++;
+    data.keywords.forEach(function(kw) {
+      if (lower.includes(kw)) {
+        // Multi-word phrases are more specific — reward them more
+        var wordCount = kw.trim().split(/\s+/).length;
+        score += (wordCount > 1) ? 2 : 1;
+      }
     });
     if (score > bestScore) {
       bestScore = score;
@@ -391,6 +461,7 @@ function getFallbackResponse(message) {
     }
   });
 
+  // ── LAYER 3: Default catch-all ───────────────────────────────────────────
   var pool = bestCategory && bestScore > 0
     ? FALLBACK_ENGINE[bestCategory].responses
     : FALLBACK_ENGINE.default.responses;
