@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <!-- Basic SEO -->
   <meta name="description" content="Anant Mishra - AI Engineer, Data Scientist, and Developer based in Mumbai. Explore Anant's portfolio, machine learning projects, and work experience." />
@@ -48,9 +48,12 @@
   </script>
   
   <!-- Security: Content Security Policy -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.groq.com; img-src 'self' data: https: http:; style-src 'self' 'unsafe-inline'; font-src 'self'; form-action 'self'; navigate-to *;" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.groq.com; img-src 'self' data: https: http:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; form-action 'self';" />
   
   <link rel="icon" href="profile.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -65,7 +68,7 @@
   <!-- SPLASH SCREEN -->
   <div class="splash-screen" id="splashScreen">
     <div class="splash-content">
-      <img src="profile.png" alt="Anant Mishra" class="splash-img" id="splashImg" />
+      <img src="profile.png" alt="Anant Mishra" class="splash-img" id="splashImg" width="220" height="220" />
       <h1 class="splash-name">Anant Mishra</h1>
       <p class="splash-quote">Welcome to my AI-powered portfolio</p>
     </div>
@@ -125,7 +128,7 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
         <div class="topbar-title">
-          <img src="profile.png" alt="Anant" class="topbar-avatar" />
+          <img src="profile.png" alt="Anant" class="topbar-avatar" width="24" height="24" />
           <span>Anant Mishra</span>
           <span class="online-dot"></span>
         </div>
@@ -149,7 +152,7 @@
 
       <!-- WELCOME -->
       <div class="welcome" id="welcomeScreen">
-        <img src="profile.png" alt="Anant Mishra" class="welcome-icon" />
+        <img src="profile.png" alt="Anant Mishra" class="welcome-icon" width="48" height="48" />
         <h1 class="welcome-title">How can I help you today?</h1>
         <p class="welcome-subtitle">I'm Anant's AI — ask me anything about his work, projects, skills, or experience.</p>
         <div class="suggestions" id="suggestions">
@@ -172,6 +175,7 @@
           class="chat-input"
           id="chatInput"
           placeholder="Ask me anything about Anant…"
+          aria-label="Chat input"
           autocomplete="off"
           maxlength="500"
         />
@@ -188,7 +192,7 @@
     <div class="modal-card" id="modalCard"></div>
   </div>
 
-  <script src="env.js"></script>
-  <script src="script.js"></script>
+  <script src="env.js" defer></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

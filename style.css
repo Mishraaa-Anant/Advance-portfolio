@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* ═══════════════════════════════════════════
    TOKENS
@@ -12,7 +11,7 @@
   --border: rgba(255,255,255,0.08);
   --text: #ececec;
   --text-2: #b4b4b4;
-  --text-3: #8e8e8e;
+  --text-3: #a1a1a1;
   --accent: #10a37f;
   --accent-hover: #0d8c6d;
   --user-bubble: #2f2f2f;
