@@ -615,6 +615,172 @@ let conversationHistory = [];
 let recentQueries = [];
 
 /* ═══════════════════════════════════════════
+   VISITOR MEMORY SYSTEM
+   Lightweight localStorage layer that tracks
+   returning visitors and personalizes greetings.
+   No login, no backend — fully private.
+═══════════════════════════════════════════ */
+const VISITOR_MEMORY = (function () {
+
+  var LS_KEY = "anant_visitor_data";
+
+  // ── Topic detection map (query → category label) ─────────────────────────
+  var TOPIC_DETECT = [
+    { label: "AI/ML",       words: ["ai", "ml", "machine learning", "deep learning", "nlp", "langchain", "tensorflow", "data science", "neural", "model", "embedding", "vector"] },
+    { label: "projects",   words: ["project", "projects", "built", "cosmogenius", "recruitment", "app", "application", "product"] },
+    { label: "skills",     words: ["skill", "skills", "tech", "stack", "technologies", "language", "framework", "coding", "python", "react"] },
+    { label: "experience", words: ["experience", "internship", "intern", "l&t", "larsen", "ashwa", "edulyt", "work", "job", "career", "company"] },
+    { label: "education",  words: ["education", "college", "degree", "viva", "university", "cgpa", "school", "marks", "academic"] },
+    { label: "contact",    words: ["contact", "email", "phone", "linkedin", "github", "reach", "connect"] },
+    { label: "goals",      words: ["goal", "goals", "future", "business", "startup", "ambition", "vision", "dream"] },
+    { label: "personality",words: ["personality", "traits", "mindset", "attitude", "strength", "weakness", "extrovert", "character"] },
+    { label: "hobbies",    words: ["hobby", "hobbies", "bike", "drums", "gaming", "fun", "leisure", "interest"] }
+  ];
+
+  // ── Personalization message templates ────────────────────────────────────
+  // Returns {banner, subtitle} strings based on visitor data.
+  function _buildMessages(data) {
+    var topSection = _getTopTopic(data.topicsEngaged);
+    var visitCount = data.visitCount || 1;
+    var banner = null;
+    var subtitle = null;
+
+    if (visitCount === 2) {
+      if (topSection) {
+        banner   = "Welcome back 👀  Last time you explored my " + topSection + ".";
+        subtitle = "Welcome back! Last time you were checking out my " + topSection + " 👀";
+      } else {
+        banner   = "Welcome back 👀  Good to see you again!";
+        subtitle = "Welcome back! Good to see you again 👀";
+      }
+    } else if (visitCount >= 3) {
+      var aiCount = (data.topicsEngaged && data.topicsEngaged["AI/ML"]) || 0;
+      var projCount = (data.topicsEngaged && data.topicsEngaged["projects"]) || 0;
+
+      if (aiCount >= 3) {
+        banner   = "You seem really into AI systems 😏  I like your taste.";
+        subtitle = "You keep coming back for the AI stuff 😏 — I like your taste.";
+      } else if (projCount >= 3) {
+        banner   = "Back for more projects? 🤔  Building something cool?";
+        subtitle = "You keep checking my projects — building something? 🤔";
+      } else if (visitCount >= 5) {
+        banner   = "Visit #" + visitCount + " — you must really like what you see 😄";
+        subtitle = "Visit #" + visitCount + "! You're basically a regular here 😄";
+      } else {
+        banner   = "Welcome back 😄  " + (topSection ? "Still curious about my " + topSection + "?" : "What's on your mind today?");
+        subtitle = topSection ? "Still curious about my " + topSection + "? Ask me anything." : "Great to have you back. What would you like to explore?";
+      }
+    }
+
+    return { banner: banner, subtitle: subtitle };
+  }
+
+  function _getTopTopic(topicsEngaged) {
+    if (!topicsEngaged) return null;
+    var keys = Object.keys(topicsEngaged);
+    if (keys.length === 0) return null;
+    var top = keys.reduce(function (a, b) { return topicsEngaged[a] >= topicsEngaged[b] ? a : b; });
+    return topicsEngaged[top] >= 1 ? top : null;
+  }
+
+  // ── Public API ───────────────────────────────────────────────────────────
+  return {
+
+    /** Load raw data from localStorage (or null if first visit). */
+    load: function () {
+      try {
+        var raw = localStorage.getItem(LS_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) { return null; }
+    },
+
+    /** Persist data to localStorage. */
+    save: function (data) {
+      try { localStorage.setItem(LS_KEY, JSON.stringify(data)); } catch (e) {}
+    },
+
+    /**
+     * Called on DOMContentLoaded.
+     * - Creates record for first-time visitors.
+     * - Increments visitCount for returning visitors.
+     * Returns the updated data object.
+     */
+    init: function () {
+      var now = Date.now();
+      var data = this.load();
+      if (!data) {
+        // First visit
+        data = {
+          visitCount: 1,
+          firstVisit: now,
+          lastVisit: now,
+          sectionsViewed: [],
+          topicsEngaged: {},
+          totalMessages: 0
+        };
+      } else {
+        // Returning visit — only count if last visit was > 30 min ago
+        // (prevents refresh from counting as a new visit)
+        var thirtyMin = 30 * 60 * 1000;
+        if ((now - data.lastVisit) > thirtyMin) {
+          data.visitCount = (data.visitCount || 1) + 1;
+        }
+        data.lastVisit = now;
+        if (!data.topicsEngaged)  data.topicsEngaged  = {};
+        if (!data.sectionsViewed) data.sectionsViewed = [];
+        if (!data.totalMessages)  data.totalMessages  = 0;
+      }
+      this.save(data);
+      return data;
+    },
+
+    /**
+     * Detect and record which topic category a query touches.
+     * Called silently from every query handler.
+     */
+    trackSection: function (query) {
+      var lower = query.toLowerCase();
+      var data = this.load();
+      if (!data) return;
+
+      var matched = null;
+      for (var i = 0; i < TOPIC_DETECT.length; i++) {
+        var entry = TOPIC_DETECT[i];
+        for (var j = 0; j < entry.words.length; j++) {
+          if (lower.includes(entry.words[j])) {
+            matched = entry.label;
+            break;
+          }
+        }
+        if (matched) break;
+      }
+
+      if (matched) {
+        // Track section viewed (no duplicates within a session)
+        if (data.sectionsViewed.indexOf(matched) === -1) {
+          data.sectionsViewed.push(matched);
+        }
+        // Increment engagement counter
+        data.topicsEngaged[matched] = (data.topicsEngaged[matched] || 0) + 1;
+      }
+
+      data.totalMessages = (data.totalMessages || 0) + 1;
+      this.save(data);
+    },
+
+    /**
+     * Returns { banner, subtitle } personalized messages for returning visitors.
+     * Returns { banner: null, subtitle: null } for first-time visitors.
+     */
+    getMessages: function () {
+      var data = this.load();
+      if (!data || data.visitCount <= 1) return { banner: null, subtitle: null };
+      return _buildMessages(data);
+    }
+  };
+})();
+
+/* ═══════════════════════════════════════════
    DOM
 ═══════════════════════════════════════════ */
 const $ = (s) => document.querySelector(s);
@@ -727,6 +893,7 @@ function renderHistory() {
 async function showPredefinedAnswer(query, answer) {
   hideWelcome();
   addToHistory(query);
+  VISITOR_MEMORY.trackSection(query); // 🧠 memory: track section
   addMessage(query, true);
 
   // Brief typing indicator for natural feel (250ms)
@@ -758,6 +925,7 @@ function showDirectContent(query) {
   // Show user message
   addMessage(query, true);
   addToHistory(query);
+  VISITOR_MEMORY.trackSection(query); // 🧠 memory: track section
 
   var bubble = addMessage("", false);
   var lowerQ = query.toLowerCase();
@@ -1056,6 +1224,7 @@ async function handleQuery(query) {
 
   hideWelcome();
   closeSidebar();
+  VISITOR_MEMORY.trackSection(query); // 🧠 memory: track what the user is curious about
   addToHistory(query);
 
   chatInput.disabled = true;
@@ -1129,8 +1298,67 @@ document.querySelectorAll(".suggestion-chip").forEach(function (chip) {
   });
 });
 
+/* ═══════════════════════════════════════════
+   MEMORY BANNER UI HELPERS
+═══════════════════════════════════════════ */
+var _bannerTimer = null;
+
+function showMemoryBanner(text) {
+  var banner = document.getElementById("memoryBanner");
+  var bannerText = document.getElementById("memoryBannerText");
+  if (!banner || !bannerText || !text) return;
+
+  bannerText.textContent = text;
+
+  // Reveal after splash fades (~2.6s)
+  setTimeout(function () {
+    banner.classList.add("visible");
+
+    // Auto-dismiss after 6 seconds
+    _bannerTimer = setTimeout(function () {
+      dismissMemoryBanner();
+    }, 6000);
+  }, 2700);
+}
+
+function dismissMemoryBanner() {
+  var banner = document.getElementById("memoryBanner");
+  if (!banner) return;
+  clearTimeout(_bannerTimer);
+  banner.classList.add("hiding");
+  banner.classList.remove("visible");
+  setTimeout(function () {
+    banner.classList.remove("hiding");
+  }, 400);
+}
+
 // Init — questions match PREDEFINED_QA keys exactly for instant answers
 window.addEventListener("DOMContentLoaded", function () {
+
+  // ── Visitor Memory Init ──────────────────────────────────────────────────
+  var memData = VISITOR_MEMORY.init();
+  var memMessages = VISITOR_MEMORY.getMessages();
+
+  // Show personalised banner for returning visitors
+  if (memMessages.banner) {
+    showMemoryBanner(memMessages.banner);
+  }
+
+  // Personalize the welcome screen subtitle for returning visitors
+  if (memMessages.subtitle) {
+    var subtitleEl = document.querySelector(".welcome-subtitle");
+    if (subtitleEl) {
+      subtitleEl.textContent = memMessages.subtitle;
+    }
+  }
+
+  // Wire up banner close button
+  var closeBtn = document.getElementById("memoryBannerClose");
+  if (closeBtn) {
+    closeBtn.addEventListener("click", dismissMemoryBanner);
+  }
+
+  // ── History ──────────────────────────────────────────────────────────────
   recentQueries = [
     "Who is Anant Mishra?",
     "What projects have you built?",
