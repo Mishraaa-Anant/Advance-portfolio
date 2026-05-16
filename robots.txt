@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://myselfanantmishra.vercel.app/sitemap.xml
+Sitemap: https://advance-portfolio-ten.vercel.app/sitemap.xml
+

@@ -12,7 +12,7 @@ const DATA = {
     links: {
       github: "https://github.com/Mishraaa-Anant",
       linkedin: "https://linkedin.com/in/anantmishra31",
-      portfolio: "https://myselfanantmishra.vercel.app"
+      portfolio: "https://advance-portfolio-ten.vercel.app"
     }
   },
   personal_extra: {
@@ -328,7 +328,7 @@ const FALLBACK_ENGINE = {
       "drop a message", "send him a message", "reach out"
     ],
     responses: [
-      "Let's connect! Here's how to reach me:\n\n📧 Email: anant20042003@gmail.com\n📞 Phone: +91 9156374557\n🔗 GitHub: github.com/Mishraaa-Anant\n🔗 LinkedIn: linkedin.com/in/anantmishra31\n🌐 Portfolio: myselfanantmishra.vercel.app",
+      "Let's connect! Here's how to reach me:\n\n📧 Email: anant20042003@gmail.com\n📞 Phone: +91 9156374557\n🔗 GitHub: github.com/Mishraaa-Anant\n🔗 LinkedIn: linkedin.com/in/anantmishra31\n🌐 Portfolio: advance-portfolio-ten.vercel.app",
       "Hit me up through any of these:\n\n• 📧 anant20042003@gmail.com\n• 📞 +91 9156374557\n• LinkedIn → anantmishra31\n• GitHub → Mishraaa-Anant\n\nI respond fast — especially on email and LinkedIn.",
       "Best ways to reach me:\n\n1. Email — anant20042003@gmail.com (fastest for professional queries)\n2. LinkedIn — linkedin.com/in/anantmishra31\n3. GitHub — github.com/Mishraaa-Anant\n4. Phone — +91 9156374557"
     ]
@@ -447,8 +447,8 @@ const FALLBACK_ENGINE = {
       "get his cv", "download resume", "his resume", "your resume"
     ],
     responses: [
-      "You can view my full portfolio at myselfanantmishra.vercel.app — it covers everything including projects, experience, and skills.\n\nFor my resume or direct opportunities, shoot me an email at anant20042003@gmail.com and I'll get it to you right away.",
-      "My resume is available on request! Drop me a message at anant20042003@gmail.com and I'll send it over ASAP.\n\nOr check out the full portfolio here: myselfanantmishra.vercel.app",
+      "You can view my full portfolio at advance-portfolio-ten.vercel.app — it covers everything including projects, experience, and skills.\n\nFor my resume or direct opportunities, shoot me an email at anant20042003@gmail.com and I'll get it to you right away.",
+      "My resume is available on request! Drop me a message at anant20042003@gmail.com and I'll send it over ASAP.\n\nOr check out the full portfolio here: advance-portfolio-ten.vercel.app",
       "Best way to get my resume: email anant20042003@gmail.com and mention what role/opportunity you're looking at. I'll tailor and send it quickly.\n\nLinkedIn also has an updated version: linkedin.com/in/anantmishra31"
     ]
   },
@@ -845,7 +845,7 @@ const PREDEFINED_QA = {
 
   "What AI tools and frameworks do you use?": "AI is my core domain. Here's what I use:\n\n🧠 TensorFlow — for deep learning model training\n🔗 LangChain — for building LLM-powered pipelines\n💬 NLP — multilingual PDF processing, OCR, entity extraction\n🔍 Vector Embeddings — semantic search & similarity matching\n👁️ Computer Vision — via Face++ API for skin analysis\n🤖 Ollama & Vision APIs — integrated at Ashwa LLP for document intelligence",
 
-  "How can I contact you?": "Here's the best way to reach me:\n\n📧 Email: anant20042003@gmail.com\n📞 Phone: +91 9156374557\n🔗 LinkedIn: linkedin.com/in/anantmishra31\n💛 GitHub: github.com/Mishraaa-Anant\n🌐 Portfolio: myselfanantmishra.vercel.app\n\nI respond fast — especially on email and LinkedIn.",
+  "How can I contact you?": "Here's the best way to reach me:\n\n📧 Email: anant20042003@gmail.com\n📞 Phone: +91 9156374557\n🔗 LinkedIn: linkedin.com/in/anantmishra31\n💛 GitHub: github.com/Mishraaa-Anant\n🌐 Portfolio: advance-portfolio-ten.vercel.app\n\nI respond fast — especially on email and LinkedIn.",
 
   "What are your goals and ambitions?": "One goal — build a multi-crore business.\n\nNot just a startup. A company that solves real problems and scales.\n\nRight now I'm laying the foundation: deep AI/ML expertise, real industry experience at L&T and Ashwa LLP, and shipping products that work in production — not just on paper.",
 
