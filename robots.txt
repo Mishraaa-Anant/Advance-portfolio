@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://myselfanantmishra.vercel.app/sitemap.xml
