@@ -1638,6 +1638,44 @@ async function loadGitHubPanel() {
 setTimeout(loadGitHubPanel, 3000);
 
 /* ═══════════════════════════════════════════
+   GITHUB PANEL TOGGLE (mobile collapsible)
+═══════════════════════════════════════════ */
+(function initGitHubToggle() {
+  var toggle = document.getElementById("githubPanelToggle");
+  var body   = document.getElementById("githubPanelBody");
+  var chevron = document.querySelector(".github-chevron");
+  if (!toggle || !body) return;
+
+  var isMobile = function() { return window.innerWidth <= 768; };
+
+  function setOpen(open) {
+    if (open) {
+      body.classList.add("open");
+      toggle.setAttribute("aria-expanded", "true");
+      if (chevron) chevron.classList.add("open");
+    } else {
+      body.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+      if (chevron) chevron.classList.remove("open");
+    }
+  }
+
+  // Desktop: always open. Mobile: collapsed by default.
+  setOpen(!isMobile());
+
+  toggle.addEventListener("click", function() {
+    if (isMobile()) {
+      setOpen(!body.classList.contains("open"));
+    }
+    // On desktop, clicking header does nothing (body is always visible)
+  });
+
+  window.addEventListener("resize", function() {
+    if (!isMobile()) setOpen(true);
+  });
+})();
+
+/* ═══════════════════════════════════════════
    PARTICLE CANVAS (subtle floating dots)
 ═══════════════════════════════════════════ */
 (function initParticles() {
