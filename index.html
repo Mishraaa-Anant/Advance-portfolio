@@ -36,17 +36,25 @@
   <meta name="twitter:image" content="https://advance-portfolio-ten.vercel.app/profile.png" />
   <meta name="twitter:creator" content="@mishraaa_anant" />
 
-  <!-- Schema.org JSON-LD — Person structured data for Google Knowledge Panel -->
+  <!-- Schema.org JSON-LD — Enhanced Person schema for Google Knowledge Panel -->
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org/",
+    "@context": "https://schema.org",
     "@type": "Person",
+    "@id": "https://advance-portfolio-ten.vercel.app/#anant-mishra",
     "name": "Anant Mishra",
     "alternateName": ["Anant", "Annu", "mishraaa_anant", "anantmishra31"],
     "url": "https://advance-portfolio-ten.vercel.app/",
-    "image": "https://advance-portfolio-ten.vercel.app/profile.png",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https://advance-portfolio-ten.vercel.app/profile.png",
+      "width": 220,
+      "height": 220
+    },
     "email": "anant20042003@gmail.com",
     "telephone": "+91-9156374557",
+    "nationality": "Indian",
+    "knowsLanguage": ["English", "Hindi"],
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Mumbai",
@@ -54,13 +62,21 @@
       "addressCountry": "IN"
     },
     "sameAs": [
-      "https://github.com/Mishraaa-Anant",
       "https://www.linkedin.com/in/anantmishra31",
+      "https://linkedin.com/in/anantmishra31",
       "https://www.instagram.com/mishraaa_anant",
+      "https://instagram.com/mishraaa_anant",
+      "https://github.com/Mishraaa-Anant",
       "https://advance-portfolio-ten.vercel.app/"
     ],
     "jobTitle": "AI Engineer & Data Scientist",
-    "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Data Science", "Python", "TensorFlow", "LangChain", "React Native", "NLP"],
+    "hasOccupation": {
+      "@type": "Occupation",
+      "name": "AI Engineer",
+      "occupationLocation": { "@type": "City", "name": "Mumbai" },
+      "skills": "Python, Machine Learning, LangChain, TensorFlow, Data Science, NLP, React Native"
+    },
+    "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Data Science", "Python", "TensorFlow", "LangChain", "React Native", "NLP", "Data Analysis", "Generative AI"],
     "alumniOf": {
       "@type": "CollegeOrUniversity",
       "name": "VIVA Institute of Technology",
@@ -68,24 +84,85 @@
     },
     "worksFor": {
       "@type": "Organization",
-      "name": "VIVA Institute of Technology"
+      "name": "VIVA Institute of Technology",
+      "url": "https://vivainstitute.ac.in/"
     },
-    "description": "Anant Mishra is an AI Engineer, Data Scientist, and Data Analyst based in Mumbai, India. Known on Instagram as mishraaa_anant and on LinkedIn as anantmishra31."
+    "description": "Anant Mishra (Instagram: mishraaa_anant, LinkedIn: anantmishra31) is an AI Engineer, Data Scientist, and Data Analyst based in Mumbai, India. He has worked at L&T and Ashwa LLP and studies at VIVA Institute of Technology."
   }
   </script>
 
-  <!-- BreadcrumbList for Google Search -->
+  <!-- ProfilePage schema — signals this is an official personal profile page -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "name": "Anant Mishra — Official AI Portfolio",
+    "url": "https://advance-portfolio-ten.vercel.app/",
+    "description": "Official portfolio of Anant Mishra, AI Engineer & Data Scientist from Mumbai. Instagram: mishraaa_anant | LinkedIn: anantmishra31.",
+    "dateModified": "2026-05-17",
+    "mainEntity": { "@id": "https://advance-portfolio-ten.vercel.app/#anant-mishra" }
+  }
+  </script>
+
+  <!-- WebSite schema with SearchAction for Google Sitelinks -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Anant Mishra Portfolio",
     "url": "https://advance-portfolio-ten.vercel.app/",
-    "description": "Official portfolio of Anant Mishra — AI Engineer & Data Scientist from Mumbai.",
-    "author": {
-      "@type": "Person",
-      "name": "Anant Mishra"
-    }
+    "description": "Official AI-powered portfolio of Anant Mishra — AI Engineer & Data Scientist from Mumbai.",
+    "author": { "@id": "https://advance-portfolio-ten.vercel.app/#anant-mishra" }
+  }
+  </script>
+
+  <!-- FAQ schema — enables Google Featured Snippets for 'Who is Anant Mishra?' -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Who is Anant Mishra?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Anant Mishra (also known as mishraaa_anant and anantmishra31) is an AI Engineer, Data Scientist, and Data Analyst based in Mumbai, India. He has worked at L&T and Ashwa LLP and is currently studying at VIVA Institute of Technology. He builds AI agents, ML models, and data pipelines."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Anant Mishra's LinkedIn profile?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Anant Mishra's LinkedIn profile is https://www.linkedin.com/in/anantmishra31 (username: anantmishra31)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Anant Mishra's Instagram?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Anant Mishra's Instagram username is @mishraaa_anant. His profile is at https://www.instagram.com/mishraaa_anant."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does Anant Mishra do?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Anant Mishra is an AI Engineer and Data Scientist. He builds AI Recruitment Agents, machine learning models, data science pipelines, and mobile apps. He has professional experience at L&T and Ashwa LLP."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where is Anant Mishra from?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Anant Mishra is based in Mumbai, Maharashtra, India. He studies at VIVA Institute of Technology."
+        }
+      }
+    ]
   }
   </script>
   
@@ -93,6 +170,12 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.groq.com; img-src 'self' data: https: http:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; form-action 'self';" />
   
   <link rel="icon" href="profile.png" type="image/png" />
+
+  <!-- rel=me: tells Google these profiles are verified as belonging to Anant Mishra -->
+  <link rel="me" href="https://www.linkedin.com/in/anantmishra31" />
+  <link rel="me" href="https://www.instagram.com/mishraaa_anant" />
+  <link rel="me" href="https://github.com/Mishraaa-Anant" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -194,24 +277,27 @@
 
       <!-- WELCOME -->
       <div class="welcome" id="welcomeScreen">
-        <img src="profile.png" alt="Anant Mishra" class="welcome-icon" width="48" height="48" />
-        <h1 class="welcome-title">How can I help you today?</h1>
-        <p class="welcome-subtitle">I'm Anant's AI — ask me anything about his work, projects, skills, or experience.</p>
-        <!-- Social links for SEO discoverability -->
+        <img src="profile.png" alt="Anant Mishra — AI Engineer & Data Scientist" class="welcome-icon" width="48" height="48" />
+        <!-- H1 explicitly names Anant Mishra for Google's primary heading signal -->
+        <h1 class="welcome-title">Anant Mishra</h1>
+        <p class="welcome-subtitle">AI Engineer & Data Scientist — Ask me anything about his work, projects, skills, or experience.</p>
+        <!-- Social links with rel=me for Google profile ownership verification -->
         <div class="welcome-social">
-          <a href="https://www.linkedin.com/in/anantmishra31" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Anant Mishra on LinkedIn">
+          <a href="https://www.linkedin.com/in/anantmishra31" target="_blank" rel="noopener noreferrer me" class="social-link" aria-label="Anant Mishra on LinkedIn (anantmishra31)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
+            anantmishra31
           </a>
-          <a href="https://www.instagram.com/mishraaa_anant" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Anant Mishra on Instagram @mishraaa_anant">
+          <a href="https://www.instagram.com/mishraaa_anant" target="_blank" rel="noopener noreferrer me" class="social-link" aria-label="Anant Mishra on Instagram @mishraaa_anant">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
             @mishraaa_anant
           </a>
-          <a href="https://github.com/Mishraaa-Anant" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Anant Mishra on GitHub">
+          <a href="https://github.com/Mishraaa-Anant" target="_blank" rel="noopener noreferrer me" class="social-link" aria-label="Anant Mishra on GitHub">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
             GitHub
           </a>
         </div>
+        <!-- SEO: Hidden accessible text reinforcing name + profiles for crawlers -->
+        <p class="seo-context">Anant Mishra — LinkedIn: anantmishra31 | Instagram: mishraaa_anant | Mumbai, India</p>
         <div class="suggestions" id="suggestions">
           <button class="suggestion-chip" data-query="Tell me about yourself">Tell me about yourself</button>
           <button class="suggestion-chip" data-query="Show me your projects">Show projects</button>
