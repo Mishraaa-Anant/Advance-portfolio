@@ -1854,3 +1854,68 @@ setTimeout(loadGitHubPanel, 3000);
     }
   });
 })();
+
+/* ═══════════════════════════════════════════
+   PWA INSTALLATION LOGIC
+═══════════════════════════════════════════ */
+(function initPWA() {
+  var deferredPrompt;
+  var pwaPrompt = document.getElementById("pwaPrompt");
+  var installBtn = document.getElementById("pwaInstallBtn");
+  var cancelBtn = document.getElementById("pwaCancelBtn");
+
+  if (!pwaPrompt || !installBtn || !cancelBtn) return;
+
+  var pwaState = localStorage.getItem("anant_pwa_state");
+  if (pwaState === "installed" || pwaState === "dismissed") return;
+
+  var isIOS = /ipad|iphone|ipod/.test(navigator.userAgent.toLowerCase()) && !window.MSStream;
+  var isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+  if (isStandalone) {
+    localStorage.setItem("anant_pwa_state", "installed");
+    return;
+  }
+
+  // Handle standard Android/Chrome beforeinstallprompt
+  window.addEventListener("beforeinstallprompt", function (e) {
+    e.preventDefault();
+    deferredPrompt = e;
+    setTimeout(function() {
+      if (localStorage.getItem("anant_pwa_state") !== "dismissed") pwaPrompt.classList.add("visible");
+    }, 2500);
+  });
+
+  // Handle iOS fallback (since iOS doesn't support beforeinstallprompt)
+  if (isIOS && !isStandalone) {
+    setTimeout(function() {
+      if (localStorage.getItem("anant_pwa_state") !== "dismissed") {
+        document.querySelector(".pwa-prompt-desc").innerHTML = "Tap the <b>Share</b> icon below and select <b>Add to Home Screen</b>.";
+        installBtn.style.display = "none"; // iOS doesn't support programmatic install
+        pwaPrompt.classList.add("visible");
+      }
+    }, 2500);
+  }
+
+  installBtn.addEventListener("click", async function () {
+    pwaPrompt.classList.remove("visible");
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      var choiceResult = await deferredPrompt.userChoice;
+      if (choiceResult.outcome === "accepted") {
+        localStorage.setItem("anant_pwa_state", "installed");
+      }
+      deferredPrompt = null;
+    }
+  });
+
+  cancelBtn.addEventListener("click", function () {
+    pwaPrompt.classList.remove("visible");
+    localStorage.setItem("anant_pwa_state", "dismissed");
+  });
+
+  window.addEventListener("appinstalled", function () {
+    localStorage.setItem("anant_pwa_state", "installed");
+    pwaPrompt.classList.remove("visible");
+  });
+})();
