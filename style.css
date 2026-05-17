@@ -1,6 +1,6 @@
 
 /* ═══════════════════════════════════════════
-   TOKENS
+   TOKENS — Dark (default)
 ═══════════════════════════════════════════ */
 :root {
   --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -23,6 +23,29 @@
   --sidebar-w: 260px;
   --max-chat: 720px;
 }
+
+/* ── Light mode overrides ── */
+[data-theme="light"] {
+  --bg: #f9f9f9;
+  --sidebar-bg: #f0f0f0;
+  --surface: #ffffff;
+  --surface-hover: #e8e8e8;
+  --border: rgba(0,0,0,0.09);
+  --text: #111111;
+  --text-2: #444444;
+  --text-3: #777777;
+  --user-bubble: #e8e8e8;
+  --input-bg: #ffffff;
+  --input-border: #d0d0d0;
+}
+[data-theme="light"] .memory-banner {
+  background: rgba(240,240,240,0.92);
+  border-color: rgba(16,163,127,0.3);
+  color: #333;
+}
+[data-theme="light"] .splash-screen { background: #f9f9f9; }
+[data-theme="light"] .topbar { border-color: rgba(0,0,0,0.09); }
+
 
 /* ═══════════════════════════════════════════
    RESET
@@ -873,3 +896,304 @@ a { color: inherit; text-decoration: none; }
   .suggestion-chip { padding: 12px 14px; font-size: 13px; }
   .info-card { min-width: 220px; max-width: 80vw; }
 }
+
+/* ═══════════════════════════════════════════
+   OPEN-TO-WORK BADGE
+═══════════════════════════════════════════ */
+.avatar-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.otw-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid #22c55e;
+  animation: otwPulse 2s ease-in-out infinite;
+  pointer-events: none;
+  display: none; /* shown via JS when OPEN_TO_WORK=true */
+}
+.otw-ring.visible { display: block; }
+@keyframes otwPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.15); }
+}
+
+/* ═══════════════════════════════════════════
+   MIC BUTTON
+═══════════════════════════════════════════ */
+.mic-btn {
+  width: 34px; height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--text-3);
+  transition: background var(--transition), color var(--transition);
+  flex-shrink: 0;
+  margin-right: 2px;
+}
+.mic-btn:hover { background: var(--surface-hover); color: var(--text); }
+.mic-btn.listening {
+  color: #ef4444;
+  background: rgba(239,68,68,0.12);
+  animation: micPulse 1s ease-in-out infinite;
+}
+@keyframes micPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(239,68,68,0); }
+}
+
+/* ═══════════════════════════════════════════
+   SPEAK (TTS) BUTTON on AI messages
+═══════════════════════════════════════════ */
+.speak-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--text-3);
+  padding: 3px 8px;
+  border-radius: 99px;
+  border: 1px solid var(--border);
+  transition: background var(--transition), color var(--transition);
+  cursor: pointer;
+  background: none;
+}
+.speak-btn:hover { background: var(--surface-hover); color: var(--text); }
+.speak-btn.speaking { color: var(--accent); border-color: rgba(16,163,127,0.4); }
+
+/* ═══════════════════════════════════════════
+   GITHUB PANEL
+═══════════════════════════════════════════ */
+.github-panel {
+  width: 100%;
+  max-width: 540px;
+  margin-top: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+  animation: fadeIn 0.5s ease;
+}
+.github-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.github-loading {
+  font-size: 12px;
+  color: var(--text-3);
+  padding: 12px 14px;
+  text-align: center;
+}
+.github-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+}
+.gh-stat {
+  flex: 1;
+  min-width: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 8px;
+  border-right: 1px solid var(--border);
+  gap: 2px;
+}
+.gh-stat:last-child { border-right: none; }
+.gh-stat-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+}
+.gh-stat-label {
+  font-size: 10px;
+  color: var(--text-3);
+  font-weight: 500;
+}
+.gh-langs {
+  padding: 8px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+}
+.gh-lang-pill {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 99px;
+  background: rgba(16,163,127,0.1);
+  color: var(--accent);
+}
+.github-activity {
+  display: flex;
+  flex-direction: column;
+}
+.gh-event {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+.gh-event:last-child { border-bottom: none; }
+.gh-event:hover { background: var(--surface-hover); }
+.gh-event-icon { font-size: 14px; flex-shrink: 0; line-height: 1.4; }
+.gh-event-text {
+  flex: 1;
+  min-width: 0;
+}
+.gh-event-action {
+  font-size: 12px;
+  color: var(--text-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.gh-event-date {
+  font-size: 10px;
+  color: var(--text-3);
+  margin-top: 1px;
+}
+.gh-error {
+  font-size: 12px;
+  color: var(--text-3);
+  padding: 10px 14px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .github-panel { max-width: 100%; }
+  .gh-stat { padding: 8px 4px; }
+  .gh-stat-value { font-size: 14px; }
+}
+
+/* ═══════════════════════════════════════════
+   KEYBOARD SHORTCUTS OVERLAY
+═══════════════════════════════════════════ */
+.shortcuts-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  padding: 20px;
+}
+.shortcuts-overlay.active { opacity: 1; pointer-events: auto; }
+
+.shortcuts-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  animation: fadeIn 0.2s ease;
+}
+.shortcuts-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.shortcuts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.shortcut-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-2);
+}
+.shortcut-row kbd,
+.input-footer kbd {
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--surface-hover);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 2px 7px;
+  white-space: nowrap;
+}
+.shortcuts-close {
+  width: 100%;
+  padding: 10px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  transition: opacity var(--transition);
+}
+.shortcuts-close:hover { opacity: 0.85; }
+
+/* ═══════════════════════════════════════════
+   PARTICLE CANVAS
+═══════════════════════════════════════════ */
+#particleCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+}
+.welcome > *:not(#particleCanvas) { position: relative; z-index: 1; }
+
+/* ═══════════════════════════════════════════
+   EASTER EGG — Matrix Rain
+═══════════════════════════════════════════ */
+#matrixCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+#matrixCanvas.active { opacity: 1; }
+.matrix-exit {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background: rgba(0,255,70,0.15);
+  border: 1px solid rgba(0,255,70,0.4);
+  color: #00ff46;
+  font-family: monospace;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: none;
+}
+.matrix-exit.active { display: block; }

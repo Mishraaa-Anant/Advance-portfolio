@@ -1375,3 +1375,444 @@ window.addEventListener("DOMContentLoaded", function () {
   ];
   renderHistory();
 });
+
+/* ═══════════════════════════════════════════
+   OPEN TO WORK BADGE
+═══════════════════════════════════════════ */
+const OPEN_TO_WORK = true; // Set to false when not looking
+(function initOTW() {
+  var ring = document.getElementById("otwRing");
+  if (ring && OPEN_TO_WORK) ring.classList.add("visible");
+})();
+
+/* ═══════════════════════════════════════════
+   DARK / LIGHT THEME TOGGLE
+═══════════════════════════════════════════ */
+(function initTheme() {
+  var saved = localStorage.getItem("anant_theme") || "dark";
+  applyTheme(saved);
+})();
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme === "light" ? "light" : "");
+  var moon = document.querySelector(".icon-moon");
+  var sun  = document.querySelector(".icon-sun");
+  if (moon) moon.style.display = theme === "light" ? "none" : "";
+  if (sun)  sun.style.display  = theme === "light" ? "" : "none";
+  localStorage.setItem("anant_theme", theme);
+}
+
+document.getElementById("themeToggle").addEventListener("click", function () {
+  var current = localStorage.getItem("anant_theme") || "dark";
+  applyTheme(current === "dark" ? "light" : "dark");
+});
+
+/* ═══════════════════════════════════════════
+   VOICE INPUT (Web Speech API)
+═══════════════════════════════════════════ */
+(function initVoice() {
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var micBtn = document.getElementById("micBtn");
+  if (!SpeechRecognition || !micBtn) return;
+
+  micBtn.style.display = "flex"; // show mic button only if supported
+
+  var recognition = new SpeechRecognition();
+  recognition.lang = "en-IN";
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  var listening = false;
+
+  micBtn.addEventListener("click", function () {
+    if (listening) {
+      recognition.stop();
+    } else {
+      recognition.start();
+    }
+  });
+
+  recognition.addEventListener("start", function () {
+    listening = true;
+    micBtn.classList.add("listening");
+    micBtn.setAttribute("title", "Listening… click to stop");
+    chatInput.placeholder = "Listening…";
+  });
+
+  recognition.addEventListener("end", function () {
+    listening = false;
+    micBtn.classList.remove("listening");
+    micBtn.setAttribute("title", "Speak your question");
+    chatInput.placeholder = "Ask me anything about Anant…";
+  });
+
+  recognition.addEventListener("result", function (e) {
+    var transcript = e.results[0][0].transcript;
+    chatInput.value = transcript;
+    updateSendState();
+    handleQuery(transcript);
+  });
+
+  recognition.addEventListener("error", function () {
+    listening = false;
+    micBtn.classList.remove("listening");
+    chatInput.placeholder = "Ask me anything about Anant…";
+  });
+})();
+
+/* ═══════════════════════════════════════════
+   TEXT-TO-SPEECH (speak AI responses)
+   Adds a small "🔊 Speak" button under each
+   AI message bubble when TTS is supported.
+═══════════════════════════════════════════ */
+function addSpeakButton(bubble) {
+  if (!window.speechSynthesis) return;
+  var btn = document.createElement("button");
+  btn.className = "speak-btn";
+  btn.innerHTML = "🔊 Speak";
+  var speaking = false;
+  btn.addEventListener("click", function () {
+    if (speaking) {
+      window.speechSynthesis.cancel();
+      btn.innerHTML = "🔊 Speak";
+      btn.classList.remove("speaking");
+      speaking = false;
+    } else {
+      window.speechSynthesis.cancel();
+      var text = bubble.textContent || bubble.innerText;
+      var utt = new SpeechSynthesisUtterance(text);
+      utt.lang = "en-IN";
+      utt.rate = 0.95;
+      utt.onend = function () {
+        btn.innerHTML = "🔊 Speak";
+        btn.classList.remove("speaking");
+        speaking = false;
+      };
+      window.speechSynthesis.speak(utt);
+      btn.innerHTML = "⏹ Stop";
+      btn.classList.add("speaking");
+      speaking = true;
+    }
+  });
+  // Insert after bubble
+  bubble.parentNode.insertBefore(btn, bubble.nextSibling);
+}
+
+// Patch addMessage to attach speak button on AI messages
+var _origAddMessage = addMessage;
+addMessage = function(content, isUser) {
+  var bubble = _origAddMessage(content, isUser);
+  if (!isUser && content !== "") {
+    // Add speak button after typewriter finishes — use MutationObserver
+    var obs = new MutationObserver(function() {
+      if (bubble.textContent.trim().length > 0) {
+        obs.disconnect();
+        addSpeakButton(bubble);
+      }
+    });
+    obs.observe(bubble, { childList: true, characterData: true, subtree: true });
+    setTimeout(function() { obs.disconnect(); addSpeakButton(bubble); }, 5000);
+  }
+  return bubble;
+};
+
+/* ═══════════════════════════════════════════
+   CONFETTI ON RESUME DOWNLOAD
+═══════════════════════════════════════════ */
+var resumeBtn = document.getElementById("resumeDownload");
+if (resumeBtn) {
+  resumeBtn.addEventListener("click", function () {
+    if (typeof confetti === "function") {
+      confetti({
+        particleCount: 120,
+        spread: 70,
+        origin: { y: 0.1 },
+        colors: ["#10a37f", "#34d399", "#ffffff", "#6ee7b7"]
+      });
+    }
+  });
+}
+
+/* ═══════════════════════════════════════════
+   KEYBOARD SHORTCUTS
+═══════════════════════════════════════════ */
+var shortcutsOverlay = document.getElementById("shortcutsOverlay");
+document.getElementById("shortcutsClose").addEventListener("click", function () {
+  shortcutsOverlay.classList.remove("active");
+});
+shortcutsOverlay.addEventListener("click", function (e) {
+  if (e.target === shortcutsOverlay) shortcutsOverlay.classList.remove("active");
+});
+
+document.addEventListener("keydown", function (e) {
+  // Ctrl+K — focus input
+  if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+    e.preventDefault();
+    chatInput.focus();
+  }
+  // Ctrl+/ — show shortcuts
+  if ((e.ctrlKey || e.metaKey) && e.key === "/") {
+    e.preventDefault();
+    shortcutsOverlay.classList.toggle("active");
+  }
+  // Esc — close panels or clear input
+  if (e.key === "Escape") {
+    if (shortcutsOverlay.classList.contains("active")) {
+      shortcutsOverlay.classList.remove("active");
+    } else if (sidebar.classList.contains("open")) {
+      closeSidebar();
+    } else if (chatInput.value.trim()) {
+      chatInput.value = "";
+      updateSendState();
+    }
+  }
+});
+
+/* ═══════════════════════════════════════════
+   GITHUB STATS + ACTIVITY
+   Fetches via /api/github serverless fn.
+   Renders into #githubStats and #githubActivity.
+═══════════════════════════════════════════ */
+function timeAgo(dateStr) {
+  var diff = (Date.now() - new Date(dateStr).getTime()) / 1000;
+  if (diff < 60)    return Math.floor(diff) + "s ago";
+  if (diff < 3600)  return Math.floor(diff / 60) + "m ago";
+  if (diff < 86400) return Math.floor(diff / 3600) + "h ago";
+  return Math.floor(diff / 86400) + "d ago";
+}
+
+async function loadGitHubPanel() {
+  var statsEl    = document.getElementById("githubStats");
+  var activityEl = document.getElementById("githubActivity");
+  if (!statsEl || !activityEl) return;
+
+  try {
+    // Fetch both in parallel
+    var [statsRes, activityRes] = await Promise.all([
+      fetch("/api/github?type=stats"),
+      fetch("/api/github?type=activity")
+    ]);
+
+    // ── Render Stats ──────────────────────────────────────────────
+    if (statsRes.ok) {
+      var s = await statsRes.json();
+      statsEl.innerHTML =
+        '<div class="gh-stat"><div class="gh-stat-value">' + s.repos + '</div><div class="gh-stat-label">Repos</div></div>' +
+        '<div class="gh-stat"><div class="gh-stat-value">' + s.stars + '</div><div class="gh-stat-label">Stars</div></div>' +
+        '<div class="gh-stat"><div class="gh-stat-value">' + s.followers + '</div><div class="gh-stat-label">Followers</div></div>' +
+        (s.topLangs && s.topLangs.length > 0
+          ? '</div><div class="gh-langs">' + s.topLangs.map(function(l) { return '<span class="gh-lang-pill">' + l + '</span>'; }).join("") + '</div>'
+          : "");
+    } else {
+      statsEl.innerHTML = '<div class="gh-error">Couldn\'t load stats.</div>';
+    }
+
+    // ── Render Activity ───────────────────────────────────────────
+    if (activityRes.ok) {
+      var a = await activityRes.json();
+      if (a.events && a.events.length > 0) {
+        activityEl.innerHTML = a.events.map(function(ev) {
+          return '<div class="gh-event">' +
+            '<span class="gh-event-icon">' + ev.icon + '</span>' +
+            '<div class="gh-event-text">' +
+              '<div class="gh-event-action">' + ev.action + '</div>' +
+              '<div class="gh-event-date">' + timeAgo(ev.date) + '</div>' +
+            '</div>' +
+          '</div>';
+        }).join("");
+      } else {
+        activityEl.innerHTML = '<div class="gh-error">No recent public activity.</div>';
+      }
+    } else {
+      activityEl.innerHTML = '<div class="gh-error">Couldn\'t load activity.</div>';
+    }
+
+  } catch (err) {
+    if (statsEl)    statsEl.innerHTML    = '<div class="gh-error">GitHub data unavailable.</div>';
+    if (activityEl) activityEl.innerHTML = "";
+    console.warn("GitHub panel error:", err);
+  }
+}
+
+// Load after splash fades (~3s) so it doesn't block initial render
+setTimeout(loadGitHubPanel, 3000);
+
+/* ═══════════════════════════════════════════
+   PARTICLE CANVAS (subtle floating dots)
+═══════════════════════════════════════════ */
+(function initParticles() {
+  var canvas = document.getElementById("particleCanvas");
+  if (!canvas) return;
+  var ctx = canvas.getContext("2d");
+  var dots = [];
+  var animId = null;
+  var active = true;
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+
+  function spawnDots() {
+    dots = [];
+    var count = Math.floor((canvas.width * canvas.height) / 14000);
+    for (var i = 0; i < count; i++) {
+      dots.push({
+        x:  Math.random() * canvas.width,
+        y:  Math.random() * canvas.height,
+        r:  Math.random() * 1.5 + 0.5,
+        dx: (Math.random() - 0.5) * 0.3,
+        dy: (Math.random() - 0.5) * 0.3,
+        alpha: Math.random() * 0.5 + 0.2
+      });
+    }
+  }
+
+  function draw() {
+    if (!active) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    var accent = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#10a37f";
+    dots.forEach(function (d) {
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(16,163,127," + d.alpha + ")";
+      ctx.fill();
+      d.x += d.dx;
+      d.y += d.dy;
+      if (d.x < 0 || d.x > canvas.width)  d.dx *= -1;
+      if (d.y < 0 || d.y > canvas.height) d.dy *= -1;
+    });
+    animId = requestAnimationFrame(draw);
+  }
+
+  // Pause when welcome screen hides (chat started)
+  var welcomeEl = document.getElementById("welcomeScreen");
+  if (welcomeEl) {
+    var obs = new MutationObserver(function () {
+      if (welcomeEl.classList.contains("hidden")) {
+        active = false;
+        if (animId) cancelAnimationFrame(animId);
+      } else {
+        active = true;
+        draw();
+      }
+    });
+    obs.observe(welcomeEl, { attributes: true, attributeFilter: ["class"] });
+  }
+
+  window.addEventListener("resize", function () {
+    resize();
+    spawnDots();
+  });
+
+  resize();
+  spawnDots();
+  draw();
+})();
+
+/* ═══════════════════════════════════════════
+   EASTER EGGS
+   • type "matrix" → green rain
+   • type "hire me" → confetti burst
+   • type "annu" → fun response
+═══════════════════════════════════════════ */
+(function initEasterEggs() {
+  // ── Matrix Rain ──────────────────────────────────────────────────
+  var matrixCanvas = document.createElement("canvas");
+  matrixCanvas.id = "matrixCanvas";
+  document.body.appendChild(matrixCanvas);
+
+  var exitBtn = document.createElement("button");
+  exitBtn.className = "matrix-exit";
+  exitBtn.textContent = "[ EXIT MATRIX ]";
+  document.body.appendChild(exitBtn);
+
+  var matrixActive = false;
+  var matrixAnimId = null;
+
+  function startMatrix() {
+    matrixActive = true;
+    matrixCanvas.classList.add("active");
+    exitBtn.classList.add("active");
+    var ctx = matrixCanvas.getContext("2d");
+    matrixCanvas.width  = window.innerWidth;
+    matrixCanvas.height = window.innerHeight;
+    var cols = Math.floor(matrixCanvas.width / 16);
+    var drops = Array(cols).fill(1);
+    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789アイウエオカキクケコ";
+
+    function rain() {
+      if (!matrixActive) return;
+      ctx.fillStyle = "rgba(0,0,0,0.05)";
+      ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+      ctx.fillStyle = "#00ff46";
+      ctx.font = "14px monospace";
+      drops.forEach(function (y, i) {
+        var char = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(char, i * 16, y * 16);
+        if (y * 16 > matrixCanvas.height && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+      });
+      matrixAnimId = requestAnimationFrame(rain);
+    }
+    rain();
+
+    // Auto-exit after 8 seconds
+    setTimeout(stopMatrix, 8000);
+  }
+
+  function stopMatrix() {
+    matrixActive = false;
+    matrixCanvas.classList.remove("active");
+    exitBtn.classList.remove("active");
+    if (matrixAnimId) cancelAnimationFrame(matrixAnimId);
+    var ctx = matrixCanvas.getContext("2d");
+    ctx.clearRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+  }
+
+  exitBtn.addEventListener("click", stopMatrix);
+
+  // ── Trigger on typed input ────────────────────────────────────────
+  var buffer = "";
+  document.addEventListener("keydown", function (e) {
+    if (e.target === chatInput) {
+      buffer = chatInput.value.toLowerCase();
+    } else {
+      buffer += e.key.toLowerCase();
+      if (buffer.length > 20) buffer = buffer.slice(-20);
+    }
+  });
+
+  chatInput.addEventListener("input", function () {
+    var val = chatInput.value.toLowerCase().trim();
+
+    // "matrix" → matrix rain
+    if (val === "matrix") {
+      chatInput.value = "";
+      updateSendState();
+      startMatrix();
+      return;
+    }
+
+    // "hire me" → confetti
+    if (val === "hire me") {
+      chatInput.value = "";
+      updateSendState();
+      if (typeof confetti === "function") {
+        confetti({ particleCount: 200, spread: 120, origin: { y: 0.5 }, colors: ["#10a37f", "#34d399", "#fbbf24", "#ffffff"] });
+      }
+      setTimeout(function () {
+        handleQuery("Are you open to new opportunities?");
+      }, 500);
+      return;
+    }
+
+    // "annu" → fun personal fact
+    if (val === "annu") {
+      chatInput.value = "";
+      updateSendState();
+      handleQuery("Tell me a fun fact about yourself");
+      return;
+    }
+  });
+})();
