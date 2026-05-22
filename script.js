@@ -863,8 +863,8 @@ function removeSplashScreen() {
 }
 
 if (splashScreen) {
-  // Auto-hide after 2.5 seconds
-  setTimeout(removeSplashScreen, 2500);
+  // Auto-hide after 1.0 second
+  setTimeout(removeSplashScreen, 1000);
   // Hide on click/tap
   splashScreen.addEventListener("click", removeSplashScreen);
 }
@@ -1765,7 +1765,6 @@ setTimeout(loadGitHubPanel, 3000);
   function draw() {
     if (!active) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    var accent = getComputedStyle(document.documentElement).getPropertyValue("--accent").trim() || "#10a37f";
     dots.forEach(function (d) {
       ctx.beginPath();
       ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);

@@ -183,6 +183,7 @@
   <!-- Security: Content Security Policy -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; connect-src 'self' https://api.groq.com https://api.github.com; img-src 'self' data: https: http:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; form-action 'self';" />
   
+  <link rel="preload" href="profile.png" as="image" fetchpriority="high" />
   <link rel="icon" href="profile.png" type="image/png" />
   <link rel="manifest" href="/manifest.json" />
   <meta name="theme-color" content="#10a37f" />
@@ -248,7 +249,7 @@
   <!-- SPLASH SCREEN -->
   <div class="splash-screen" id="splashScreen">
     <div class="splash-content">
-      <img src="profile.png" alt="Anant Mishra" class="splash-img" id="splashImg" width="220" height="220" />
+      <img src="profile.png" alt="Anant Mishra" class="splash-img" id="splashImg" width="191" height="220" fetchpriority="high" loading="eager" />
       <h1 class="splash-name">Anant Mishra</h1>
       <p class="splash-quote">Welcome to my AI-powered portfolio</p>
     </div>
@@ -299,7 +300,7 @@
   </aside>
 
   <!-- MAIN -->
-  <div class="main">
+  <main class="main" id="mainContent">
 
     <!-- TOP BAR -->
     <header class="topbar">
@@ -413,7 +414,7 @@
       </div>
       <div class="input-footer">Anant's AI can make mistakes. Verify important info.</div>
     </div>
-  </div>
+  </main>
 
   <!-- MODAL -->
   <div class="modal-overlay" id="modalOverlay">
@@ -454,7 +455,6 @@
   <!-- Confetti (canvas-confetti CDN — 7kb, loaded async) -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" async></script>
 
-  <script src="env.js" defer></script>
   <script src="script.js" defer></script>
 </body>
 </html>

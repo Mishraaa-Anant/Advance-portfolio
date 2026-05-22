@@ -11,7 +11,7 @@
   --border: rgba(255,255,255,0.08);
   --text: #ececec;
   --text-2: #b4b4b4;
-  --text-3: #a1a1a1;
+  --text-3: #adadad; /* Increased contrast for WCAG AA compliance (4.5:1+) */
   --accent: #10a37f;
   --accent-hover: #0d8c6d;
   --user-bubble: #2f2f2f;
@@ -33,7 +33,7 @@
   --border: rgba(0,0,0,0.09);
   --text: #111111;
   --text-2: #444444;
-  --text-3: #777777;
+  --text-3: #595959; /* Increased contrast for WCAG AA compliance (4.5:1+) */
   --user-bubble: #e8e8e8;
   --input-bg: #ffffff;
   --input-border: #d0d0d0;
@@ -1309,6 +1309,7 @@ a { color: inherit; text-decoration: none; }
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   border: 1px solid var(--border);
+  object-fit: cover; /* Prevents aspect ratio distortion for non-square profile images */
 }
 .pwa-prompt-title {
   font-size: 16px;
