@@ -12,6 +12,8 @@ const DATA = {
     links: {
       github: "https://github.com/Mishraaa-Anant",
       linkedin: "https://linkedin.com/in/anantmishra31",
+      instagram: "https://www.instagram.com/mishraaa_anant",
+      youtube: "https://www.youtube.com/@anant_mishra_vlogs",
       portfolio: "https://advance-portfolio-ten.vercel.app"
     }
   },
@@ -38,16 +40,25 @@ const DATA = {
     },
     family: {
       members: 4,
-      details: "Me, elder sister, Mom (housewife), Dad (runs a pharmaceutical business)"
+      father: "Prabhat Mishra (runs a pharmaceutical business)",
+      mother: "Rekha Mishra (housewife)",
+      sister: "Jyotsana Mishra (elder sister)",
+      details: "Me, elder sister Jyotsana Mishra, Mom Rekha Mishra (housewife), Dad Prabhat Mishra (pharmaceutical business)"
+    },
+    origin: {
+      birthplace: "Faridabad, Delhi",
+      schooling_city: "Mumbai",
+      village: "Jaunpur, Varanasi, Uttar Pradesh",
+      current_city: "Mumbai"
     },
     lifestyle: {
-      free_time: ["Building new things", "Trying innovations", "Playing games occasionally"],
+      free_time: ["Creating innovative things", "Playing drums", "Walking", "Building new side projects"],
       happiness: "Solo bike rides",
       weakness: "Short temper (working on it)"
     },
     education_story: {
-      summary: "Had an amazing school life. Started as an introvert but gradually evolved.",
-      highlight: "Used to play drums in school, which became a strong personal hobby."
+      summary: "Born in Faridabad, Delhi — schooling done in Mumbai. Village roots in Jaunpur, Varanasi, UP.",
+      highlight: "Played drums in school, which became a strong personal hobby. Also loves walking and building innovative things."
     },
     strengths: {
       non_technical: "Confidence and ability to take initiative"
@@ -192,14 +203,15 @@ Answer ONLY from the data given. Never make anything up. If asked about somethin
 
 DATA:
 Name: Anant (Nickname: Annu) | AIML Engineer, Data Scientist, Data Analyst | Mumbai
+Born: Faridabad, Delhi | Schooling done in Mumbai | Village roots: Jaunpur, Varanasi, Uttar Pradesh
 Motivation: Money, building a multi-crore business, and building things that actually work in real life.
 Personality: Extrovert, funny, conversational, values self-respect. Hates fake people & dishonesty. Strengths: Confidence, taking initiative. Weakness: Short temper (working on it).
-Free Time/Hobbies: Solo bike rides (pure happiness), building new things, gaming, and playing drums (started in school).
+Hobbies: Creating innovative things, playing drums, walking, solo bike rides (pure happiness), and building new side projects.
 Best Friends: Harsh, Subham, Mandar, Jayshree, Viraj, Kiran.
 Other Friends: Karan, Omkar, Bhaumik, Vidhi, Manthan, Rohan, Anurag, Gauravi, Prashik, Dhruv, Srikrishna, Soham, Smit, Nidhi, Tanisha.
-Family: 4 members (Me, elder sister, Mom is a housewife, Dad runs a pharmaceutical business).
+Family: 4 members — Father: Prabhat Mishra (pharmaceutical business), Mother: Rekha Mishra (housewife), Sister: Jyotsana Mishra (elder sister), and Anant himself.
 
-Email: anant20042003@gmail.com | Phone: +91 9156374557
+Email: anant20042003@gmail.com | Phone: +91 9156374557 | YouTube: https://www.youtube.com/@anant_mishra_vlogs
 
 SKILLS — Languages: Python, R, SQL, JavaScript, Solidity, Flutter | Libraries: NumPy, Pandas, Matplotlib, TensorFlow, LangChain | Frameworks: Flask, React Native, Expo, PySpark, Hyperledger Fabric | Tools: Microsoft Fabric, Power BI, GitHub, JIRA, Vercel
 
@@ -216,7 +228,10 @@ EDUCATION —
 B.E. CSE (AIML) | VIVA Institute of Technology, Mumbai University | 2022–Present | 6 CGPA
 HSC (12th) | Abhinav Vidya Mandir | 2021–2022 | 53%
 SSC (10th) | Abhinav Vidya Mandir | 2019–2020 | 74%
-(Amazing school life, evolved from introvert to extrovert, played drums)`;
+(Born in Faridabad, Delhi. Schooling done in Mumbai. Village: Jaunpur, Varanasi, Uttar Pradesh. Evolved from introvert to extrovert, played drums in school.)
+
+FAMILY —
+Father: Prabhat Mishra (pharmaceutical businessman) | Mother: Rekha Mishra (housewife) | Elder Sister: Jyotsana Mishra | Total: 4 family members`;
 
 /* ═══════════════════════════════════════════
    FALLBACK RESPONSE ENGINE
@@ -333,9 +348,9 @@ const FALLBACK_ENGINE = {
       "drop a message", "send him a message", "reach out"
     ],
     responses: [
-      "Let's connect! Here's how to reach me:\n\n📧 Email: anant20042003@gmail.com\n📞 Phone: +91 9156374557\n🔗 GitHub: github.com/Mishraaa-Anant\n🔗 LinkedIn: linkedin.com/in/anantmishra31\n🌐 Portfolio: advance-portfolio-ten.vercel.app",
-      "Hit me up through any of these:\n\n• 📧 anant20042003@gmail.com\n• 📞 +91 9156374557\n• LinkedIn → anantmishra31\n• GitHub → Mishraaa-Anant\n\nI respond fast — especially on email and LinkedIn.",
-      "Best ways to reach me:\n\n1. Email — anant20042003@gmail.com (fastest for professional queries)\n2. LinkedIn — linkedin.com/in/anantmishra31\n3. GitHub — github.com/Mishraaa-Anant\n4. Phone — +91 9156374557"
+      "Let's connect! Here's how to reach me:\n\n📧 Email: anant20042003@gmail.com\n📞 Phone: +91 9156374557\n▶️ YouTube: youtube.com/@anant_mishra_vlogs\n🔗 GitHub: github.com/Mishraaa-Anant\n🔗 LinkedIn: linkedin.com/in/anantmishra31\n📸 Instagram: @mishraaa_anant\n🌐 Portfolio: advance-portfolio-ten.vercel.app",
+      "Hit me up through any of these:\n\n• 📧 anant20042003@gmail.com\n• 📞 +91 9156374557\n• YouTube → @anant_mishra_vlogs\n• LinkedIn → anantmishra31\n• Instagram → @mishraaa_anant\n• GitHub → Mishraaa-Anant\n\nI respond fast — especially on email and LinkedIn.",
+      "Best ways to reach me:\n\n1. Email — anant20042003@gmail.com (fastest for professional queries)\n2. LinkedIn — linkedin.com/in/anantmishra31\n3. YouTube — youtube.com/@anant_mishra_vlogs\n4. Instagram — @mishraaa_anant\n5. GitHub — github.com/Mishraaa-Anant\n6. Phone — +91 9156374557"
     ]
   },
 
@@ -400,12 +415,13 @@ const FALLBACK_ENGINE = {
       "tell me about his hobbies", "tell me about your hobbies",
       "what does he do for fun", "what do you do for fun",
       "his interests", "your interests", "what he likes",
-      "how does he spend time", "after work", "besides coding"
+      "how does he spend time", "after work", "besides coding",
+      "innovative", "innovate", "innovating", "walking", "walk", "drum", "drumming"
     ],
     responses: [
-      "Outside of work? Mostly:\n\n🏍️ Solo bike rides — that's my kind of therapy. Pure happiness.\n🎮 Gaming occasionally when I need to switch off.\n🥁 I used to play drums in school — still love music.\n🔧 Building new things — even hobbies become side projects eventually.",
-      "My vibe outside of coding:\n\n• Solo bike rides are my absolute go-to for clearing my head\n• I played drums in school and still love rhythm-based music\n• Light gaming when I want to zone out\n• I genuinely enjoy experimenting with new tech even off hours",
-      "Fun stuff about me:\n\n1. Bike rides solo — no playlist, just me and the road\n2. Drums since school days — rhythm is a thing\n3. I find it hard to not think about what I'm building next\n4. Gaming is occasional but I enjoy it when I do"
+      "Outside of work? I keep myself busy with:\n\n💡 Creating innovative things — if I see a problem, I build a solution for it.\n🥁 Playing drums — I picked it up in school and I'm still at it.\n🚶 Walking — clears the mind, sparks ideas.\n🏍️ Solo bike rides — pure therapy.\n🔧 Building new side projects — hobbies always become products eventually!",
+      "My vibe outside of coding:\n\n• Building innovative stuff — always tinkering with something new\n• Drums — love the rhythm, been playing since school\n• Walking — great for thinking and unwinding\n• Solo bike rides for when I need to really clear my head\n• Occasional gaming to switch off",
+      "Fun stuff about me:\n\n1. 💡 Innovating — I genuinely love creating things that didn't exist before\n2. 🥁 Drums since school days — rhythm keeps me grounded\n3. 🚶 Walking — my thinking mode, especially when stuck on a problem\n4. 🏍️ Bike rides solo — no playlist, just me and the road\n5. I find it hard to NOT think about what I can build next!"
     ]
   },
 
@@ -441,6 +457,39 @@ const FALLBACK_ENGINE = {
       "Long-term? Build a multi-crore business. That's the non-negotiable goal.\n\nShort-term — keep shipping real-world AI products, get more industry exposure, and build a network of people who actually get things done.",
       "Goals are simple but big:\n\n• Build a business that generates real revenue at scale\n• Be known as someone who ships AI products that actually work\n• Keep learning, keep building, stay ahead of the curve\n\nI'm not chasing titles — I'm chasing impact.",
       "The vision is clear — multi-crore business. Not just talk.\n\nRight now I'm laying the foundation: deep technical skills, real industry experience, and a strong network. Every project, every internship, every line of code is moving toward that goal."
+    ]
+  },
+
+  // ── FAMILY ───────────────────────────────────
+  family: {
+    keywords: [
+      "family", "parents", "father", "mother", "dad", "mom", "sister", "brother",
+      "prabhat", "rekha", "jyotsana", "bhai", "bhen", "gharwale",
+      "tell me about his family", "tell me about your family",
+      "who is his sister", "who is his father", "who is his mother",
+      "his parents", "your parents", "his sister", "your sister",
+      "how many members", "family members", "his background family"
+    ],
+    responses: [
+      "My family is everything! We're a close-knit family of 4:\\n\\n👨 Father: Prabhat Mishra — runs a pharmaceutical business\\n👩 Mother: Rekha Mishra — homemaker, the heart of our family\\n👧 Elder Sister: Jyotsana Mishra — my big sis!\\n👨‍💻 Me: Anant Mishra — the tech guy of the family 😄",
+      "Family of 4 — small but solid:\\n\\n• Dad: Prabhat Mishra (pharmaceutical entrepreneur)\\n• Mom: Rekha Mishra (housewife — runs the home like a boss)\\n• Elder Sister: Jyotsana Mishra\\n• Me: Anant 😄\\n\\nGrew up with great values and support — it shows in the work ethic!",
+      "I come from a grounded family of four:\\n\\n🏠 Dad Prabhat Mishra is a pharmaceutical businessman.\\n🤍 Mom Rekha Mishra is a homemaker who keeps the family together.\\n👩 Elder sis Jyotsana Mishra — she's the senior one!\\nAnd me — Anant. We're a tight unit."
+    ]
+  },
+
+  // ── ORIGIN / BIRTHPLACE ──────────────────────
+  origin: {
+    keywords: [
+      "born", "birthplace", "hometown", "village", "native", "origin",
+      "where are you from", "where is he from", "where was he born",
+      "faridabad", "jaunpur", "varanasi", "uttar pradesh", "up",
+      "school city", "grew up", "childhood", "roots",
+      "tell me about his hometown", "his birthplace", "where did he grow up"
+    ],
+    responses: [
+      "I was born in Faridabad, Delhi — but I grew up and did my schooling in Mumbai. 🌆\\n\\nMy roots, though, trace back to Jaunpur, Varanasi, Uttar Pradesh — that's where the family village is.\\n\\nSo I'm a bit of a Delhi-to-Mumbai story with UP desi roots! 😄",
+      "Origin story:\\n\\n📍 Born in Faridabad, Delhi\\n🏫 Schooling done in Mumbai\\n🏡 Village: Jaunpur, Varanasi, Uttar Pradesh\\n\\nDelhiite by birth, Mumbaikar by upbringing — and proud of the UP roots!",
+      "Born in Faridabad, Delhi. Did my school in Mumbai. Village is in Jaunpur, near Varanasi, Uttar Pradesh. 🌿\\n\\nSo culturally I'm a nice mix — the hustle of Delhi, the vibe of Mumbai, and the groundedness of UP!"
     ]
   },
 
@@ -525,10 +574,12 @@ function getFallbackResponse(message) {
     { words: ["education", "college", "school", "degree", "study", "studies", "marks", "cgpa", "academic", "viva", "qualification"], category: "education" },
     { words: ["contact", "email", "phone", "linkedin", "github", "reach", "connect", "links"], category: "contact" },
     { words: ["friend", "friends", "squad", "circle", "crew", "jayshree", "tanisha", "harsh", "subham"], category: "friends" },
-    { words: ["hobby", "hobbies", "interest", "interests", "bike", "drums", "gaming", "fun", "leisure"], category: "hobbies" },
+    { words: ["hobby", "hobbies", "interest", "interests", "bike", "drums", "gaming", "fun", "leisure", "walking", "walk", "innovative", "innovating"], category: "hobbies" },
     { words: ["personality", "character", "traits", "mindset", "attitude", "values", "strength", "weakness"], category: "personality" },
     { words: ["goal", "goals", "future", "plan", "ambition", "dream", "vision", "startup", "business"], category: "goals" },
     { words: ["ai", "ml", "machine learning", "data science", "deep learning", "nlp", "langchain"], category: "aiml" },
+    { words: ["family", "parents", "father", "mother", "dad", "mom", "sister", "prabhat", "rekha", "jyotsana"], category: "family" },
+    { words: ["born", "birthplace", "hometown", "village", "native", "roots", "faridabad", "jaunpur", "varanasi", "uttar pradesh", "up"], category: "origin" },
     { words: ["anant", "him", "you", "himself", "yourself", "background", "bio", "intro", "profile"], category: "about" }
   ];
 
