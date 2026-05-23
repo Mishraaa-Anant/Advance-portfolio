@@ -234,9 +234,12 @@
   <link rel="me" href="https://www.youtube.com/@anant_mishra_vlogs" />
   <link rel="me" href="https://github.com/Mishraaa-Anant" />
 
+  <!-- Google Fonts — loaded async so it never blocks FCP/LCP rendering -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -536,8 +539,8 @@
             <span class="cookie-option-name">Analytics Cookies</span>
             <span class="cookie-option-desc">Help us understand how visitors interact with the site.</span>
           </div>
-          <label class="cookie-toggle-switch">
-            <input type="checkbox" id="analyticsToggle" checked />
+          <label class="cookie-toggle-switch" aria-label="Enable Analytics Cookies">
+            <input type="checkbox" id="analyticsToggle" aria-label="Analytics Cookies" checked />
             <span class="cookie-toggle-track"></span>
           </label>
         </div>
@@ -546,8 +549,8 @@
             <span class="cookie-option-name">Preference Cookies</span>
             <span class="cookie-option-desc">Remember your settings like theme and chat history.</span>
           </div>
-          <label class="cookie-toggle-switch">
-            <input type="checkbox" id="preferencesToggle" checked />
+          <label class="cookie-toggle-switch" aria-label="Enable Preference Cookies">
+            <input type="checkbox" id="preferencesToggle" aria-label="Preference Cookies" checked />
             <span class="cookie-toggle-track"></span>
           </label>
         </div>

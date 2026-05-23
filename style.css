@@ -1,9 +1,24 @@
 
 /* ═══════════════════════════════════════════
+   SYSTEM FONT FALLBACK
+   Matches Inter metrics so FOUT causes zero
+   layout shift (reduces CLS from font swap).
+═══════════════════════════════════════════ */
+@font-face {
+  font-family: 'Inter-fallback';
+  /* -apple-system / Segoe UI are pre-loaded, zero-network-cost */
+  src: local('-apple-system'), local('BlinkMacSystemFont'), local('Segoe UI'), local('Helvetica Neue');
+  size-adjust: 100%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+/* ═══════════════════════════════════════════
    TOKENS — Dark (default)
 ═══════════════════════════════════════════ */
 :root {
-  --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font: 'Inter', 'Inter-fallback', -apple-system, BlinkMacSystemFont, sans-serif;
   --bg: #212121;
   --sidebar-bg: #171717;
   --surface: #2f2f2f;
@@ -195,6 +210,8 @@ a { color: inherit; text-decoration: none; }
   flex-direction: column;
   height: 100dvh;
   min-width: 0;
+  /* Scope layout/style recalculations to this subtree */
+  contain: layout style;
 }
 
 /* ═══════════════════════════════════════════
@@ -653,6 +670,7 @@ a { color: inherit; text-decoration: none; }
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s;
+  will-change: opacity;
   padding: 20px;
 }
 .modal-overlay.active { opacity: 1; pointer-events: auto; }
@@ -805,12 +823,14 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
+  /* Only transition opacity — visibility is NOT GPU-composited and causes a non-composited animation warning */
+  transition: opacity 0.6s ease;
+  will-change: opacity;
   cursor: pointer;
 }
 .splash-screen.fade-out {
   opacity: 0;
-  visibility: hidden;
+  visibility: hidden;  /* instant, no transition — just removes from a11y tree */
   pointer-events: none;
 }
 
@@ -869,6 +889,7 @@ a { color: inherit; text-decoration: none; }
     z-index: 1000;
     transform: translateX(-100%);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
     box-shadow: 4px 0 24px rgba(0,0,0,0.5);
   }
   .sidebar.open { transform: translateX(0); }
@@ -1069,6 +1090,9 @@ a { color: inherit; text-decoration: none; }
 }
 /* Body always visible on desktop */
 .github-panel-body { display: block; }
+/* Reserve minimum height to prevent CLS when async content loads */
+.github-stats { min-height: 48px; }
+.github-activity { min-height: 80px; }
 .github-loading {
   font-size: 12px;
   color: var(--text-3);
@@ -1278,12 +1302,17 @@ a { color: inherit; text-decoration: none; }
 
 /* ═══════════════════════════════════════════
    PWA INSTALL PROMPT
+   Uses transform:translateY instead of 'bottom'
+   so the animation runs on the GPU compositor
+   thread (zero main-thread paint per frame).
 ═══════════════════════════════════════════ */
 .pwa-prompt {
   position: fixed;
-  bottom: -100%;
+  /* Keep bottom fixed; slide via transform only */
+  bottom: 24px;
   left: 50%;
-  transform: translateX(-50%);
+  /* Initial off-screen state via translateY — composited! */
+  transform: translateX(-50%) translateY(calc(100% + 60px));
   width: 90%;
   max-width: 400px;
   background: var(--surface);
@@ -1292,13 +1321,14 @@ a { color: inherit; text-decoration: none; }
   padding: 20px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.4);
   z-index: 9999;
-  transition: bottom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform;
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 .pwa-prompt.visible {
-  bottom: 24px;
+  transform: translateX(-50%) translateY(0);
 }
 .pwa-prompt-content {
   display: flex;
@@ -1353,11 +1383,13 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 480px) {
   .pwa-prompt {
     width: calc(100% - 24px);
-    bottom: -100%;
+    bottom: 12px;
+    /* Still uses transform — not bottom — so it stays composited */
+    transform: translateX(-50%) translateY(calc(100% + 60px));
     border-radius: var(--radius-lg);
   }
   .pwa-prompt.visible {
-    bottom: 12px;
+    transform: translateX(-50%) translateY(0);
   }
   .pwa-prompt-icon img { width: 40px; height: 40px; }
   .pwa-prompt-title { font-size: 15px; }
@@ -1657,12 +1689,14 @@ a { color: inherit; text-decoration: none; }
 
 /* ═══════════════════════════════════════════
    COOKIE CONSENT BANNER
+   Uses transform:translateY instead of 'bottom'
+   for GPU-composited animation (no paint per frame).
 ═══════════════════════════════════════════ */
 .cookie-banner {
   position: fixed;
-  bottom: -120%;
+  bottom: 20px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(calc(100% + 60px));
   width: calc(100% - 32px);
   max-width: 640px;
   background: var(--surface);
@@ -1671,10 +1705,11 @@ a { color: inherit; text-decoration: none; }
   box-shadow: 0 -4px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(16,163,127,0.08);
   z-index: 4000;
   padding: 20px 24px;
-  transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform;
 }
 .cookie-banner.visible {
-  bottom: 20px;
+  transform: translateX(-50%) translateY(0);
 }
 
 .cookie-banner-inner {
@@ -1773,10 +1808,15 @@ a { color: inherit; text-decoration: none; }
 }
 
 @media (max-width: 540px) {
-  .cookie-banner { padding: 16px 16px; width: calc(100% - 16px); }
+  .cookie-banner {
+    padding: 16px 16px;
+    width: calc(100% - 16px);
+    bottom: 12px;
+    transform: translateX(-50%) translateY(calc(100% + 60px));
+  }
+  .cookie-banner.visible { transform: translateX(-50%) translateY(0); }
   .cookie-banner-actions { gap: 6px; }
   .cookie-btn { font-size: 11px; padding: 8px 12px; }
-  .cookie-banner.visible { bottom: 12px; }
 }
 
 /* ═══════════════════════════════════════════
