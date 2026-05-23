@@ -1336,8 +1336,12 @@ $("#hamburgerBtn").addEventListener("click", openSidebar);
 $("#sidebarCloseBtn").addEventListener("click", closeSidebar);
 sidebarOverlay.addEventListener("click", closeSidebar);
 
-// New chat
-$("#newChatBtn").addEventListener("click", newChat);
+// AnantVerse button (replaces New Chat)
+$("#anantVerseBtn").addEventListener("click", function () {
+  closeSidebar();
+  openAnantVerse();
+});
+
 
 // Sidebar nav items — show content directly, no API needed
 document.querySelectorAll(".sidebar-nav-item").forEach(function (item) {
@@ -1974,3 +1978,142 @@ setTimeout(loadGitHubPanel, 3000);
     pwaPrompt.classList.remove("visible");
   });
 })();
+
+/* ═══════════════════════════════════════════
+   ANANTVERSE MODAL
+   Premium "Coming Soon" experience accessible
+   from the sidebar AnantVerse button.
+═══════════════════════════════════════════ */
+(function () {
+  var overlay = document.getElementById("anantVerseOverlay");
+  var closeBtn = document.getElementById("anantVerseClose");
+  if (!overlay) return;
+
+  function openAnantVerse() {
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+    closeBtn.focus();
+  }
+
+  function closeAnantVerse() {
+    overlay.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  // Expose so the button listener in main scope can call it
+  window.openAnantVerse = openAnantVerse;
+
+  closeBtn.addEventListener("click", closeAnantVerse);
+
+  // Close on backdrop click
+  overlay.addEventListener("click", function (e) {
+    if (e.target === overlay) closeAnantVerse();
+  });
+
+  // Close on Escape
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && overlay.classList.contains("active")) {
+      closeAnantVerse();
+    }
+  });
+})();
+
+/* ═══════════════════════════════════════════
+   COOKIE CONSENT SYSTEM
+   Shows banner for first-time visitors.
+   Persists preference in localStorage.
+   Key: "anant_cookie_consent"
+   Values: "all" | "essential" | "custom:{...}"
+═══════════════════════════════════════════ */
+(function () {
+  var COOKIE_KEY = "anant_cookie_consent";
+
+  var banner      = document.getElementById("cookieBanner");
+  var panel       = document.getElementById("cookiePanel");
+  var acceptBtn   = document.getElementById("cookieAccept");
+  var rejectBtn   = document.getElementById("cookieReject");
+  var customBtn   = document.getElementById("cookieCustomize");
+  var panelClose  = document.getElementById("cookiePanelClose");
+  var savePrefs   = document.getElementById("cookieSavePrefs");
+  var analyticsToggle   = document.getElementById("analyticsToggle");
+  var preferencesToggle = document.getElementById("preferencesToggle");
+
+  if (!banner) return;
+
+  // Show banner only if no consent stored
+  function init() {
+    var stored = localStorage.getItem(COOKIE_KEY);
+    if (!stored) {
+      // Delay slightly so splash doesn't overlap
+      setTimeout(function () {
+        banner.classList.add("visible");
+      }, 2800);
+    }
+  }
+
+  function hideBanner() {
+    banner.classList.remove("visible");
+  }
+
+  function openPanel() {
+    panel.classList.add("active");
+    document.body.style.overflow = "hidden";
+    panelClose.focus();
+  }
+
+  function closePanel() {
+    panel.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  function saveConsent(value) {
+    localStorage.setItem(COOKIE_KEY, value);
+    hideBanner();
+    closePanel();
+  }
+
+  // Accept all cookies
+  acceptBtn.addEventListener("click", function () {
+    saveConsent("all");
+  });
+
+  // Reject non-essential (keep only strictly necessary)
+  rejectBtn.addEventListener("click", function () {
+    saveConsent("essential");
+    // Also uncheck toggles to reflect state
+    if (analyticsToggle) analyticsToggle.checked = false;
+    if (preferencesToggle) preferencesToggle.checked = false;
+  });
+
+  // Open customize panel
+  customBtn.addEventListener("click", function () {
+    openPanel();
+  });
+
+  // Close panel
+  panelClose.addEventListener("click", closePanel);
+
+  // Save custom preferences
+  savePrefs.addEventListener("click", function () {
+    var prefs = {
+      analytics: analyticsToggle ? analyticsToggle.checked : false,
+      preferences: preferencesToggle ? preferencesToggle.checked : false
+    };
+    saveConsent("custom:" + JSON.stringify(prefs));
+  });
+
+  // Close panel on backdrop click
+  panel.addEventListener("click", function (e) {
+    if (e.target === panel) closePanel();
+  });
+
+  // Escape closes panel
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      if (panel.classList.contains("active")) closePanel();
+    }
+  });
+
+  init();
+})();
+
