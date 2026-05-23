@@ -464,39 +464,40 @@
   <!-- ANANTVERSE MODAL -->
   <div class="anantverse-overlay" id="anantVerseOverlay" role="dialog" aria-modal="true" aria-labelledby="anantVerseTitle">
     <div class="anantverse-card" id="anantVerseCard">
-      <button class="anantverse-close" id="anantVerseClose" aria-label="Close AnantVerse">×</button>
+      <button class="anantverse-close" id="anantVerseClose" aria-label="Close AnantVerse">&times;</button>
       <div class="anantverse-bg-rings" aria-hidden="true">
         <span class="av-ring av-ring-1"></span>
         <span class="av-ring av-ring-2"></span>
         <span class="av-ring av-ring-3"></span>
       </div>
       <div class="anantverse-content">
-        <div class="av-globe" aria-hidden="true">
-          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="url(#avGrad)" stroke-width="1.5">
-            <defs>
-              <linearGradient id="avGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#10a37f"/>
-                <stop offset="100%" stop-color="#7c3aed"/>
-              </linearGradient>
-            </defs>
+        <!-- Icon wrap — matches portfolio accent circle style -->
+        <div class="av-icon-wrap" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <circle cx="12" cy="12" r="10"/>
             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
             <line x1="2" y1="12" x2="22" y2="12"/>
           </svg>
         </div>
-        <h2 class="av-title" id="anantVerseTitle">AnantVerse</h2>
-        <p class="av-tagline">A new dimension is loading…</p>
+        <h2 class="av-title" id="anantVerseTitle">Anant<span>Verse</span></h2>
+        <p class="av-tagline">A new dimension is loading&hellip;</p>
         <div class="av-coming-soon">
           <span class="av-rocket">🚀</span>
           <span class="av-cs-text">Coming Soon</span>
         </div>
         <p class="av-desc">Something big is being built. Stay tuned for a completely new experience.</p>
+        <hr class="av-divider" aria-hidden="true" />
+        <div class="av-status" aria-hidden="true">
+          <span class="av-status-dot"></span>
+          <span>In active development</span>
+        </div>
         <div class="av-dots" aria-hidden="true">
           <span></span><span></span><span></span>
         </div>
       </div>
     </div>
   </div>
+
 
   <!-- COOKIE CONSENT BANNER -->
   <div class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="true" aria-label="Cookie Consent" aria-live="polite">
