@@ -1738,7 +1738,7 @@ setTimeout(loadGitHubPanel, 3000);
 /* ═══════════════════════════════════════════
    PARTICLE CANVAS (subtle floating dots)
 ═══════════════════════════════════════════ */
-(function initParticles() {
+function initParticles() {
   var canvas = document.getElementById("particleCanvas");
   if (!canvas) return;
   var ctx = canvas.getContext("2d");
@@ -1805,7 +1805,10 @@ setTimeout(loadGitHubPanel, 3000);
   resize();
   spawnDots();
   draw();
-})();
+}
+// Start particle animation after layout stabilizes (reduces main-thread blocking on load)
+setTimeout(initParticles, 1000);
+
 
 /* ═══════════════════════════════════════════
    EASTER EGGS

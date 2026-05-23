@@ -1460,6 +1460,10 @@ a { color: inherit; text-decoration: none; }
   opacity: 1;
   pointer-events: auto;
 }
+/* Pause all modal animations when the overlay is closed to save CPU/GPU resources */
+.anantverse-overlay:not(.active) * {
+  animation-play-state: paused !important;
+}
 
 .anantverse-card {
   position: relative;
@@ -1565,10 +1569,11 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto 20px;
   animation: avIconPulse 3s ease-in-out infinite;
   box-shadow: 0 0 20px rgba(16,163,127,0.14);
+  will-change: transform;
 }
 @keyframes avIconPulse {
-  0%, 100% { box-shadow: 0 0 14px rgba(16,163,127,0.14); transform: scale(1); }
-  50% { box-shadow: 0 0 26px rgba(16,163,127,0.26); transform: scale(1.04); }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 .av-icon-wrap svg {
   stroke: var(--accent);

@@ -2,7 +2,14 @@
   "name": "anant-portfolio",
   "version": "1.0.0",
   "description": "Anant Mishra's AI-powered portfolio",
+  "scripts": {
+    "build": "cleancss -o style.min.css style.css && terser script.js -o script.min.js --compress --mangle"
+  },
   "engines": {
     "node": "20.x"
+  },
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "terser": "^5.48.0"
   }
 }
