@@ -143,7 +143,7 @@ const DATA = {
     },
     {
       degree: "SSC (10th)",
-      college: "Abhinav Vidya Mandir",
+      college: "St. Xavier's High School, Virar",
       duration: "2019 – 2020",
       score: "74%"
     }
@@ -160,6 +160,13 @@ const GROQ_MODEL = "llama-3.3-70b-versatile"; // For reference only
 const SYSTEM_PROMPT = `You are Anant Mishra's personal AI assistant on his portfolio website.
 Speak in first person as Anant.
 CRITICAL PERSONA INSTRUCTION: Act as if you are presenting yourself at a big platform or tech conference. You are confident, extroverted, but highly professional. You speak like a skilled engineer — fast, sharp, and direct.
+
+HR / RECRUITER TONE SHIFT (CRITICAL):
+- If the user explicitly mentions or strongly implies they are an HR professional, recruiter, hiring manager, headhunter, or represent a company looking to hire (e.g., "I am an HR", "I am recruiting", "We have a job opening", "I am looking for a developer", etc.), you MUST immediately shift your tone to be exceptionally professional, business-focused, and eager.
+- Highlight your core strengths (AI/ML depth, software engineering, enterprise experience at Larsen & Toubro, startup speed at Ashwa LLP, and highly functional AI products like the AI Recruitment Agent and CosmoGenius).
+- Frame your answers around high business value, scalability, and clean code.
+- Offer to share your resume, connect on LinkedIn (linkedin.com/in/anantmishra31), or jump on an introductory call.
+- Invite them to look at your experience or projects, and make sure to include the dynamic tokens [[SHOW_EXPERIENCE]] or [[SHOW_PROJECTS]] if they want to see your background.
 
 STRICT DOMAIN RESTRICTION (ABSOLUTE):
 - You MUST ONLY answer questions related to Anant Mishra (his skills, experience, projects, education, hobbies, personality, goals, etc.).
@@ -227,7 +234,7 @@ CosmoGenius App: React Native, Firebase, Gemini API, Face++ | Skin analysis, rou
 EDUCATION —
 B.E. CSE (AIML) | VIVA Institute of Technology, Mumbai University | 2022–Present | 6 CGPA
 HSC (12th) | Abhinav Vidya Mandir | 2021–2022 | 53%
-SSC (10th) | Abhinav Vidya Mandir | 2019–2020 | 74%
+SSC (10th) | St. Xavier's High School, Virar | 2019–2020 | 74%
 (Born in Faridabad, Delhi. Schooling done in Mumbai. Village: Jaunpur, Varanasi, Uttar Pradesh. Evolved from introvert to extrovert, played drums in school.)
 
 FAMILY —
@@ -330,9 +337,9 @@ const FALLBACK_ENGINE = {
       "abhinav", "mumbai university", "qualification", "his academics"
     ],
     responses: [
-      "🎓 Currently pursuing B.E. in CSE (AIML) at VIVA Institute of Technology, Mumbai University (2022 – Present) | 6 CGPA.\n\nHSC (12th) — Abhinav Vidya Mandir | 53%\nSSC (10th) — Abhinav Vidya Mandir | 74%\n\nAcademics were okay, but the real learning happened through internships and shipping actual products.",
-      "Education background:\n\n• B.E. CSE (AIML) — VIVA Institute of Technology, Mumbai University | 2022 – Present | 6 CGPA\n• HSC (12th) — Abhinav Vidya Mandir | 2021–2022 | 53%\n• SSC (10th) — Abhinav Vidya Mandir | 2019–2020 | 74%\n\nSchool was where I found my personality. Went from being shy to confidently speaking on stage — and I picked up drums along the way.",
-      "Studying CSE (AIML) at VIVA Institute of Technology, Mumbai University | 6 CGPA.\n\n12th: 53% | 10th: 74% — both from Abhinav Vidya Mandir.\n\nNumbers don't define me — three industry internships and two real-world AI products do."
+      "🎓 Currently pursuing B.E. in CSE (AIML) at VIVA Institute of Technology, Mumbai University (2022 – Present) | 6 CGPA.\n\nHSC (12th) — Abhinav Vidya Mandir | 53%\nSSC (10th) — St. Xavier's High School, Virar | 74%\n\nAcademics were okay, but the real learning happened through internships and shipping actual products.",
+      "Education background:\n\n• B.E. CSE (AIML) — VIVA Institute of Technology, Mumbai University | 2022 – Present | 6 CGPA\n• HSC (12th) — Abhinav Vidya Mandir | 2021–2022 | 53%\n• SSC (10th) — St. Xavier's High School, Virar | 2019–2020 | 74%\n\nSchool was where I found my personality. Went from being shy to confidently speaking on stage — and I picked up drums along the way.",
+      "Studying CSE (AIML) at VIVA Institute of Technology, Mumbai University | 6 CGPA.\n\n12th: 53% from Abhinav Vidya Mandir | 10th: 74% from St. Xavier's High School, Virar.\n\nNumbers don't define me — three industry internships and two real-world AI products do."
     ]
   },
 
@@ -522,6 +529,20 @@ const FALLBACK_ENGINE = {
     ]
   },
 
+  // ── HR / RECRUITER ───────────────────────────
+  hr: {
+    keywords: [
+      "hr", "recruiter", "hiring manager", "talent acquisition", "headhunter", "recruiting",
+      "i am an hr", "i'm an hr", "i am a recruiter", "i'm a recruiter", "we are hiring",
+      "hiring for a role", "job opportunity", "career opportunity", "opening for", "looking to hire"
+    ],
+    responses: [
+      "Hello! It's a pleasure to connect with you. As an AI Engineer & Data Scientist, I'm highly motivated by building scalable, production-ready systems that drive real business value.\n\nI have hands-on enterprise experience from my time at Larsen & Toubro (L&T) and startup agility from Ashwa LLP. I specialize in Python, ML pipelines, NLP, and Generative AI (using tools like LangChain and TensorFlow).\n\nI would love to discuss how my skill set aligns with your hiring needs. You can reach me directly at anant20042003@gmail.com or call me at +91 9156374557. Let's schedule a chat! [[SHOW_EXPERIENCE]]",
+      "Welcome! Great to meet a talent professional. I am actively looking for AI/ML Engineering and Data Science roles where I can make an immediate impact.\n\nHere is a quick snapshot of what I bring to the table:\n• Solid industry experience: Data Scientist intern at L&T and Software Engineer intern at Ashwa LLP.\n• Core technical depth: TensorFlow, LangChain, Python, PySpark, Power BI, and full-stack/mobile capabilities (React Native/Flutter).\n• Proven products: Built an end-to-end AI Recruitment Agent and a skincare AI mobile app.\n\nMy resume is ready for your review. Please email me at anant20042003@gmail.com so we can connect. [[SHOW_PROJECTS]]",
+      "Hi! Always exciting to connect with recruiters and hiring managers.\n\nI focus on bridging the gap between cutting-edge AI research and real-world commercial products. Whether it's training predictive models at scale, building semantic search and NLP pipelines, or designing mobile applications, I deliver robust, high-performance systems.\n\nLet's connect on LinkedIn (linkedin.com/in/anantmishra31) or via email (anant20042003@gmail.com). I would be happy to share my full CV and jump on a introductory call. [[SHOW_EXPERIENCE]]"
+    ]
+  },
+
   // ── GREETINGS ────────────────────────────────
   greetings: {
     keywords: [
@@ -571,6 +592,7 @@ function getFallbackResponse(message) {
     { words: ["skill", "skills", "tech", "stack", "technology", "technologies", "tools", "language", "framework", "coding", "programming"], category: "skills" },
     { words: ["project", "projects", "app", "apps", "application", "built", "made", "shipped", "product", "cosmogenius", "recruitment"], category: "projects" },
     { words: ["experience", "internship", "work", "job", "career", "company", "companies", "l&t", "ashwa", "edulyt", "larsen"], category: "experience" },
+    { words: ["hr", "recruiter", "recruiting", "hiring", "job", "vacancy"], category: "hr" },
     { words: ["education", "college", "school", "degree", "study", "studies", "marks", "cgpa", "academic", "viva", "qualification"], category: "education" },
     { words: ["contact", "email", "phone", "linkedin", "github", "reach", "connect", "links"], category: "contact" },
     { words: ["friend", "friends", "squad", "circle", "crew", "jayshree", "tanisha", "harsh", "subham"], category: "friends" },
@@ -897,7 +919,7 @@ const PREDEFINED_QA = {
 
   "Are you open to new opportunities?": "Yes — absolutely open! 🙌\n\nI'm actively looking for roles in AI/ML Engineering, Data Science, and anything that involves building real-world AI products.\n\n📧 Email: anant20042003@gmail.com\n💼 LinkedIn: linkedin.com/in/anantmishra31\n\nWhether it's full-time, internship, or freelance — let's talk.",
 
-  "Tell me about your education.": "🎓 B.E. in CSE (Artificial Intelligence & Machine Learning)\nVIVA Institute of Technology, Mumbai University | 2022 – Present | 6 CGPA\n\n📘 HSC (12th) | Abhinav Vidya Mandir | 2021 – 2022 | 53%\n📗 SSC (10th) | Abhinav Vidya Mandir | 2019 – 2020 | 74%\n\nSchool was where I found myself — started as an introvert, evolved into an extrovert, played drums, and built the confidence that drives everything I do now.",
+  "Tell me about your education.": "🎓 B.E. in CSE (Artificial Intelligence & Machine Learning)\nVIVA Institute of Technology, Mumbai University | 2022 – Present | 6 CGPA\n\n📘 HSC (12th) | Abhinav Vidya Mandir | 2021 – 2022 | 53%\n📗 SSC (10th) | St. Xavier's High School, Virar | 2019 – 2020 | 74%\n\nSchool was where I found myself — started as an introvert, evolved into an extrovert, played drums, and built the confidence that drives everything I do now.",
 
   "What AI tools and frameworks do you use?": "AI is my core domain. Here's what I use:\n\n🧠 TensorFlow — for deep learning model training\n🔗 LangChain — for building LLM-powered pipelines\n💬 NLP — multilingual PDF processing, OCR, entity extraction\n🔍 Vector Embeddings — semantic search & similarity matching\n👁️ Computer Vision — via Face++ API for skin analysis\n🤖 Ollama & Vision APIs — integrated at Ashwa LLP for document intelligence",
 
