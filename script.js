@@ -136,13 +136,13 @@ const DATA = {
       score: "6 CGPA"
     },
     {
-      degree: "HSC (12th)",
+      degree: "HSC (11th & 12th)",
       college: "Abhinav Vidya Mandir",
       duration: "2021 – 2022",
       score: "53%"
     },
     {
-      degree: "SSC (10th)",
+      degree: "SSC (10th / Schooling)",
       college: "St. Xavier's High School, Virar",
       duration: "2019 – 2020",
       score: "74%"
@@ -233,9 +233,9 @@ CosmoGenius App: React Native, Firebase, Gemini API, Face++ | Skin analysis, rou
 
 EDUCATION —
 B.E. CSE (AIML) | VIVA Institute of Technology, Mumbai University | 2022–Present | 6 CGPA
-HSC (12th) | Abhinav Vidya Mandir | 2021–2022 | 53%
-SSC (10th) | St. Xavier's High School, Virar | 2019–2020 | 74%
-(Born in Faridabad, Delhi. Schooling done in Mumbai. Village: Jaunpur, Varanasi, Uttar Pradesh. Evolved from introvert to extrovert, played drums in school.)
+HSC (11th & 12th / Junior College) | Abhinav Vidya Mandir | 2021–2022 | 53%
+SSC (10th Grade / School) | St. Xavier's High School, Virar | 2019–2020 | 74%
+(Born in Faridabad, Delhi. Schooling up to 10th grade was done at St. Xavier's High School, Virar, Mumbai. High school/11th & 12th was done at Abhinav Vidya Mandir. Village: Jaunpur, Varanasi, Uttar Pradesh. Evolved from introvert to extrovert, played drums in school.)
 
 FAMILY —
 Father: Prabhat Mishra (pharmaceutical businessman) | Mother: Rekha Mishra (housewife) | Elder Sister: Jyotsana Mishra | Total: 4 family members`;
@@ -337,9 +337,9 @@ const FALLBACK_ENGINE = {
       "abhinav", "mumbai university", "qualification", "his academics"
     ],
     responses: [
-      "🎓 Currently pursuing B.E. in CSE (AIML) at VIVA Institute of Technology, Mumbai University (2022 – Present) | 6 CGPA.\n\nHSC (12th) — Abhinav Vidya Mandir | 53%\nSSC (10th) — St. Xavier's High School, Virar | 74%\n\nAcademics were okay, but the real learning happened through internships and shipping actual products.",
-      "Education background:\n\n• B.E. CSE (AIML) — VIVA Institute of Technology, Mumbai University | 2022 – Present | 6 CGPA\n• HSC (12th) — Abhinav Vidya Mandir | 2021–2022 | 53%\n• SSC (10th) — St. Xavier's High School, Virar | 2019–2020 | 74%\n\nSchool was where I found my personality. Went from being shy to confidently speaking on stage — and I picked up drums along the way.",
-      "Studying CSE (AIML) at VIVA Institute of Technology, Mumbai University | 6 CGPA.\n\n12th: 53% from Abhinav Vidya Mandir | 10th: 74% from St. Xavier's High School, Virar.\n\nNumbers don't define me — three industry internships and two real-world AI products do."
+      "🎓 Currently pursuing B.E. in CSE (AIML) at VIVA Institute of Technology, Mumbai University (2022 – Present) | 6 CGPA.\n\nHSC (11th & 12th) — Abhinav Vidya Mandir | 53%\nSSC (10th / Schooling) — St. Xavier's High School, Virar | 74%\n\nAcademics were okay, but the real learning happened through internships and shipping actual products.",
+      "Education background:\n\n• B.E. CSE (AIML) — VIVA Institute of Technology, Mumbai University | 2022 – Present | 6 CGPA\n• HSC (11th & 12th) — Abhinav Vidya Mandir | 2021–2022 | 53%\n• SSC (10th / Schooling) — St. Xavier's High School, Virar | 2019–2020 | 74%\n\nSchool (St. Xavier's High School, Virar) was where I found my personality and played drums. Went from being shy to confidently speaking on stage. I then did my 11th and 12th (HSC) at Abhinav Vidya Mandir.",
+      "Studying CSE (AIML) at VIVA Institute of Technology, Mumbai University | 6 CGPA.\n\n11th & 12th: 53% from Abhinav Vidya Mandir | 10th (Schooling): 74% from St. Xavier's High School, Virar.\n\nNumbers don't define me — three industry internships and two real-world AI products do."
     ]
   },
 
@@ -919,7 +919,7 @@ const PREDEFINED_QA = {
 
   "Are you open to new opportunities?": "Yes — absolutely open! 🙌\n\nI'm actively looking for roles in AI/ML Engineering, Data Science, and anything that involves building real-world AI products.\n\n📧 Email: anant20042003@gmail.com\n💼 LinkedIn: linkedin.com/in/anantmishra31\n\nWhether it's full-time, internship, or freelance — let's talk.",
 
-  "Tell me about your education.": "🎓 B.E. in CSE (Artificial Intelligence & Machine Learning)\nVIVA Institute of Technology, Mumbai University | 2022 – Present | 6 CGPA\n\n📘 HSC (12th) | Abhinav Vidya Mandir | 2021 – 2022 | 53%\n📗 SSC (10th) | St. Xavier's High School, Virar | 2019 – 2020 | 74%\n\nSchool was where I found myself — started as an introvert, evolved into an extrovert, played drums, and built the confidence that drives everything I do now.",
+  "Tell me about your education.": "🎓 B.E. in CSE (Artificial Intelligence & Machine Learning)\nVIVA Institute of Technology, Mumbai University | 2022 – Present | 6 CGPA\n\n📘 HSC (11th & 12th) | Abhinav Vidya Mandir | 2021 – 2022 | 53%\n📗 SSC (10th / Schooling) | St. Xavier's High School, Virar | 2019 – 2020 | 74%\n\nSchool (St. Xavier's High School, Virar) was where I found myself — started as an introvert, evolved into an extrovert, played drums, and built the confidence that drives everything I do now. Later, I completed my 11th and 12th (HSC) at Abhinav Vidya Mandir.",
 
   "What AI tools and frameworks do you use?": "AI is my core domain. Here's what I use:\n\n🧠 TensorFlow — for deep learning model training\n🔗 LangChain — for building LLM-powered pipelines\n💬 NLP — multilingual PDF processing, OCR, entity extraction\n🔍 Vector Embeddings — semantic search & similarity matching\n👁️ Computer Vision — via Face++ API for skin analysis\n🤖 Ollama & Vision APIs — integrated at Ashwa LLP for document intelligence",
 
