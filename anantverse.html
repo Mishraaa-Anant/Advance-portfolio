@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AnantVerse — A new cybernetic dimension by Anant Mishra. Explore interactive AI sandbox, projects, neural skills matrix, and advanced command line developer terminal." />
+  <meta name="description" content="AnantVerse — A new dimension is loading. Something big is being built by Anant Mishra." />
   <meta name="author" content="Anant Mishra" />
   
   <!-- Canonical & Meta -->
   <link rel="canonical" href="https://myselfanantmishra.vercel.app/anantverse.html" />
-  <title>AnantVerse | A New Dimension</title>
+  <title>AnantVerse | Coming Soon</title>
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://myselfanantmishra.vercel.app/anantverse.html" />
-  <meta property="og:title" content="AnantVerse | A New Dimension" />
-  <meta property="og:description" content="Step into AnantVerse — an interactive cybernetic sandbox displaying AI agents, custom developer CLI, and deep neural skill constellation." />
+  <meta property="og:title" content="AnantVerse | Coming Soon" />
+  <meta property="og:description" content="A new dimension is loading... Stay tuned for AnantVerse." />
   <meta property="og:image" content="https://myselfanantmishra.vercel.app/profile.png" />
 
   <!-- Google Fonts -->
@@ -24,24 +24,22 @@
 
   <style>
     /* ═══════════════════════════════════════════
-       CORE VARIABLES & RESET
+       CORE DESIGN SYSTEM
        ═══════════════════════════════════════════ */
     :root {
       --bg: #050508;
-      --bg-gradient: radial-gradient(circle at 50% 50%, #0d0b1a 0%, #050508 100%);
-      --surface: rgba(13, 11, 26, 0.45);
-      --surface-hover: rgba(26, 22, 50, 0.65);
-      --border: rgba(0, 242, 254, 0.15);
-      --border-hover: rgba(0, 242, 254, 0.4);
+      --bg-gradient: radial-gradient(circle at 50% 50%, #0c0a1a 0%, #050508 100%);
+      --surface: rgba(13, 11, 26, 0.55);
+      --border: rgba(0, 242, 254, 0.18);
       --accent-cyan: #00f2fe;
       --accent-purple: #7f00ff;
       --text: #f0f0f5;
-      --text-muted: #9ba0c0;
-      --glow-cyan: 0 0 20px rgba(0, 242, 254, 0.25);
-      --glow-purple: 0 0 20px rgba(127, 0, 255, 0.25);
+      --text-muted: #8d92b5;
+      --glow-cyan: 0 0 30px rgba(0, 242, 254, 0.2);
       --font-main: 'Outfit', sans-serif;
       --font-code: 'Fira Code', monospace;
-      --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      --radius: 24px;
+      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * {
@@ -55,947 +53,326 @@
       background-image: var(--bg-gradient);
       color: var(--text);
       font-family: var(--font-main);
-      min-height: 100vh;
-      overflow-x: hidden;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
     }
 
-    body::-webkit-scrollbar {
-      width: 8px;
-    }
-    body::-webkit-scrollbar-track {
-      background: #050508;
-    }
-    body::-webkit-scrollbar-thumb {
-      background: rgba(127, 0, 255, 0.3);
-      border-radius: 4px;
-    }
-    body::-webkit-scrollbar-thumb:hover {
-      background: rgba(0, 242, 254, 0.5);
-    }
-
-    /* Canvas Background */
+    /* Cosmic Background Canvas */
     #constellationCanvas {
-      position: fixed;
+      position: absolute;
       inset: 0;
       z-index: 1;
       pointer-events: none;
-      opacity: 0.8;
-    }
-
-    /* Container wrapper to stand above canvas */
-    .app-wrapper {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      opacity: 0.85;
     }
 
     /* ═══════════════════════════════════════════
-       CYBER HEADER
+       COMING SOON CARD
        ═══════════════════════════════════════════ */
-    .header {
-      width: 100%;
-      padding: 20px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(5, 5, 8, 0.4);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    .coming-soon-card {
+      position: relative;
+      z-index: 10;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--glow-cyan), 0 24px 64px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      max-width: 480px;
+      width: 90%;
+      padding: 50px 40px;
+      text-align: center;
+      overflow: hidden;
+      transition: var(--transition);
+      animation: cardFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
-    .brand {
+    .coming-soon-card:hover {
+      border-color: rgba(0, 242, 254, 0.4);
+      box-shadow: 0 0 40px rgba(0, 242, 254, 0.25), 0 24px 64px rgba(0, 0, 0, 0.7);
+    }
+
+    .coming-soon-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-purple), transparent);
+      opacity: 0.8;
+    }
+
+    /* Hologram Rings */
+    .bg-rings {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .ring {
+      position: absolute;
+      border: 1px solid rgba(0, 242, 254, 0.08);
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: ringPulse 4s ease-in-out infinite;
+    }
+
+    .ring-1 { width: 260px; height: 260px; animation-delay: 0s; }
+    .ring-2 { width: 380px; height: 380px; animation-delay: 1s; }
+    .ring-3 { width: 500px; height: 500px; animation-delay: 2s; }
+
+    @keyframes ringPulse {
+      0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.05); border-color: rgba(127, 0, 255, 0.15); }
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Portal Icon */
+    .icon-wrap {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: rgba(0, 242, 254, 0.06);
+      border: 1px solid rgba(0, 242, 254, 0.2);
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 22px;
+      justify-content: center;
+      margin: 0 auto 24px;
+      animation: floatIcon 4s ease-in-out infinite;
+      box-shadow: 0 0 20px rgba(0, 242, 254, 0.1);
+    }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); border-color: var(--accent-cyan); box-shadow: 0 0 30px rgba(0, 242, 254, 0.2); }
+    }
+
+    .icon-wrap svg {
+      stroke: var(--accent-cyan);
+      filter: drop-shadow(0 0 4px var(--accent-cyan));
+    }
+
+    /* Brand Header */
+    .title {
+      font-size: 32px;
       font-weight: 800;
       letter-spacing: -0.5px;
-      text-transform: uppercase;
-      color: var(--text);
-      text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      color: #fff;
+      margin-bottom: 6px;
     }
 
-    .brand span {
+    .title span {
       background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       font-weight: 900;
     }
 
-    .brand-icon {
-      stroke: var(--accent-cyan);
-      filter: drop-shadow(0 0 5px var(--accent-cyan));
-      animation: spinSlow 20s linear infinite;
+    .tagline {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      font-weight: 600;
     }
 
-    @keyframes spinSlow {
-      to { transform: rotate(360deg); }
-    }
-
-    .nav-btn {
+    /* Launch Status Indicator */
+    .status-badge {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 10px 20px;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--accent-cyan);
-      border: 1px solid rgba(0, 242, 254, 0.3);
-      border-radius: 99px;
-      text-decoration: none;
-      background: rgba(0, 242, 254, 0.05);
-      transition: var(--transition);
-      box-shadow: 0 0 15px rgba(0, 242, 254, 0.05);
-    }
-
-    .nav-btn:hover {
-      background: var(--accent-cyan);
-      color: #050508;
-      box-shadow: 0 0 20px var(--accent-cyan);
-      transform: translateY(-2px);
-    }
-
-    .nav-btn svg {
-      transition: transform 0.3s ease;
-    }
-    .nav-btn:hover svg {
-      transform: translateX(-4px);
-    }
-
-    /* ═══════════════════════════════════════════
-       MAIN HERO SECTION
-       ═══════════════════════════════════════════ */
-    .main-content {
-      flex: 1;
-      max-width: 1300px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 40px 24px 80px;
-      display: flex;
-      flex-direction: column;
-      gap: 60px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 32px;
-      align-items: stretch;
-    }
-
-    @media (max-width: 1024px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Interactive Terminal Interface */
-    .terminal-container {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      box-shadow: var(--glow-cyan), 0 24px 64px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      min-height: 520px;
-      max-height: 600px;
-      transition: var(--transition);
-    }
-
-    .terminal-container:hover {
-      border-color: var(--border-hover);
-    }
-
-    .terminal-header {
-      background: rgba(13, 11, 26, 0.7);
-      padding: 14px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .terminal-controls {
-      display: flex;
-      gap: 8px;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    .dot-red { background: #ff5f56; }
-    .dot-yellow { background: #ffbd2e; }
-    .dot-green { background: #27c93f; }
-
-    .terminal-title {
-      font-family: var(--font-code);
-      font-size: 13px;
-      color: var(--text-muted);
-      letter-spacing: 0.5px;
-    }
-
-    .terminal-body {
-      flex: 1;
-      padding: 24px;
-      font-family: var(--font-code);
-      font-size: 14px;
-      line-height: 1.6;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      color: #bbf7d0; /* Soft terminal green */
-    }
-
-    .terminal-body::-webkit-scrollbar {
-      width: 6px;
-    }
-    .terminal-body::-webkit-scrollbar-thumb {
-      background: rgba(0, 242, 254, 0.2);
-      border-radius: 3px;
-    }
-
-    .terminal-line {
-      word-break: break-all;
-      white-space: pre-wrap;
-    }
-
-    .system-log { color: #60a5fa; } /* blue */
-    .success-log { color: var(--accent-cyan); } /* cyan */
-    .warning-log { color: #f59e0b; } /* amber */
-    .input-log { color: #ececf1; display: flex; align-items: center; gap: 8px; }
-    .response-log { color: #d1d5db; padding-left: 12px; margin-bottom: 8px; border-left: 2px solid var(--accent-purple); }
-
-    .cmd-prompt {
-      color: var(--accent-cyan);
-      font-weight: 700;
-    }
-
-    .terminal-input-row {
-      display: flex;
-      align-items: center;
       gap: 10px;
-      margin-top: auto;
-      padding-top: 12px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .terminal-input {
-      flex: 1;
-      background: none;
-      border: none;
-      outline: none;
-      color: #fff;
-      font-family: var(--font-code);
-      font-size: 14px;
-      caret-color: var(--accent-cyan);
-      width: 100%;
-    }
-
-    /* Neural Status Dashboard Card */
-    .status-panel {
-      background: var(--surface);
-      border: 1px solid rgba(127, 0, 255, 0.15);
-      border-radius: 16px;
-      box-shadow: var(--glow-purple), 0 24px 64px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      padding: 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: var(--transition);
-      position: relative;
-    }
-
-    .status-panel:hover {
-      border-color: rgba(127, 0, 255, 0.4);
-    }
-
-    .status-panel::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 100px;
-      height: 100px;
-      background: radial-gradient(circle, rgba(127, 0, 255, 0.15) 0%, transparent 70%);
-      pointer-events: none;
-    }
-
-    .status-header {
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.2);
+      border-radius: 99px;
+      padding: 10px 22px;
       margin-bottom: 24px;
     }
 
-    .status-title {
-      font-size: 26px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      margin-bottom: 8px;
+    .rocket {
+      font-size: 20px;
+      display: inline-block;
+      animation: rocketThrust 1.5s ease-in-out infinite;
     }
 
-    .status-title span {
-      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    @keyframes rocketThrust {
+      0%, 100% { transform: translateY(0) rotate(-45deg); }
+      50% { transform: translateY(-4px) rotate(-45deg); }
     }
 
-    .status-tagline {
+    .status-text {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      letter-spacing: 0.5px;
+    }
+
+    .desc {
       font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.5;
+      line-height: 1.6;
+      max-width: 320px;
+      margin: 0 auto 32px;
     }
 
-    .telemetry-list {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      margin: 20px 0;
+    /* Cyber Loading bar */
+    .loader-container {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      height: 6px;
+      border-radius: 99px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .telemetry-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      font-size: 13px;
-    }
-
-    .telemetry-label {
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .telemetry-val {
-      font-family: var(--font-code);
-      font-weight: 600;
-      color: var(--accent-cyan);
-    }
-
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent-cyan);
+    .loader-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      border-radius: 99px;
+      animation: fillBar 4s cubic-bezier(0.1, 0.8, 0.2, 1) forwards;
       box-shadow: 0 0 10px var(--accent-cyan);
-      animation: pulseGlow 1.5s ease-in-out infinite;
-      display: inline-block;
     }
 
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 0.4; transform: scale(0.9); }
-      50% { opacity: 1; transform: scale(1.2); }
+    @keyframes fillBar {
+      to { width: 72%; } /* Holds at 72% for construction theme */
     }
 
-    .control-deck {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: auto;
+    .telemetry-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-code);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      padding: 0 4px;
     }
 
-    .cyber-btn {
+    .telemetry-percent {
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    /* Gateway button */
+    .portal-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 14px;
-      font-size: 14px;
+      gap: 10px;
+      padding: 14px 28px;
+      font-size: 13px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       color: #fff;
-      background: linear-gradient(135deg, rgba(0, 242, 254, 0.15) 0%, rgba(127, 0, 255, 0.15) 100%);
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.12) 0%, rgba(127, 0, 255, 0.12) 100%);
       border: 1px solid rgba(0, 242, 254, 0.25);
       border-radius: 12px;
+      text-decoration: none;
       cursor: pointer;
       transition: var(--transition);
+      width: 100%;
     }
 
-    .cyber-btn:hover {
+    .portal-btn:hover {
       border-color: var(--accent-cyan);
       box-shadow: 0 0 25px rgba(0, 242, 254, 0.2);
       transform: translateY(-2px);
     }
 
-    /* ═══════════════════════════════════════════
-       ECOSYSTEM CORE MODULES
-       ═══════════════════════════════════════════ */
-    .section-header {
-      text-align: center;
-      margin-bottom: 40px;
+    .portal-btn svg {
+      transition: transform 0.3s ease;
     }
 
-    .section-title {
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: -0.8px;
-      margin-bottom: 8px;
+    .portal-btn:hover svg {
+      transform: translateX(-4px);
     }
 
-    .section-title span {
-      color: var(--accent-cyan);
+    /* Animations */
+    @keyframes cardFadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .section-desc {
-      font-size: 15px;
-      color: var(--text-muted);
-      max-width: 500px;
-      margin: 0 auto;
-      line-height: 1.5;
-    }
-
-    .modules-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    @media (max-width: 900px) {
-      .modules-grid {
-        grid-template-columns: 1fr;
+    @media (max-width: 480px) {
+      .coming-soon-card {
+        padding: 40px 24px 36px;
       }
-    }
-
-    .module-card {
-      background: var(--surface);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 32px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      transition: var(--transition);
-      position: relative;
-      overflow: hidden;
-      height: 100%;
-    }
-
-    .module-card:hover {
-      border-color: var(--accent-cyan);
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px rgba(0, 242, 254, 0.08);
-    }
-
-    .module-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-    }
-
-    .module-card:hover::before {
-      transform: translateX(100%);
-    }
-
-    .module-icon-wrap {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      background: rgba(0, 242, 254, 0.05);
-      border: 1px solid rgba(0, 242, 254, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent-cyan);
-      box-shadow: 0 0 15px rgba(0, 242, 254, 0.05);
-    }
-
-    .module-card:hover .module-icon-wrap {
-      background: rgba(0, 242, 254, 0.1);
-      border-color: var(--accent-cyan);
-      color: #fff;
-      box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
-    }
-
-    .module-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .module-desc {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .module-telemetry {
-      margin-top: auto;
-      padding-top: 16px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-family: var(--font-code);
-      font-size: 11px;
-      color: var(--accent-purple);
-    }
-
-    .module-status {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--accent-cyan);
-    }
-
-    /* ═══════════════════════════════════════════
-       INTERACTIVE NEURAL CONSTELATION GRAPH
-       ═══════════════════════════════════════════ */
-    .skills-matrix-card {
-      background: var(--surface);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 24px;
-      padding: 40px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      position: relative;
-    }
-
-    .constellation-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 380px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      border-radius: 16px;
-      background: rgba(5, 5, 8, 0.3);
-    }
-
-    /* Interactive Node Graph */
-    .node-graph {
-      width: 100%;
-      height: 380px;
-      position: relative;
-    }
-
-    .node {
-      position: absolute;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--bg);
-      border: 2px solid var(--accent-cyan);
-      cursor: pointer;
-      z-index: 10;
-      transform: translate(-50%, -50%);
-      transition: var(--transition);
-      box-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
-    }
-
-    .node:hover, .node.active {
-      width: 20px;
-      height: 20px;
-      background: var(--accent-cyan);
-      box-shadow: 0 0 25px var(--accent-cyan), 0 0 10px #fff;
-    }
-
-    .node-label {
-      position: absolute;
-      top: -24px;
-      left: 50%;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-muted);
-      opacity: 0.8;
-      pointer-events: none;
-      transition: var(--transition);
-    }
-
-    .node:hover .node-label, .node.active .node-label {
-      color: #fff;
-      opacity: 1;
-      font-size: 12px;
-      text-shadow: 0 0 8px rgba(0, 242, 254, 0.6);
-    }
-
-    /* Connective Line SVG */
-    .svg-connections {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    .conn-line {
-      stroke: rgba(0, 242, 254, 0.08);
-      stroke-width: 1.5;
-      transition: var(--transition);
-    }
-
-    .conn-line.active {
-      stroke: var(--accent-cyan);
-      stroke-width: 2.5;
-      stroke-dasharray: 6 3;
-      animation: dashMove 30s linear infinite, glowPulseLine 2s infinite;
-    }
-
-    @keyframes dashMove {
-      to { stroke-dashoffset: -1000; }
-    }
-
-    @keyframes glowPulseLine {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
-
-    /* Floating Detail Card */
-    .node-details-card {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(13, 11, 26, 0.85);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
-      max-width: 280px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-      z-index: 15;
-      opacity: 0;
-      transform: translateY(10px);
-      pointer-events: none;
-      transition: var(--transition);
-    }
-
-    .node-details-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .node-detail-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--accent-cyan);
-      margin-bottom: 4px;
-    }
-
-    .node-detail-desc {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-
-    /* ═══════════════════════════════════════════
-       FOOTER & PORTAL PANEL
-       ═══════════════════════════════════════════ */
-    .footer {
-      width: 100%;
-      padding: 40px;
-      text-align: center;
-      background: rgba(5, 5, 8, 0.8);
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      font-family: var(--font-code);
-      font-size: 12px;
-      color: var(--text-muted);
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 24px;
-    }
-
-    .footer-links a {
-      color: var(--accent-cyan);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-
-    .footer-links a:hover {
-      color: #fff;
-      text-shadow: 0 0 8px var(--accent-cyan);
-    }
-
-    /* ═══════════════════════════════════════════
-       RESPONSIVE MATRIX ADJUSTMENTS
-       ═══════════════════════════════════════════ */
-    @media (max-width: 768px) {
-      .header {
-        padding: 16px 20px;
+      .title {
+        font-size: 26px;
       }
-      .brand {
-        font-size: 18px;
-      }
-      .nav-btn {
-        padding: 8px 16px;
+      .status-text {
         font-size: 13px;
-      }
-      .main-content {
-        padding: 24px 16px 60px;
-        gap: 40px;
-      }
-      .status-panel {
-        padding: 24px;
-      }
-      .skills-matrix-card {
-        padding: 24px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Background Particle Network -->
+  <!-- Dynamic Starfield Particle Canvas -->
   <canvas id="constellationCanvas"></canvas>
 
-  <div class="app-wrapper">
-
-    <!-- Header Panel -->
-    <header class="header">
-      <div class="brand">
-        <!-- Logo SVG -->
-        <svg class="brand-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+  <!-- Centered Futuristic Coming Soon Panel -->
+  <div class="coming-soon-card">
+    <div class="bg-rings">
+      <span class="ring ring-1"></span>
+      <span class="ring ring-2"></span>
+      <span class="ring ring-3"></span>
+    </div>
+    
+    <div class="card-content">
+      <!-- Rotating Cyber Logo -->
+      <div class="icon-wrap">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
           <circle cx="12" cy="12" r="10"/>
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
           <line x1="2" y1="12" x2="22" y2="12"/>
         </svg>
-        Anant<span>Verse</span>
       </div>
-      <a href="index.html" class="nav-btn">
+
+      <h1 class="title">Anant<span>Verse</span></h1>
+      <p class="tagline">A New Dimension is Loading</p>
+
+      <!-- Pulse Status Badge -->
+      <div class="status-badge">
+        <span class="rocket">🚀</span>
+        <span class="status-text">Coming Soon</span>
+      </div>
+
+      <p class="desc">Something big is being built. Stay tuned for a completely new, immersive cybernetic experience.</p>
+
+      <!-- Active Cyber progress bar -->
+      <div class="loader-container">
+        <div class="loader-bar"></div>
+      </div>
+
+      <div class="telemetry-row">
+        <span>GRID_SCANNER: <span class="telemetry-percent">ACTIVE</span></span>
+        <span id="loadText">BUILDING... 72%</span>
+      </div>
+
+      <!-- Secure Gateway button back to portfolio -->
+      <a href="index.html" class="portal-btn">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
         Back to Portfolio
       </a>
-    </header>
-
-    <!-- Main Dynamic Core -->
-    <main class="main-content">
-
-      <!-- Hero Console & Dashboard Row -->
-      <section class="hero-grid">
-
-        <!-- Sci-Fi Developer Console -->
-        <div class="terminal-container">
-          <div class="terminal-header">
-            <div class="terminal-controls">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <div class="terminal-title">anant@verse: ~</div>
-            <div style="width: 52px;"></div> <!-- Spacer -->
-          </div>
-          <div class="terminal-body" id="terminalBody">
-            <div class="terminal-line system-log">⚡ CONNECTING TO ANANTVERSE MAIN CORE DATA ARCHIVE...</div>
-            <div class="terminal-line system-log">⚡ ESTABLISHING SECURE WEBSOCKET PROTOCOL LINK...</div>
-            <div class="terminal-line success-log">✔ NEURAL PATHWAYS LOADED SECURELY [100%]</div>
-            <div class="terminal-line success-log">✔ DYNAMIC AI SERVICES INTEGRATED [llama-3.3-70b]</div>
-            <div class="terminal-line"></div>
-            <div class="terminal-line" style="color: #fff; font-size: 16px; font-weight: 700; letter-spacing: -0.5px;">Welcome to the AnantVerse Sandbox Interface.</div>
-            <div class="terminal-line" style="color: var(--text-muted);">This is a fully-operational, custom command-line console where you can query Anant's professional repository database in real-time.</div>
-            <div class="terminal-line" style="color: var(--accent-cyan); font-weight: 500;">Type 'help' in the prompt below to view the loaded CLI matrix controls.</div>
-            <div class="terminal-line"></div>
-          </div>
-          <div class="terminal-input-row">
-            <span class="cmd-prompt">anant@verse:~$</span>
-            <input type="text" class="terminal-input" id="terminalInput" placeholder="Type a command..." autofocus autocomplete="off" />
-          </div>
-        </div>
-
-        <!-- Telemetry Status Panel -->
-        <div class="status-panel">
-          <div class="status-header">
-            <h1 class="status-title">System <span>Active</span></h1>
-            <p class="status-tagline">Real-time status telemetry of Anant's digital architecture and core systems.</p>
-          </div>
-
-          <div class="telemetry-list">
-            <div class="telemetry-item">
-              <div class="telemetry-label">
-                <span class="pulse-dot"></span>
-                Ecosystem Core
-              </div>
-              <div class="telemetry-val" style="color: var(--accent-cyan);">ONLINE</div>
-            </div>
-            <div class="telemetry-item">
-              <div class="telemetry-label">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="stroke: var(--accent-cyan);"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-                AI Model Nodes
-              </div>
-              <div class="telemetry-val">Llama-3.3-70b-v</div>
-            </div>
-            <div class="telemetry-item">
-              <div class="telemetry-label">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="stroke: var(--accent-cyan);"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                Neural Sync FPS
-              </div>
-              <div class="telemetry-val">60.0 FPS</div>
-            </div>
-            <div class="telemetry-item">
-              <div class="telemetry-label">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="stroke: var(--accent-cyan);"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Integrity Level
-              </div>
-              <div class="telemetry-val">100% SECURE</div>
-            </div>
-          </div>
-
-          <div class="control-deck">
-            <button class="cyber-btn" onclick="executeConsoleCommand('skills')">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
-              Initialize Skills Matrix
-            </button>
-            <button class="cyber-btn" onclick="executeConsoleCommand('projects')">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
-              Query Active Projects
-            </button>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- Grid of Core Ecosystem Modules -->
-      <section>
-        <div class="section-header">
-          <h2 class="section-title">Ecosystem <span>Portals</span></h2>
-          <p class="section-desc">Highly optimized functional nodes mapping out Anant's digital landscape.</p>
-        </div>
-
-        <div class="modules-grid">
-          <!-- Module 1: AI Assistant -->
-          <div class="module-card">
-            <div class="module-icon-wrap">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M8 12h8"/>
-                <path d="M12 8v8"/>
-              </svg>
-            </div>
-            <h3 class="module-title">Cognitive Agent</h3>
-            <p class="module-desc">Dynamic persona assistant powered by large language models, engineered with custom system instructions to represent Anant perfectly.</p>
-            <div class="module-telemetry">
-              <span>MODEL: LLAMA3-3</span>
-              <span class="module-status"><span class="pulse-dot"></span>ACTIVE</span>
-            </div>
-          </div>
-
-          <!-- Module 2: Recruitment Agent -->
-          <div class="module-card">
-            <div class="module-icon-wrap">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-            </div>
-            <h3 class="module-title">AI Recruitment Hub</h3>
-            <p class="module-desc">Autonomous candidate screening interface featuring semantic resume matching algorithms and voice interview synthesis architectures.</p>
-            <div class="module-telemetry">
-              <span>STACK: PYTHON</span>
-              <span class="module-status"><span class="pulse-dot"></span>DEPLOYED</span>
-            </div>
-          </div>
-
-          <!-- Module 3: CosmoGenius -->
-          <div class="module-card">
-            <div class="module-icon-wrap">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
-                <line x1="12" y1="18" x2="12.01" y2="18"/>
-              </svg>
-            </div>
-            <h3 class="module-title">CosmoGenius Core</h3>
-            <p class="module-desc">Mobile deep learning engine for skin health diagnosis, analyzing skin metrics using high-fidelity computer vision models.</p>
-            <div class="module-telemetry">
-              <span>API: GEMINI / FACE++</span>
-              <span class="module-status"><span class="pulse-dot"></span>PRODUCTION</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Neural Skills Matrix Constellation Section -->
-      <section class="skills-matrix-card">
-        <div style="text-align: left;">
-          <h2 class="section-title">Neural Skills <span>Constellation</span></h2>
-          <p class="section-desc" style="margin-left: 0; max-width: 600px;">Click on the stars below to explore Anant's technical pathways and trigger connection telemetry in real-time.</p>
-        </div>
-
-        <div class="constellation-wrapper">
-          <div class="node-graph" id="nodeGraph">
-            <!-- Connective lines will be drawn here -->
-            <svg class="svg-connections" id="connectionsSvg"></svg>
-
-            <!-- Interactive Stars (Nodes) -->
-            <div class="node active" id="node-python" style="top: 50%; left: 15%;" onclick="activateNode('python')">
-              <span class="node-label">Python Core</span>
-            </div>
-            <div class="node" id="node-ml" style="top: 30%; left: 35%;" onclick="activateNode('ml')">
-              <span class="node-label">Machine Learning</span>
-            </div>
-            <div class="node" id="node-nlp" style="top: 70%; left: 35%;" onclick="activateNode('nlp')">
-              <span class="node-label">NLP &amp; LLMs</span>
-            </div>
-            <div class="node" id="node-data" style="top: 50%; left: 55%;" onclick="activateNode('data')">
-              <span class="node-label">Data Analytics</span>
-            </div>
-            <div class="node" id="node-mobile" style="top: 25%; left: 75%;" onclick="activateNode('mobile')">
-              <span class="node-label">Mobile Dev</span>
-            </div>
-            <div class="node" id="node-web3" style="top: 75%; left: 75%;" onclick="activateNode('web3')">
-              <span class="node-label">Web3 / Solidity</span>
-            </div>
-
-            <!-- Details Display Panel -->
-            <div class="node-details-card" id="detailsCard">
-              <div class="node-detail-title" id="detailTitle">Python Core</div>
-              <div class="node-detail-desc" id="detailDesc">The absolute foundation of Anant's engineering stack. Used extensively for building AI agents, ML modeling, and large-scale data engineering.</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- Footer Gateway -->
-    <footer class="footer">
-      <div class="footer-links">
-        <a href="index.html">Portfolio</a>
-        <a href="mailto:anant20042003@gmail.com">Secure Email</a>
-        <a href="https://linkedin.com/in/anantmishra31" target="_blank" rel="noopener noreferrer">LinkedIn Gateway</a>
-      </div>
-      <div>&copy; 2026 Anant Mishra. All Neural Connections Secured.</div>
-    </footer>
-
+    </div>
   </div>
 
   <script>
@@ -1107,306 +484,18 @@
     animateParticles();
 
     /* ═══════════════════════════════════════════
-       INTERACTIVE SANDBOX CLI TERMINAL ENGINE
+       TELEMETRY PERCENT LOADER
        ═══════════════════════════════════════════ */
-    const terminalInput = document.getElementById('terminalInput');
-    const terminalBody = document.getElementById('terminalBody');
-
-    // Focus input on body click
-    document.querySelector('.terminal-container').addEventListener('click', () => {
-      terminalInput.focus();
-    });
-
-    const COMMANDS = {
-      help: () => `Available System Directives:
-• <span class="success-log">about</span>       - Print Anant's digital dossier bio
-• <span class="success-log">skills</span>      - Query loaded technological skill sets
-• <span class="success-log">projects</span>    - Pull up catalog of active shipped projects
-• <span class="success-log">experience</span>  - Retrieve chronological career telemetry
-• <span class="success-log">contact</span>     - Establish direct secure messaging pathways
-• <span class="success-log">clear</span>       - Wipe terminal cache history
-• <span class="success-log">matrix</span>      - Trigger digital neural override sequence
-• <span class="success-log">exit</span>        - Terminate dimension, back to main gateway`,
-      
-      about: () => `Dossier Node: Anant Mishra (annu)
-• <span class="success-log">Occupation:</span>   AI Engineer, Data Scientist & Data Analyst
-• <span class="success-log">Mission:</span>      Building high-integrity commercial products that solve problems.
-• <span class="success-log">Location:</span>     Mumbai, India (UP Varanasi origin roots)
-• <span class="success-log">Mindset:</span>      Extrovert. Highly communicative, confident, direct. Surrounds himself with real ones.`,
-
-      skills: () => `Technological Capability Stack:
-• <span class="success-log">Languages:</span>   Python, R, SQL, JavaScript, Solidity, Flutter
-• <span class="success-log">AI / ML:</span>     TensorFlow, LangChain, NumPy, Pandas, Matplotlib
-• <span class="success-log">Frameworks:</span>  Flask, React Native, Expo, PySpark, Hyperledger Fabric
-• <span class="success-log">Tools:</span>       Microsoft Fabric, Power BI, GitHub, JIRA, Vercel`,
-
-      projects: () => `Shipped Product Registry:
-1. <span class="success-log">AI Recruitment Agent</span>
-   • Deployed end-to-end AI agent resolving candidate sourcing.
-   • Features: Semantic screening, voice interview synthesis, automated MCQs.
-   • Tech Stack: Python, LangChain, NLP, Vector Embeddings.
-
-2. <span class="success-log">CosmoGenius Mobile App</span>
-   • Deep learning skincare diagnosis mobile application.
-   • Features: Computer vision skin scanning, routine planner, AI chatbot.
-   • Tech Stack: React Native, Firebase, Supabase, Gemini API, Face++ API.`,
-
-      experience: () => `Chronological Telemetry:
-🏢 <span class="success-log">Larsen &amp; Toubro</span> — Data Scientist
-  • Developed predictive models for industrial clearances.
-  • Stack: TensorFlow, PySpark, SQL, Power BI. [Dec 2025 - Jan 2026]
-
-💼 <span class="success-log">Ashwa LLP Enterprises</span> — Software Engineer
-  • Built NLP document classification pipelines, OCR tools, semantic search.
-  • Stack: Python, Embeddings, Ollama &amp; Vision APIs. [Jun - Nov 2025]
-
-📊 <span class="success-log">Edulyt India</span> — Data Analyst
-  • Cleaned complex analytical datasets, constructed BI dashboards. [Jan - Mar 2024]`,
-
-      contact: () => `Secure Channels Established:
-• <span class="success-log">Email:</span>       <a href="mailto:anant20042003@gmail.com" style="color:var(--accent-cyan);">anant20042003@gmail.com</a>
-• <span class="success-log">Phone:</span>       +91 9156374557
-• <span class="success-log">LinkedIn:</span>    <a href="https://linkedin.com/in/anantmishra31" target="_blank" style="color:var(--accent-cyan);">linkedin.com/in/anantmishra31</a>
-• <span class="success-log">GitHub:</span>      <a href="https://github.com/Mishraaa-Anant" target="_blank" style="color:var(--accent-cyan);">github.com/Mishraaa-Anant</a>
-• <span class="success-log">Instagram:</span>   @mishraaa_anant`,
-
-      clear: () => {
-        terminalBody.innerHTML = '';
-        return '';
-      },
-
-      exit: () => {
-        window.location.href = 'index.html';
-        return 'Terminating connection. Redirecting to main portfolio gateway...';
-      },
-
-      matrix: () => {
-        triggerMatrixMode();
-        return 'System override initialized. Initiating cyber grid matrix...';
+    let percent = 0;
+    const loadText = document.getElementById('loadText');
+    const interval = setInterval(() => {
+      if (percent < 72) {
+        percent++;
+        loadText.textContent = `BUILDING... ${percent}%`;
+      } else {
+        clearInterval(interval);
       }
-    };
-
-    terminalInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        const fullInput = terminalInput.value.trim();
-        const cmd = fullInput.toLowerCase();
-        terminalInput.value = '';
-
-        if (!fullInput) return;
-
-        // Print input
-        const inputLine = document.createElement('div');
-        inputLine.className = 'terminal-line input-log';
-        inputLine.innerHTML = `<span class="cmd-prompt">anant@verse:~$</span> ${fullInput}`;
-        terminalBody.appendChild(inputLine);
-
-        // Process response
-        const respLine = document.createElement('div');
-        respLine.className = 'terminal-line response-log';
-
-        if (COMMANDS[cmd]) {
-          const result = COMMANDS[cmd]();
-          if (result) {
-            respLine.innerHTML = result;
-            terminalBody.appendChild(respLine);
-          }
-        } else {
-          respLine.innerHTML = `<span class="warning-log">Command not found: '${fullInput}'.</span> Type 'help' to review loaded commands.`;
-          terminalBody.appendChild(respLine);
-        }
-
-        // Scroll to bottom
-        terminalBody.scrollTop = terminalBody.scrollHeight;
-      }
-    });
-
-    function executeConsoleCommand(cmd) {
-      terminalInput.value = cmd;
-      // Focus and trigger enter
-      terminalInput.focus();
-      const event = new KeyboardEvent('keydown', { key: 'Enter' });
-      terminalInput.dispatchEvent(event);
-    }
-
-    // Matrix Hack easter egg mode
-    function triggerMatrixMode() {
-      let canvasHack = document.createElement('canvas');
-      canvasHack.style.position = 'fixed';
-      canvasHack.style.inset = '0';
-      canvasHack.style.zIndex = '9999';
-      canvasHack.style.background = '#000';
-      document.body.appendChild(canvasHack);
-
-      const ctxHack = canvasHack.getContext('2d');
-      let w = canvasHack.width = window.innerWidth;
-      let h = canvasHack.height = window.innerHeight;
-
-      const chars = "010101XYZΑΒΓΔ🧠👾💻⚡🛸👽";
-      const alphabet = chars.split("");
-
-      const fontSize = 16;
-      const columns = w / fontSize;
-
-      const rainDrops = [];
-
-      for (let x = 0; x < columns; x++) {
-        rainDrops[x] = 1;
-      }
-
-      const draw = () => {
-        ctxHack.fillStyle = "rgba(0, 0, 0, 0.05)";
-        ctxHack.fillRect(0, 0, w, h);
-
-        ctxHack.fillStyle = "#0F0";
-        ctxHack.font = fontSize + "px monospace";
-
-        for (let i = 0; i < rainDrops.length; i++) {
-          const text = alphabet[Math.floor(Math.random() * alphabet.length)];
-          ctxHack.fillText(text, i * fontSize, rainDrops[i] * fontSize);
-
-          if (rainDrops[i] * fontSize > h && Math.random() > 0.975) {
-            rainDrops[i] = 0;
-          }
-          rainDrops[i]++;
-        }
-      };
-
-      const matrixInterval = setInterval(draw, 30);
-
-      // Close matrix on click after 3 seconds
-      setTimeout(() => {
-        const exitBtn = document.createElement('button');
-        exitBtn.innerHTML = "EXIT MATRIX CORE";
-        exitBtn.style.position = 'fixed';
-        exitBtn.style.top = '20px';
-        exitBtn.style.right = '20px';
-        exitBtn.style.zIndex = '10000';
-        exitBtn.style.background = 'rgba(0,255,0,0.2)';
-        exitBtn.style.border = '1px solid #0f0';
-        exitBtn.style.color = '#0f0';
-        exitBtn.style.fontFamily = 'monospace';
-        exitBtn.style.padding = '10px 20px';
-        exitBtn.style.borderRadius = '5px';
-        exitBtn.style.cursor = 'pointer';
-        document.body.appendChild(exitBtn);
-
-        exitBtn.addEventListener('click', () => {
-          clearInterval(matrixInterval);
-          canvasHack.remove();
-          exitBtn.remove();
-        });
-      }, 2000);
-    }
-
-    /* ═══════════════════════════════════════════
-       NEURAL MATRIX SKILLS BRANCH DIAGRAM
-       ═══════════════════════════════════════════ */
-    const nodes = {
-      python: {
-        title: "Python Core",
-        desc: "The absolute foundation of Anant's engineering stack. Used extensively for building AI agents, ML modeling, and large-scale data engineering.",
-        connections: ["ml", "nlp", "data"]
-      },
-      ml: {
-        title: "Machine Learning Deep Dive",
-        desc: "Deep modeling capability using TensorFlow and standard libraries. Built manufacturing time predictors at L&T and skin scanners for CosmoGenius.",
-        connections: ["python", "data", "mobile"]
-      },
-      nlp: {
-        title: "NLP & LLM Architectures",
-        desc: "Constructing advanced context pipelines with LangChain and vector databases. Deployed semantic screening engines and integrated large vision models at Ashwa LLP.",
-        connections: ["python", "ml", "web3"]
-      },
-      data: {
-        title: "Large-Scale Data Engineering",
-        desc: "Handling gigabyte-level datasets cleanly. Highly proficient in SQL, PySpark analytics, Microsoft Fabric pipelines, and Power BI dashboards.",
-        connections: ["python", "ml"]
-      },
-      mobile: {
-        title: "Cross-Platform Mobile Dev",
-        desc: "Building intuitive high-fidelity applications with React Native and Flutter. CosmoGenius Skincare showcases this, utilizing Firebase and local database integration.",
-        connections: ["ml"]
-      },
-      web3: {
-        title: "Web3 & Blockchain Systems",
-        desc: "Exploring decentralized databases. Solid understanding of Solidity smart contracts and enterprise systems built with Hyperledger Fabric.",
-        connections: ["nlp"]
-      }
-    };
-
-    const detailsCard = document.getElementById('detailsCard');
-    const detailTitle = document.getElementById('detailTitle');
-    const detailDesc = document.getElementById('detailDesc');
-    const connectionsSvg = document.getElementById('connectionsSvg');
-
-    // Function to draw links dynamically
-    function drawConnectionLines() {
-      connectionsSvg.innerHTML = '';
-      const graphRect = document.getElementById('nodeGraph').getBoundingClientRect();
-
-      Object.keys(nodes).forEach(nodeId => {
-        const fromNode = document.getElementById(`node-${nodeId}`);
-        if (!fromNode) return;
-
-        const fromRect = fromNode.getBoundingClientRect();
-        const fromX = fromNode.offsetLeft;
-        const fromY = fromNode.offsetTop;
-
-        nodes[nodeId].connections.forEach(connId => {
-          const toNode = document.getElementById(`node-${connId}`);
-          if (!toNode) return;
-
-          const toX = toNode.offsetLeft;
-          const toY = toNode.offsetTop;
-
-          // Prevent drawing double lines
-          if (nodeId < connId) {
-            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line.setAttribute('x1', fromX);
-            line.setAttribute('y1', fromY);
-            line.setAttribute('x2', toX);
-            line.setAttribute('y2', toY);
-            line.setAttribute('class', 'conn-line');
-            line.setAttribute('id', `line-${nodeId}-${connId}`);
-            connectionsSvg.appendChild(line);
-          }
-        });
-      });
-    }
-
-    // Activate specific node
-    function activateNode(nodeId) {
-      // Deactivate all
-      document.querySelectorAll('.node').forEach(n => n.classList.remove('active'));
-      document.querySelectorAll('.conn-line').forEach(l => l.classList.remove('active'));
-
-      // Activate clicked
-      const activeNode = document.getElementById(`node-${nodeId}`);
-      activeNode.classList.add('active');
-
-      // Update card
-      detailTitle.textContent = nodes[nodeId].title;
-      detailDesc.textContent = nodes[nodeId].desc;
-      detailsCard.classList.add('visible');
-
-      // Glow matching connection lines
-      nodes[nodeId].connections.forEach(connId => {
-        const lineId1 = `line-${nodeId}-${connId}`;
-        const lineId2 = `line-${connId}-${nodeId}`;
-        const line = document.getElementById(lineId1) || document.getElementById(lineId2);
-        if (line) line.classList.add('active');
-      });
-    }
-
-    // Initial setup and drawing lines
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        drawConnectionLines();
-        activateNode('python'); // Auto activate Python first
-      }, 100);
-    });
-
-    window.addEventListener('resize', drawConnectionLines);
+    }, 45);
   </script>
 </body>
 </html>
