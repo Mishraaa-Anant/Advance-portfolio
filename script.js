@@ -1359,9 +1359,9 @@ $("#sidebarCloseBtn").addEventListener("click", closeSidebar);
 sidebarOverlay.addEventListener("click", closeSidebar);
 
 // AnantVerse button (replaces New Chat)
-$("#anantVerseBtn").addEventListener("click", function () {
+$("#anantVerseBtn").addEventListener("click", function (e) {
   closeSidebar();
-  openAnantVerse();
+  window.location.href = "anantverse.html";
 });
 
 
