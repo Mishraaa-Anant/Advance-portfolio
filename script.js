@@ -14,11 +14,13 @@ const DATA = {
       linkedin: "https://linkedin.com/in/anantmishra31",
       instagram: "https://www.instagram.com/mishraaa_anant",
       youtube: "https://www.youtube.com/@anant_mishra_vlogs",
-      portfolio: "https://advance-portfolio-ten.vercel.app"
+      portfolio: "https://myselfanantmishra.vercel.app"
     }
   },
   personal_extra: {
     nickname: "Annu",
+    birthYear: 2004,
+    age: 21,
     real_intro: "I like building things that actually work in real life.",
     others_view: "A sincere person who believes in smart work and getting things done.",
     personality: {
@@ -209,7 +211,7 @@ Keep responses highly readable. ALWAYS use the '•' character for bullets, neve
 Answer ONLY from the data given. Never make anything up. If asked about something unknown, say "That's outside what I can share right now — email me at anant20042003@gmail.com"
 
 DATA:
-Name: Anant (Nickname: Annu) | AIML Engineer, Data Scientist, Data Analyst | Mumbai
+Name: Anant (Nickname: Annu) | AIML Engineer, Data Scientist, Data Analyst | Mumbai | Born: 2004 (Age: 21)
 Born: Faridabad, Delhi | Schooling done in Mumbai | Village roots: Jaunpur, Varanasi, Uttar Pradesh
 Motivation: Money, building a multi-crore business, and building things that actually work in real life.
 Personality: Extrovert, funny, conversational, values self-respect. Hates fake people & dishonesty. Strengths: Confidence, taking initiative. Weakness: Short temper (working on it).
@@ -355,7 +357,7 @@ const FALLBACK_ENGINE = {
       "drop a message", "send him a message", "reach out"
     ],
     responses: [
-      "Let's connect! Here's how to reach me:\n\n📧 Email: anant20042003@gmail.com\n📞 Phone: +91 9156374557\n▶️ YouTube: youtube.com/@anant_mishra_vlogs\n🔗 GitHub: github.com/Mishraaa-Anant\n🔗 LinkedIn: linkedin.com/in/anantmishra31\n📸 Instagram: @mishraaa_anant\n🌐 Portfolio: advance-portfolio-ten.vercel.app",
+      "Let's connect! Here's how to reach me:\n\n📧 Email: anant20042003@gmail.com\n📞 Phone: +91 9156374557\n▶️ YouTube: youtube.com/@anant_mishra_vlogs\n🔗 GitHub: github.com/Mishraaa-Anant\n🔗 LinkedIn: linkedin.com/in/anantmishra31\n📸 Instagram: @mishraaa_anant\n🌐 Portfolio: myselfanantmishra.vercel.app",
       "Hit me up through any of these:\n\n• 📧 anant20042003@gmail.com\n• 📞 +91 9156374557\n• YouTube → @anant_mishra_vlogs\n• LinkedIn → anantmishra31\n• Instagram → @mishraaa_anant\n• GitHub → Mishraaa-Anant\n\nI respond fast — especially on email and LinkedIn.",
       "Best ways to reach me:\n\n1. Email — anant20042003@gmail.com (fastest for professional queries)\n2. LinkedIn — linkedin.com/in/anantmishra31\n3. YouTube — youtube.com/@anant_mishra_vlogs\n4. Instagram — @mishraaa_anant\n5. GitHub — github.com/Mishraaa-Anant\n6. Phone — +91 9156374557"
     ]
@@ -508,8 +510,8 @@ const FALLBACK_ENGINE = {
       "get his cv", "download resume", "his resume", "your resume"
     ],
     responses: [
-      "You can view my full portfolio at advance-portfolio-ten.vercel.app — it covers everything including projects, experience, and skills.\n\nFor my resume or direct opportunities, shoot me an email at anant20042003@gmail.com and I'll get it to you right away.",
-      "My resume is available on request! Drop me a message at anant20042003@gmail.com and I'll send it over ASAP.\n\nOr check out the full portfolio here: advance-portfolio-ten.vercel.app",
+      "You can view my full portfolio at myselfanantmishra.vercel.app — it covers everything including projects, experience, and skills.\n\nFor my resume or direct opportunities, shoot me an email at anant20042003@gmail.com and I'll get it to you right away.",
+      "My resume is available on request! Drop me a message at anant20042003@gmail.com and I'll send it over ASAP.\n\nOr check out the full portfolio here: myselfanantmishra.vercel.app",
       "Best way to get my resume: email anant20042003@gmail.com and mention what role/opportunity you're looking at. I'll tailor and send it quickly.\n\nLinkedIn also has an updated version: linkedin.com/in/anantmishra31"
     ]
   },
