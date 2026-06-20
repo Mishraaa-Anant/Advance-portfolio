@@ -2144,3 +2144,17 @@ setTimeout(initParticles, 1000);
   init();
 })();
 
+
+/* ═══════════════════════════════════════════
+   SERVICE WORKER REGISTRATION
+   Required for PWA installability (triggers
+   beforeinstallprompt on Android/Chrome).
+═══════════════════════════════════════════ */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js')
+      .catch(function (err) {
+        console.warn('SW registration failed:', err);
+      });
+  });
+}
